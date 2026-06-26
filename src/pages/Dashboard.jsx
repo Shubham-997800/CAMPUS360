@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { Bell, CalendarDays, MessageSquareWarning, BookOpen, CheckCircle2, AlertCircle, Clock, Menu, X } from 'lucide-react'
 import Sidebar from '../components/Sidebar'
 import StatCard from '../components/StatCard'
@@ -48,6 +48,7 @@ export default function Dashboard() {
   const [notifOpen, setNotifOpen] = useState(false)
   const [notifications, setNotifications] = useState(NOTIFICATIONS_DATA)
   const { state } = useLocation()
+  const navigate = useNavigate()
   const user = state?.user || { name: 'Shubham', role: 'Student' }
   const initial = user.name.charAt(0).toUpperCase()
   const total = COMPLAINT_STATS.pending + COMPLAINT_STATS.inProgress + COMPLAINT_STATS.resolved
@@ -75,7 +76,7 @@ export default function Dashboard() {
             <Menu size={22} />
           </button>
           <div className="flex-1 min-w-0">
-            <h1 className="text-lg font-bold text-gray-900">Welcome Back, {user.name} <span className="inline-block animate-bounce">👋</span></h1>
+            <h1 className="text-lg font-bold text-gray-900">Welcome Back, {user.name} <span>👋</span></h1>
           </div>
           <div className="relative">
             <button onClick={() => setNotifOpen(!notifOpen)} className="relative p-2 rounded-lg text-gray-500 hover:bg-gray-100 cursor-pointer" aria-label="Notifications">
@@ -114,13 +115,13 @@ export default function Dashboard() {
               </>
             )}
           </div>
-          <div className="flex items-center gap-2.5 pl-1">
+          <button onClick={() => navigate('/dashboard/profile')} className="flex items-center gap-2.5 pl-1 cursor-pointer">
             <div className="w-9 h-9 rounded-xl bg-blue-600 flex items-center justify-center text-white font-bold text-sm">{initial}</div>
-            <div className="hidden sm:block">
+            <div className="hidden sm:block text-left">
               <p className="text-sm font-semibold text-gray-900 leading-tight">{user.name}</p>
               <p className="text-[11px] text-gray-500">{user.role}</p>
             </div>
-          </div>
+          </button>
         </header>
 
         <main className="flex-1 p-6 md:p-8 max-w-6xl w-full">
