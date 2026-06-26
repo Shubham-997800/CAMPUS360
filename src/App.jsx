@@ -10,6 +10,7 @@ import Complaints from './pages/Complaints'
 import LostFound from './pages/LostFound'
 import StudyHub from './pages/StudyHub'
 import Profile from './pages/Profile'
+import ComplaintDetail from './pages/ComplaintDetail'
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/dashboard/notices-events" element={<NoticeEvents />} />
           <Route path="/dashboard/complaints" element={<Complaints />} />
+          <Route path="/dashboard/complaints/:id" element={<ComplaintDetail />} />
           <Route path="/dashboard/lost-found" element={<LostFound />} />
           <Route path="/dashboard/study-hub" element={<StudyHub />} />
           <Route path="/dashboard/profile" element={<Profile />} />

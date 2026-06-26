@@ -23,7 +23,7 @@ function SectionTitle({ label, title, desc }) {
 
 export default function Landing() {
   return (
-    <div className="bg-[#F8FAFC] dark:bg-[#0F172A] animate-fadeIn">
+    <div className="bg-gradient-to-b from-slate-50 via-white to-slate-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-800 overflow-x-hidden animate-fadeIn">
       <Navbar />
 
       <section id="home" className="pt-32 pb-20 md:pt-40 md:pb-28 px-6">
