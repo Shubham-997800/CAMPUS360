@@ -15,7 +15,7 @@ export default function ComplaintDetail() {
 
   if (!complaint) {
     return (
-      <div className="flex min-h-screen bg-gradient-to-b from-slate-50 via-white to-slate-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-800 overflow-x-hidden items-center justify-center">
+      <div className="flex min-h-screen w-full bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-800 lg:bg-fixed overflow-x-hidden items-center justify-center">
         <div className="text-center">
           <AlertCircle size={48} className="mx-auto mb-3 text-gray-400" />
           <p className="text-sm font-medium text-gray-500">Complaint not found.</p>
@@ -30,7 +30,7 @@ export default function ComplaintDetail() {
   const review = complaint.review
 
   return (
-    <div className="flex min-h-screen bg-gradient-to-b from-slate-50 via-white to-slate-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-800 overflow-x-hidden">
+    <div className="flex min-h-screen w-full bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-800 lg:bg-fixed overflow-x-hidden">
       <div className="flex-1 max-w-4xl mx-auto p-6 md:p-8 w-full animate-fadeIn">
         <div className="mb-6">
           <Link to="/dashboard/complaints" className="inline-flex items-center gap-1.5 text-sm font-medium text-gray-500 dark:text-[#94A3B8] hover:text-gray-700 dark:hover:text-white transition-colors">
