@@ -9,6 +9,9 @@ import Footer from './components/Footer'
 import Login from './pages/Login'
 import Dashboard from './pages/Dashboard/Dashboard'
 import Notices from './pages/Notices/Notices'
+import Events from './pages/Events/Events'
+import Complaints from './pages/Complaints/Complaints'
+import LostFound from './pages/LostFound/LostFound'
 
 function HomePage() {
   return (
@@ -34,6 +37,9 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/dashboard/notices" element={<Notices />} />
+        <Route path="/dashboard/events" element={<Events />} />
+        <Route path="/dashboard/complaints" element={<Complaints />} />
+        <Route path="/dashboard/lost-found" element={<LostFound />} />
       </Routes>
     </BrowserRouter>
   )
