@@ -39,18 +39,16 @@ export default function Complaints() {
   const [list, setList] = useState(INITIAL_COMPLAINTS)
   const [form, setForm] = useState({ title: '', category: '', description: '' })
   const [errors, setErrors] = useState({})
-  const [reviewTarget, setReviewTarget] = useState(null)
-  const [reviewText, setReviewText] = useState('')
+  const [updateTarget, setUpdateTarget] = useState(null)
+  const [updateReview, setUpdateReview] = useState('')
+  const [updateStatusVal, setUpdateStatusVal] = useState('')
 
-  function updateStatus(id, newStatus, reviewMsg) {
-    setList(prev => prev.map(c => c.id === id ? { ...c, status: newStatus, review: reviewMsg || c.review } : c))
-  }
-
-  function submitReview(id) {
-    if (!reviewText.trim()) return
-    setList(prev => prev.map(c => c.id === id ? { ...c, review: reviewText.trim() } : c))
-    setReviewTarget(null)
-    setReviewText('')
+  function handleUpdate() {
+    if (!updateTarget) return
+    setList(prev => prev.map(c => c.id === updateTarget.id ? { ...c, status: updateStatusVal, review: updateReview.trim() } : c))
+    setUpdateTarget(null)
+    setUpdateReview('')
+    setUpdateStatusVal('')
   }
   const filtered = list.filter(c => {
     const matchSearch = c.title.toLowerCase().includes(search.toLowerCase()) || c.id.toString().includes(search) || c.category.toLowerCase().includes(search.toLowerCase())
@@ -185,15 +183,7 @@ export default function Complaints() {
                         </td>
                         {isAdmin && (
                           <td className="py-3.5 px-5 text-right">
-                            <div className="flex items-center justify-end gap-1.5">
-                              <button onClick={() => setReviewTarget(c)} className="text-xs font-semibold text-[#6C5CE7] dark:text-[#7C5CFF] hover:bg-[#EDE9FE] dark:hover:bg-[rgba(124,92,255,0.15)] px-2.5 py-1.5 rounded-lg transition-all cursor-pointer"><MessageSquare size={13} className="inline mr-0.5" /> Review</button>
-                              {c.status === 'pending' && (
-                                <button onClick={() => updateStatus(c.id, 'in-progress', 'Issue is being worked on.')} className="text-xs font-semibold bg-blue-500 text-white hover:bg-blue-600 px-2.5 py-1.5 rounded-lg transition-all cursor-pointer"><Clock size={13} className="inline mr-0.5" /> Start</button>
-                              )}
-                              {c.status === 'in-progress' && (
-                                <button onClick={() => updateStatus(c.id, 'resolved', 'Issue has been resolved.')} className="text-xs font-semibold bg-emerald-500 text-white hover:bg-emerald-600 px-2.5 py-1.5 rounded-lg transition-all cursor-pointer"><CheckCircle2 size={13} className="inline mr-0.5" /> Resolve</button>
-                              )}
-                            </div>
+                            <button onClick={() => { setUpdateTarget(c); setUpdateReview(c.review || ''); setUpdateStatusVal(c.status) }} className="text-xs font-semibold text-[#6C5CE7] dark:text-[#7C5CFF] hover:bg-[#EDE9FE] dark:hover:bg-[rgba(124,92,255,0.15)] px-2.5 py-1.5 rounded-lg transition-all cursor-pointer"><MessageSquare size={13} className="inline mr-0.5" /> Update</button>
                           </td>
                         )}
                       </tr>
@@ -205,19 +195,30 @@ export default function Complaints() {
           )}
         </main>
 
-        {isAdmin && reviewTarget && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm animate-fadeIn" onClick={() => { setReviewTarget(null); setReviewText('') }}>
+        {isAdmin && updateTarget && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm animate-fadeIn" onClick={() => { setUpdateTarget(null); setUpdateReview(''); setUpdateStatusVal('') }}>
             <div className="bg-white dark:bg-[#1E293B] rounded-2xl w-full max-w-lg mx-4 p-6 shadow-2xl border border-gray-200 dark:border-white/10" onClick={e => e.stopPropagation()}>
               <div className="flex items-center justify-between mb-5">
-                <h2 className="text-lg font-bold text-gray-900 dark:text-white">Review Complaint #{reviewTarget.id}</h2>
-                <button onClick={() => { setReviewTarget(null); setReviewText('') }} className="p-1.5 rounded-lg text-gray-400 hover:bg-gray-100 dark:text-gray-500 dark:hover:bg-gray-800 cursor-pointer"><X size={20} /></button>
+                <h2 className="text-lg font-bold text-gray-900 dark:text-white">Update Complaint #{updateTarget.id}</h2>
+                <button onClick={() => { setUpdateTarget(null); setUpdateReview(''); setUpdateStatusVal('') }} className="p-1.5 rounded-lg text-gray-400 hover:bg-gray-100 dark:text-gray-500 dark:hover:bg-gray-800 cursor-pointer"><X size={20} /></button>
               </div>
-              <p className="text-sm text-gray-500 dark:text-[#94A3B8] mb-1"><span className="font-semibold text-gray-900 dark:text-white">{reviewTarget.title}</span></p>
-              <p className="text-xs text-gray-400 dark:text-gray-500 mb-4">{reviewTarget.description.slice(0, 120)}</p>
-              <textarea value={reviewText} onChange={e => setReviewText(e.target.value)} placeholder="Write your review / resolution notes..." rows={4} className="w-full border border-gray-200 dark:border-white/10 rounded-xl px-3.5 py-2.5 text-sm text-gray-900 dark:text-white outline-none focus:border-[#6C5CE7] dark:focus:border-[#7C5CFF] transition-all placeholder:text-gray-400 dark:placeholder:text-gray-500 resize-none dark:bg-[#1E293B] mb-4" />
+              <p className="text-sm font-semibold text-gray-900 dark:text-white mb-1">{updateTarget.title}</p>
+              <p className="text-xs text-gray-400 dark:text-gray-500 mb-4">{updateTarget.description.slice(0, 120)}</p>
+              <div className="mb-4">
+                <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1.5">Status</label>
+                <select value={updateStatusVal} onChange={e => setUpdateStatusVal(e.target.value)} className="w-full border border-gray-200 dark:border-white/10 rounded-xl px-3.5 py-2.5 text-sm text-gray-900 dark:text-white outline-none focus:border-[#6C5CE7] dark:focus:border-[#7C5CFF] transition-all dark:bg-[#1E293B]">
+                  <option value="pending">Pending</option>
+                  <option value="in-progress">In Progress</option>
+                  <option value="resolved">Resolved</option>
+                </select>
+              </div>
+              <div className="mb-4">
+                <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1.5">Review / Notes</label>
+                <textarea value={updateReview} onChange={e => setUpdateReview(e.target.value)} placeholder="Add resolution notes or feedback..." rows={4} className="w-full border border-gray-200 dark:border-white/10 rounded-xl px-3.5 py-2.5 text-sm text-gray-900 dark:text-white outline-none focus:border-[#6C5CE7] dark:focus:border-[#7C5CFF] transition-all placeholder:text-gray-400 dark:placeholder:text-gray-500 resize-none dark:bg-[#1E293B]" />
+              </div>
               <div className="flex gap-3">
-                <button onClick={() => { setReviewTarget(null); setReviewText('') }} className="flex-1 text-sm font-semibold text-gray-600 dark:text-gray-300 bg-gray-100 dark:bg-gray-800 py-2.5 rounded-xl hover:bg-gray-200 dark:hover:bg-gray-700 transition-all cursor-pointer">Cancel</button>
-                <button onClick={() => submitReview(reviewTarget.id)} className="flex-1 text-sm font-semibold bg-[#6C5CE7] text-white py-2.5 rounded-xl hover:bg-[#5B4BD6] dark:bg-[#7C5CFF] dark:hover:bg-[#6B4BEE] transition-all cursor-pointer">Submit Review</button>
+                <button onClick={() => { setUpdateTarget(null); setUpdateReview(''); setUpdateStatusVal('') }} className="flex-1 text-sm font-semibold text-gray-600 dark:text-gray-300 bg-gray-100 dark:bg-gray-800 py-2.5 rounded-xl hover:bg-gray-200 dark:hover:bg-gray-700 transition-all cursor-pointer">Cancel</button>
+                <button onClick={handleUpdate} className="flex-1 text-sm font-semibold bg-[#6C5CE7] text-white py-2.5 rounded-xl hover:bg-[#5B4BD6] dark:bg-[#7C5CFF] dark:hover:bg-[#6B4BEE] transition-all cursor-pointer">Save Changes</button>
               </div>
             </div>
           </div>
