@@ -41,7 +41,7 @@ export default function Landing() {
           </p>
           <div className="flex items-center justify-center gap-4 mt-8 flex-wrap">
             <Link to="/login" className="inline-flex items-center gap-2 bg-blue-600 text-white px-7 py-3 rounded-xl font-semibold hover:bg-blue-700 transition-all hover:-translate-y-0.5 hover:shadow-lg">Get Started <ArrowRight size={18} /></Link>
-            <a href="#features" className="inline-flex items-center gap-2 text-gray-700 bg-white px-7 py-3 rounded-xl font-semibold border border-gray-200 hover:border-gray-300 transition-all hover:-translate-y-0.5">Explore Features</a>
+            <button onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })} className="inline-flex items-center gap-2 text-gray-700 bg-white px-7 py-3 rounded-xl font-semibold border border-gray-200 hover:border-gray-300 transition-all hover:-translate-y-0.5 cursor-pointer">Explore Features</button>
           </div>
           <div className="mt-12 flex items-center justify-center gap-6 text-sm text-gray-400 flex-wrap">
             <span className="flex items-center gap-1.5"><CheckCircle2 size={14} className="text-green-500" /> Free for students</span>
@@ -105,11 +105,11 @@ export default function Landing() {
             </div>
             <div>
               <h4 className="text-white font-bold mb-5">Quick Links</h4>
-              {['Home', 'Features', 'About Us', 'Contact'].map(l => <a key={l} href="#" className="block text-sm hover:text-blue-500 transition-colors mb-3">{l}</a>)}
+              {[{ l: 'Home', h: '/#home' }, { l: 'Features', h: '/#features' }, { l: 'About Us', h: '/#about' }, { l: 'Contact', h: '/#contact' }].map(({ l, h }) => <a key={l} href={h} className="block text-sm hover:text-blue-500 transition-colors mb-3">{l}</a>)}
             </div>
             <div>
               <h4 className="text-white font-bold mb-5">Services</h4>
-              {['Notice Board', 'Events', 'Complaints', 'Study Hub'].map(l => <a key={l} href="#" className="block text-sm hover:text-blue-500 transition-colors mb-3">{l}</a>)}
+              {[{ l: 'Notice Board', h: '/dashboard/notices-events' }, { l: 'Events', h: '/dashboard/notices-events' }, { l: 'Complaints', h: '/dashboard/complaints' }, { l: 'Study Hub', h: '/dashboard/study-hub' }].map(({ l, h }) => <Link key={l} to={h} className="block text-sm hover:text-blue-500 transition-colors mb-3">{l}</Link>)}
             </div>
             <div>
               <h4 className="text-white font-bold mb-5">Contact</h4>

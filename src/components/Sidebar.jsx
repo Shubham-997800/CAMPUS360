@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { LayoutDashboard, Bell, CalendarDays, MessageSquareWarning, PackageSearch, BookOpen, UserRound, LogOut } from 'lucide-react'
 
 const NAV_ITEMS = [
@@ -11,6 +11,7 @@ const NAV_ITEMS = [
 ]
 
 export default function Sidebar({ open, onClose }) {
+  const navigate = useNavigate()
   return (
     <>
       {open && <div className="fixed inset-0 bg-black/40 z-40 backdrop-blur-sm md:hidden" onClick={onClose} />}
@@ -36,9 +37,9 @@ export default function Sidebar({ open, onClose }) {
         </nav>
 
         <div className="p-3 border-t border-gray-200">
-          <NavLink to="/login" className="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium text-gray-500 hover:bg-red-50 hover:text-red-600 transition-all">
+          <button onClick={() => { navigate('/'); onClose() }} className="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium text-gray-500 hover:bg-red-50 hover:text-red-600 transition-all cursor-pointer">
             <LogOut size={20} strokeWidth={2} /> Logout
-          </NavLink>
+          </button>
         </div>
       </aside>
     </>
