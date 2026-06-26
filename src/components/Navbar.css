@@ -1,3 +1,8 @@
+/* ============================================
+   Navbar - Fixed top navigation bar
+   ============================================ */
+
+/* ── Navbar container (fixed, glassmorphism) ── */
 .navbar {
   position: fixed;
   top: 0;
@@ -11,10 +16,12 @@
   transition: box-shadow var(--transition);
 }
 
+/* ── Scrolled state shadow (applied via JS scroll listener) ── */
 .navbar.scrolled {
   box-shadow: var(--shadow);
 }
 
+/* ── Inner container (max-width + flex layout) ── */
 .navbar-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -25,6 +32,7 @@
   height: 68px;
 }
 
+/* ── Brand logo link ── */
 .navbar-logo {
   display: flex;
   align-items: center;
@@ -40,16 +48,19 @@
   opacity: 0.85;
 }
 
+/* ── Accent color for "360" in logo ── */
 .logo-accent {
   color: var(--primary);
 }
 
+/* ── Navigation links row ── */
 .nav-links {
   display: flex;
   align-items: center;
   gap: 32px;
 }
 
+/* ── Individual nav link ── */
 .nav-links a {
   text-decoration: none;
   color: var(--text);
@@ -59,6 +70,7 @@
   position: relative;
 }
 
+/* ── Hover underline effect ── */
 .nav-links a::after {
   content: '';
   position: absolute;
@@ -79,6 +91,7 @@
   width: 100%;
 }
 
+/* ── Login CTA button ── */
 .nav-login-btn {
   background: var(--primary);
   color: white !important;
@@ -88,6 +101,7 @@
   transition: all 0.3s !important;
 }
 
+/* ── Remove underline effect for login button ── */
 .nav-login-btn::after {
   display: none !important;
 }
@@ -99,6 +113,7 @@
   color: white !important;
 }
 
+/* ── Hamburger menu button (hidden on desktop) ── */
 .hamburger {
   display: none;
   flex-direction: column;
@@ -109,6 +124,7 @@
   padding: 4px;
 }
 
+/* ── Hamburger bars ── */
 .hamburger span {
   width: 24px;
   height: 2px;
@@ -117,6 +133,7 @@
   transition: all 0.3s;
 }
 
+/* ── Hamburger active state (animated X) ── */
 .hamburger.active span:nth-child(1) {
   transform: rotate(45deg) translate(5px, 5px);
 }
@@ -129,6 +146,7 @@
   transform: rotate(-45deg) translate(5px, -5px);
 }
 
+/* ── Mobile responsive styles ── */
 @media (max-width: 768px) {
   .hamburger {
     display: flex;

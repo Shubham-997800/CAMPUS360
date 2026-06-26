@@ -1,3 +1,7 @@
+/* ============================================
+   Complaints - Styles for complaint management page (banner, table, modal, summary)
+   ============================================ */
+
 /* ── Page ── */
 .complaints-page {
   flex: 1;
@@ -6,7 +10,7 @@
   width: 100%;
 }
 
-/* ── Banner ── */
+/* ── Banner: header with title, subtitle, and "New Complaint" action button ── */
 .complaints-banner {
   background: var(--primary);
   padding: 36px 32px;
@@ -69,7 +73,7 @@
   transform: translateY(-1px);
 }
 
-/* ── Toolbar ── */
+/* ── Toolbar: search input + segmented status filter buttons ── */
 .complaints-toolbar {
   display: flex;
   align-items: center;
@@ -118,6 +122,7 @@
   color: var(--text-secondary);
 }
 
+/* ── Status filter segmented button group ── */
 .complaints-status-filters {
   display: flex;
   gap: 4px;
@@ -149,7 +154,7 @@
   box-shadow: var(--shadow-sm);
 }
 
-/* ── Empty ── */
+/* ── Empty: shown when no complaints match filters ── */
 .complaints-empty {
   display: flex;
   flex-direction: column;
@@ -161,7 +166,7 @@
   gap: 12px;
 }
 
-/* ── Table ── */
+/* ── Table: scrollable wrapper for the complaint list table ── */
 .complaints-table-wrapper {
   padding: 0 28px;
   margin-top: 20px;
@@ -252,6 +257,7 @@
   white-space: nowrap;
 }
 
+/* ── Status badge with color-coded background and dot indicator ── */
 .complaints-status-badge {
   display: inline-flex;
   align-items: center;
@@ -269,7 +275,7 @@
   border-radius: 50%;
 }
 
-/* ── Modal ── */
+/* ── Modal: overlay and form for submitting a new complaint ── */
 .complaints-form-overlay {
   position: fixed;
   inset: 0;
@@ -393,6 +399,7 @@
   font-weight: 500;
 }
 
+/* ── File attachment button: dashed border style ── */
 .complaints-file-btn {
   display: inline-flex;
   align-items: center;
@@ -438,7 +445,7 @@
   box-shadow: 0 6px 20px rgba(37, 99, 235, 0.3);
 }
 
-/* ── Summary ── */
+/* ── Summary: 4-column grid of card-style count summaries ── */
 .complaints-summary {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -480,7 +487,7 @@
   font-weight: 500;
 }
 
-/* ── Responsive ── */
+/* ── Responsive: tablet ── */
 @media (max-width: 1024px) {
   .complaints-banner {
     padding: 28px 24px;
@@ -500,6 +507,7 @@
   }
 }
 
+/* ── Responsive: mobile ── */
 @media (max-width: 768px) {
   .complaints-banner {
     flex-direction: column;
@@ -549,6 +557,7 @@
   }
 }
 
+/* ── Responsive: small mobile ── */
 @media (max-width: 480px) {
   .complaints-banner {
     padding: 20px var(--radius-lg);

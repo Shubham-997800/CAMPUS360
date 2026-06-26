@@ -1,3 +1,10 @@
+// ============================================
+// StudyHub - Study resources page with:
+//   - Tabs: Notes / Previous Year Papers / Assignments / Syllabus
+//   - Semester filter dropdown and search bar
+//   - Grid of resource cards with type badge, subject, semester, download count
+// ============================================
+
 import { useState } from 'react'
 import Sidebar from '../Dashboard/components/Sidebar'
 import TopNavbar from '../Dashboard/components/TopNavbar'
@@ -10,6 +17,7 @@ export default function StudyHub() {
   const [search, setSearch] = useState('')
   const [semester, setSemester] = useState('All')
 
+  // ── Filter resources by active tab (type), semester, and search query ──
   const filtered = resources.filter((r) => {
     const matchTab = r.type === tab
     const matchSem = semester === 'All' || r.semester === semester
@@ -25,6 +33,7 @@ export default function StudyHub() {
       <div className="dashboard-main">
         <TopNavbar onMenuToggle={() => setSidebarOpen((prev) => !prev)} />
         <div className="studyhub-page">
+          {/* ── Banner: title, subtitle, decorative SVG art ── */}
           <div className="studyhub-banner">
             <div className="studyhub-banner-content">
               <h1 className="studyhub-banner-title">Study Hub</h1>
@@ -46,6 +55,7 @@ export default function StudyHub() {
             </svg>
           </div>
 
+          {/* ── Tabs: Notes / Prev Year Papers / Assignments / Syllabus with resource counts ── */}
           <div className="studyhub-tabs">
             {sections.map((s) => (
               <button
@@ -64,6 +74,7 @@ export default function StudyHub() {
             ))}
           </div>
 
+          {/* ── Toolbar: search input and semester filter dropdown ── */}
           <div className="studyhub-toolbar">
             <div className="studyhub-search">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -92,6 +103,7 @@ export default function StudyHub() {
             </div>
           </div>
 
+          {/* ── Resource cards grid (or empty state) ── */}
           {filtered.length === 0 ? (
             <div className="studyhub-empty">
               <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -104,6 +116,7 @@ export default function StudyHub() {
             <div className="studyhub-grid">
               {filtered.map((r) => (
                 <div key={r.id} className="studyhub-card">
+                  {/* ── Color accent bar at top of card (gradient based on type) ── */}
                   <div className="studyhub-card-accent" style={{ background: typeGradients[r.type] }} />
                   <div className="studyhub-card-body">
                     <div className="studyhub-card-type">

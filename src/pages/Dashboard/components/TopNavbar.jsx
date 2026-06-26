@@ -1,6 +1,11 @@
+// ============================================
+// TopNavbar - Sticky top header with hamburger toggle, greeting, search bar, notification bell, and user profile
+// ============================================
+
 export default function TopNavbar({ onMenuToggle }) {
   return (
     <header className="dashboard-topbar">
+      {/* ── Mobile Menu Toggle: Hamburger icon button visible only on small screens ── */}
       <button className="sidebar-toggle" onClick={onMenuToggle} aria-label="Toggle menu">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <line x1="3" y1="6" x2="21" y2="6" />
@@ -9,11 +14,13 @@ export default function TopNavbar({ onMenuToggle }) {
         </svg>
       </button>
 
+      {/* ── Greeting: Personalized welcome message with waving-hand animation and subtitle ── */}
       <div className="topbar-greeting">
         <h1 className="greeting-text">Good Morning, Shubham <span className="greeting-wave">👋</span></h1>
         <p className="greeting-sub">Here's what's happening at campus today.</p>
       </div>
 
+      {/* ── Search Bar: Text input with magnifying-glass icon, filters notices/events/files ── */}
       <div className="topbar-search">
         <svg className="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <circle cx="11" cy="11" r="8" />
@@ -22,7 +29,9 @@ export default function TopNavbar({ onMenuToggle }) {
         <input type="text" placeholder="Search notices, events, files..." className="search-input" />
       </div>
 
+      {/* ── Actions: Notification bell with unread badge + user profile avatar ── */}
       <div className="topbar-actions">
+        {/* ── Notification Bell: Displays unread count in a red badge ── */}
         <button className="topbar-icon-btn notification-btn" aria-label="Notifications">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9" />
@@ -31,6 +40,7 @@ export default function TopNavbar({ onMenuToggle }) {
           <span className="notification-badge">3</span>
         </button>
 
+        {/* ── Profile: Avatar initial + name and role stacked vertically ── */}
         <div className="topbar-profile">
           <div className="profile-avatar">
             <span>S</span>

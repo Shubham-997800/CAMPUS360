@@ -1,14 +1,21 @@
+/* ============================================
+   Footer - Site footer with links and contact
+   ============================================ */
+
+/* ── Dark footer background ── */
 .footer {
   background: #0F172A;
   color: var(--text-secondary);
   padding: 64px 24px 0;
 }
 
+/* ── Max-width container ── */
 .footer-container {
   max-width: 1100px;
   margin: 0 auto;
 }
 
+/* ── Footer grid layout (brand | links | services | contact) ── */
 .footer-grid {
   display: grid;
   grid-template-columns: 1.5fr 1fr 1fr 1.5fr;
@@ -17,6 +24,7 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
+/* ── Brand logo row ── */
 .footer-logo {
   display: flex;
   align-items: center;
@@ -27,6 +35,7 @@
   margin-bottom: 16px;
 }
 
+/* ── Brand description ── */
 .footer-desc {
   font-size: 14px;
   line-height: 1.7;
@@ -35,11 +44,13 @@
   max-width: 320px;
 }
 
+/* ── Social icons row ── */
 .footer-social {
   display: flex;
   gap: 10px;
 }
 
+/* ── Individual social icon ── */
 .social-icon {
   width: 38px;
   height: 38px;
@@ -59,6 +70,7 @@
   transform: translateY(-2px);
 }
 
+/* ── Column heading ── */
 .footer-heading {
   font-size: 16px;
   font-weight: 700;
@@ -66,6 +78,7 @@
   margin: 0 0 20px;
 }
 
+/* ── Links column (vertical list) ── */
 .footer-links-group {
   display: flex;
   flex-direction: column;
@@ -83,6 +96,7 @@
   color: var(--primary);
 }
 
+/* ── Contact item row (icon + text) ── */
 .footer-contact-item {
   display: flex;
   align-items: center;
@@ -96,6 +110,7 @@
   color: var(--primary);
 }
 
+/* ── Copyright bar ── */
 .footer-bottom {
   padding: 24px 0;
   text-align: center;
@@ -107,6 +122,7 @@
   margin: 0;
 }
 
+/* ── Tablet: 2 columns ── */
 @media (max-width: 900px) {
   .footer-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -114,6 +130,7 @@
   }
 }
 
+/* ── Mobile: 1 column ── */
 @media (max-width: 640px) {
   .footer {
     padding: 48px 16px 0;

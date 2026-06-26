@@ -1,3 +1,11 @@
+// ============================================
+// Events data - Mock data for campus events
+// Each event has: id, title, category, date, time, venue, description,
+//                 isPast (boolean), gradient (CSS gradient string), icon (emoji)
+// categories array drives the filter dropdown
+// gradients and icons arrays provide visual variety for event cards
+// ============================================
+
 export const categories = ['All', 'Workshop', 'Tech', 'Cultural', 'Sports', 'Seminar', 'Hackathon']
 
 const gradients = [

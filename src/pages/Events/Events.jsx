@@ -1,3 +1,8 @@
+// ============================================
+// Events - Displays upcoming and past campus events with search, category filter,
+//          and a registration toggle per event card
+// ============================================
+
 import { useState } from 'react'
 import Sidebar from '../Dashboard/components/Sidebar'
 import TopNavbar from '../Dashboard/components/TopNavbar'
@@ -9,6 +14,7 @@ export default function Events() {
   const [search, setSearch] = useState('')
   const [filter, setFilter] = useState('All')
 
+  // ── Filter events by search text (title/description/venue) and category ──
   const filtered = events.filter((e) => {
     const matchSearch =
       e.title.toLowerCase().includes(search.toLowerCase()) ||
@@ -18,6 +24,7 @@ export default function Events() {
     return matchSearch && matchFilter
   })
 
+  // ── Split filtered list into upcoming vs past events based on isPast flag ──
   const upcoming = filtered.filter((e) => !e.isPast)
   const past = filtered.filter((e) => e.isPast)
 
@@ -36,6 +43,7 @@ export default function Events() {
       <div className="dashboard-main">
         <TopNavbar onMenuToggle={() => setSidebarOpen((prev) => !prev)} />
         <div className="events-page">
+          {/* ── Banner: page title, subtitle, and decorative SVG art ── */}
           <div className="events-banner">
             <div className="events-banner-content">
               <h1 className="events-banner-title">Upcoming Campus Events</h1>
@@ -60,6 +68,7 @@ export default function Events() {
             </svg>
           </div>
 
+          {/* ── Toolbar: search input and category filter dropdown ── */}
           <div className="events-toolbar">
             <div className="events-search">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -88,6 +97,7 @@ export default function Events() {
             </div>
           </div>
 
+          {/* ── Event sections: upcoming then past (or empty state) ── */}
           {upcoming.length === 0 && past.length === 0 ? (
             <div className="events-empty">
               <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -133,11 +143,17 @@ export default function Events() {
   )
 }
 
+// ============================================
+// EventCard - Sub-component rendering a single event card
+// Features: gradient poster, icon, date/time/venue metadata,
+//           registration button with local toggle state
+// ============================================
 function EventCard({ event }) {
   const [registered, setRegistered] = useState(false)
 
   return (
     <div className={`event-card ${event.isPast ? 'past' : ''}`}>
+      {/* ── Poster area: gradient background, emoji icon, category overlay ── */}
       <div className="event-card-poster" style={{ background: event.gradient }}>
         <span className="event-card-icon">{event.icon}</span>
         <div className="event-card-poster-overlay">
@@ -146,6 +162,7 @@ function EventCard({ event }) {
         </div>
       </div>
       <div className="event-card-body">
+        {/* ── Meta row: date and time ── */}
         <div className="event-card-meta">
           <span className="event-card-date">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -164,6 +181,7 @@ function EventCard({ event }) {
             {event.time}
           </span>
         </div>
+        {/* ── Venue ── */}
         <div className="event-card-venue">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
@@ -173,6 +191,7 @@ function EventCard({ event }) {
         </div>
         <h3 className="event-card-title">{event.title}</h3>
         <p className="event-card-desc">{event.description}</p>
+        {/* ── Registration button: toggles to "Registered" on click, hidden for past events ── */}
         {!event.isPast && (
           <button
             className={`event-card-register ${registered ? 'registered' : ''}`}

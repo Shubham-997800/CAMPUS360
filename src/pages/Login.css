@@ -1,8 +1,14 @@
+/* ============================================
+   Login - Split-screen login page
+   ============================================ */
+
+/* ── Page wrapper (flex row split) ── */
 .login-page {
   display: flex;
   min-height: 100vh;
 }
 
+/* ── Left panel: brand showcase (blue background) ── */
 .login-left {
   flex: 1;
   background: var(--primary);
@@ -14,6 +20,7 @@
   overflow: hidden;
 }
 
+/* ── Subtle radial gradient overlay ── */
 .login-left::before {
   content: '';
   position: absolute;
@@ -22,12 +29,14 @@
               radial-gradient(ellipse at 80% 20%, rgba(255,255,255,0.05) 0%, transparent 50%);
 }
 
+/* ── Left panel content wrapper ── */
 .login-left-content {
   position: relative;
   max-width: 420px;
   text-align: center;
 }
 
+/* ── Left panel logo ── */
 .login-left-logo {
   display: inline-flex;
   align-items: center;
@@ -43,12 +52,14 @@
   color: rgba(255, 255, 255, 0.85);
 }
 
+/* ── Illustration container ── */
 .login-illustration {
   margin-bottom: 40px;
   display: flex;
   justify-content: center;
 }
 
+/* ── Floating animation for illustration ── */
 .floating-illustration {
   width: 320px;
   height: auto;
@@ -60,6 +71,7 @@
   50% { transform: translateY(-16px); }
 }
 
+/* ── Left panel title ── */
 .login-left-title {
   font-size: 34px;
   font-weight: 800;
@@ -68,6 +80,7 @@
   letter-spacing: -0.03em;
 }
 
+/* ── Left panel description ── */
 .login-left-desc {
   font-size: 16px;
   line-height: 1.7;
@@ -75,6 +88,7 @@
   margin: 0;
 }
 
+/* ── Right panel: form area ── */
 .login-right {
   flex: 1;
   display: flex;
@@ -84,6 +98,7 @@
   background: var(--bg);
 }
 
+/* ── Login card with fade-in animation ── */
 .login-card {
   width: 100%;
   max-width: 420px;
@@ -106,10 +121,12 @@
   }
 }
 
+/* ── Card header ── */
 .login-card-header {
   margin-bottom: 28px;
 }
 
+/* ── Card title ── */
 .login-card-title {
   font-size: 26px;
   font-weight: 800;
@@ -118,12 +135,14 @@
   letter-spacing: -0.03em;
 }
 
+/* ── Card subtitle ── */
 .login-card-desc {
   font-size: 15px;
   color: var(--text-secondary);
   margin: 0;
 }
 
+/* ── Error banner with shake animation ── */
 .login-error-banner {
   display: flex;
   align-items: center;
@@ -150,6 +169,7 @@
   flex-shrink: 0;
 }
 
+/* ── Remember me + forgot password row ── */
 .login-options {
   display: flex;
   align-items: center;
@@ -157,6 +177,7 @@
   margin: 20px 0 24px;
 }
 
+/* ── Remember me label ── */
 .login-remember {
   display: flex;
   align-items: center;
@@ -167,6 +188,7 @@
   position: relative;
 }
 
+/* ── Hidden native checkbox ── */
 .login-remember input {
   position: absolute;
   opacity: 0;
@@ -175,6 +197,7 @@
   height: 0;
 }
 
+/* ── Custom checkmark box ── */
 .remember-checkmark {
   width: 18px;
   height: 18px;
@@ -191,6 +214,7 @@
   border-color: var(--text-secondary);
 }
 
+/* ── Checked state with checkmark ── */
 .login-remember input:checked + .remember-checkmark {
   background: var(--primary);
   border-color: var(--primary);
@@ -211,6 +235,7 @@
   outline-offset: 2px;
 }
 
+/* ── Forgot password link ── */
 .login-forgot {
   font-size: 14px;
   color: var(--primary);
@@ -224,6 +249,7 @@
   text-decoration: underline;
 }
 
+/* ── Sign In button ── */
 .login-btn {
   width: 100%;
   padding: 13px 24px;
@@ -261,6 +287,7 @@
   background: var(--primary-hover);
 }
 
+/* ── Loading spinner ── */
 .spinner {
   width: 18px;
   height: 18px;
@@ -274,6 +301,7 @@
   to { transform: rotate(360deg); }
 }
 
+/* ── OR divider ── */
 .login-divider {
   display: flex;
   align-items: center;
@@ -295,6 +323,7 @@
   white-space: nowrap;
 }
 
+/* ── Google sign-in button ── */
 .google-btn {
   width: 100%;
   padding: 12px 24px;
@@ -320,6 +349,7 @@
   box-shadow: var(--shadow);
 }
 
+/* ── Sign-up prompt ── */
 .login-signup {
   text-align: center;
   font-size: 14px;
@@ -339,6 +369,7 @@
   text-decoration: underline;
 }
 
+/* ── Tablet: stacked layout ── */
 @media (max-width: 900px) {
   .login-page {
     flex-direction: column;
@@ -374,6 +405,7 @@
   }
 }
 
+/* ── Mobile ── */
 @media (max-width: 480px) {
   .login-left {
     padding: 32px 20px;

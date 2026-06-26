@@ -1,3 +1,7 @@
+/* ============================================
+   Events - Styles for the events listing page (banner, toolbar, cards, sections)
+   ============================================ */
+
 /* ── Page ── */
 .events-page {
   flex: 1;
@@ -6,7 +10,7 @@
   width: 100%;
 }
 
-/* ── Banner ── */
+/* ── Banner: hero section with title, subtitle, decorative art ── */
 .events-banner {
   background: var(--primary);
   padding: 40px 40px;
@@ -50,7 +54,7 @@
   opacity: 0.9;
 }
 
-/* ── Toolbar ── */
+/* ── Toolbar: search bar and category filter ── */
 .events-toolbar {
   display: flex;
   align-items: center;
@@ -134,7 +138,7 @@
   -webkit-appearance: none;
 }
 
-/* ── Empty ── */
+/* ── Empty: shown when no events match the current filter ── */
 .events-empty {
   display: flex;
   flex-direction: column;
@@ -146,7 +150,7 @@
   gap: 12px;
 }
 
-/* ── Section ── */
+/* ── Section: wraps a heading + grid for a group of events (upcoming/past) ── */
 .events-section {
   padding: 0 28px 32px;
 }
@@ -175,14 +179,14 @@
   border-radius: var(--radius-lg);
 }
 
-/* ── Grid ── */
+/* ── Grid: 3-column event card layout ── */
 .events-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
 
-/* ── Card ── */
+/* ── Card: individual event card with hover lift effect ── */
 .event-card {
   background: var(--card);
   border-radius: var(--radius-lg);
@@ -208,7 +212,7 @@
   opacity: 1;
 }
 
-/* ── Poster ── */
+/* ── Poster: gradient background area with icon and overlay badges ── */
 .event-card-poster {
   height: 160px;
   display: flex;
@@ -260,7 +264,7 @@
   backdrop-filter: blur(4px);
 }
 
-/* ── Card Body ── */
+/* ── Card Body: metadata, title, description, register button ── */
 .event-card-body {
   padding: 18px 20px 20px;
   display: flex;
@@ -318,6 +322,7 @@
   overflow: hidden;
 }
 
+/* ── Register button: full-width, toggles to green "Registered" state ── */
 .event-card-register {
   display: inline-flex;
   align-items: center;
@@ -359,13 +364,14 @@
   transform: translateX(2px);
 }
 
-/* ── Responsive ── */
+/* ── Responsive: tablet landscape ── */
 @media (max-width: 1200px) {
   .events-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
+/* ── Responsive: tablet portrait ── */
 @media (max-width: 1024px) {
   .events-banner {
     padding: 28px 24px;
@@ -386,6 +392,7 @@
   }
 }
 
+/* ── Responsive: mobile ── */
 @media (max-width: 768px) {
   .events-grid {
     grid-template-columns: 1fr;
@@ -420,6 +427,7 @@
   }
 }
 
+/* ── Responsive: small mobile ── */
 @media (max-width: 480px) {
   .events-banner {
     padding: 20px 16px;

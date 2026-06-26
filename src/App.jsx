@@ -1,3 +1,7 @@
+// ============================================
+// App - Root component with routing definition
+// ============================================
+
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
@@ -15,6 +19,7 @@ import LostFound from './pages/LostFound/LostFound'
 import StudyHub from './pages/StudyHub/StudyHub'
 import Profile from './pages/Profile/Profile'
 
+// ── HomePage - Landing page composing all marketing sections ──
 function HomePage() {
   return (
     <>
@@ -31,6 +36,7 @@ function HomePage() {
   )
 }
 
+// ── App - Sets up BrowserRouter with all application routes ──
 function App() {
   return (
     <BrowserRouter>

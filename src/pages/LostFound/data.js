@@ -1,3 +1,11 @@
+// ============================================
+// LostFound data - Mock data for Lost & Found page
+// categories: dropdown filter options (minus 'All' for form dropdown)
+// lostItems: items reported as lost, each with gradient/icon for card display
+// foundItems: items reported as found, same shape as lostItems
+// gradients and icons arrays provide visual variety for item cards
+// ============================================
+
 export const categories = ['All', 'Electronics', 'Accessories', 'Books', 'Clothing', 'ID Cards', 'Bottles', 'Other']
 
 const gradients = [

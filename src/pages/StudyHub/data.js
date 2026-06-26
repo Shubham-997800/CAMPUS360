@@ -1,3 +1,13 @@
+// ============================================
+// StudyHub data - Mock data for study resources
+// semesters: dropdown filter options (1st through 8th + All)
+// sections: tab definitions (key, label, SVG icon path)
+// resources: array of study materials with id, subject, semester, type, downloads
+// typeGradients: maps resource type to CSS gradient for card accent bar
+// typeIcons: maps resource type to emoji icon
+// typeLabels: maps resource type to human-readable label
+// ============================================
+
 export const semesters = ['All', '1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th']
 
 export const sections = [
@@ -8,7 +18,7 @@ export const sections = [
 ]
 
 export const resources = [
-  // ── Notes ──
+  // --- Notes ---
   { id: 1, subject: 'Data Structures & Algorithms', semester: '3rd', type: 'notes', downloads: 342 },
   { id: 2, subject: 'Operating Systems', semester: '3rd', type: 'notes', downloads: 287 },
   { id: 3, subject: 'Database Management Systems', semester: '4th', type: 'notes', downloads: 415 },
@@ -20,7 +30,7 @@ export const resources = [
   { id: 9, subject: 'Discrete Mathematics', semester: '2nd', type: 'notes', downloads: 301 },
   { id: 10, subject: 'Engineering Mathematics I', semester: '1st', type: 'notes', downloads: 445 },
 
-  // ── Previous Year Papers ──
+  // --- Previous Year Papers ---
   { id: 11, subject: 'Data Structures & Algorithms', semester: '3rd', type: 'papers', downloads: 512 },
   { id: 12, subject: 'Operating Systems', semester: '3rd', type: 'papers', downloads: 423 },
   { id: 13, subject: 'Database Management Systems', semester: '4th', type: 'papers', downloads: 389 },
@@ -30,7 +40,7 @@ export const resources = [
   { id: 17, subject: 'Engineering Mathematics I', semester: '1st', type: 'papers', downloads: 467 },
   { id: 18, subject: 'Discrete Mathematics', semester: '2nd', type: 'papers', downloads: 334 },
 
-  // ── Assignments ──
+  // --- Assignments ---
   { id: 19, subject: 'Data Structures & Algorithms', semester: '3rd', type: 'assignments', downloads: 234 },
   { id: 20, subject: 'Operating Systems', semester: '3rd', type: 'assignments', downloads: 198 },
   { id: 21, subject: 'Database Management Systems', semester: '4th', type: 'assignments', downloads: 267 },
@@ -39,7 +49,7 @@ export const resources = [
   { id: 24, subject: 'Artificial Intelligence', semester: '7th', type: 'assignments', downloads: 245 },
   { id: 25, subject: 'Engineering Mathematics I', semester: '1st', type: 'assignments', downloads: 356 },
 
-  // ── Syllabus ──
+  // --- Syllabus ---
   { id: 26, subject: 'Computer Science (CSE)', semester: 'All', type: 'syllabus', downloads: 891 },
   { id: 27, subject: 'Information Technology', semester: 'All', type: 'syllabus', downloads: 654 },
   { id: 28, subject: 'Electronics & Communication', semester: 'All', type: 'syllabus', downloads: 523 },

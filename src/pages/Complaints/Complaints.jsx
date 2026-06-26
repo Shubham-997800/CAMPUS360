@@ -1,3 +1,11 @@
+// ============================================
+// Complaints - Complaint management page with:
+//   - New complaint form (modal overlay with validation)
+//   - Search + status filter toolbar
+//   - Table listing complaints with status badges
+//   - Summary cards showing pending/in-progress/resolved/total counts
+// ============================================
+
 import { useState } from 'react'
 import Sidebar from '../Dashboard/components/Sidebar'
 import TopNavbar from '../Dashboard/components/TopNavbar'
@@ -14,6 +22,7 @@ export default function Complaints() {
   const [formErrors, setFormErrors] = useState({})
   const [fileName, setFileName] = useState('')
 
+  // ── Filter complaints by search text (title/ID/category) and status filter ──
   const filtered = list.filter((c) => {
     const matchSearch =
       c.title.toLowerCase().includes(search.toLowerCase()) ||
@@ -24,17 +33,20 @@ export default function Complaints() {
     return matchSearch && matchStatus
   })
 
+  // ── Update form field value and clear corresponding validation error ──
   function handleFormChange(e) {
     const { name, value } = e.target
     setForm((prev) => ({ ...prev, [name]: value }))
     if (formErrors[name]) setFormErrors((prev) => ({ ...prev, [name]: '' }))
   }
 
+  // ── Capture file name from file input ──
   function handleFileChange(e) {
     const file = e.target.files[0]
     setFileName(file ? file.name : '')
   }
 
+  // ── Validate form fields before submission ──
   function validateForm() {
     const errs = {}
     if (!form.title.trim()) errs.title = 'Title is required'
@@ -44,6 +56,7 @@ export default function Complaints() {
     return errs
   }
 
+  // ── Handle form submission: validate, create new complaint, prepend to list ──
   function handleSubmit(e) {
     e.preventDefault()
     const errs = validateForm()
@@ -73,6 +86,7 @@ export default function Complaints() {
       <div className="dashboard-main">
         <TopNavbar onMenuToggle={() => setSidebarOpen((prev) => !prev)} />
         <div className="complaints-page">
+          {/* ── Banner: page title + "New Complaint" button ── */}
           <div className="complaints-banner">
             <div className="complaints-banner-content">
               <h1 className="complaints-banner-title">Complaint Management</h1>
@@ -87,6 +101,7 @@ export default function Complaints() {
             </button>
           </div>
 
+          {/* ── New Complaint Form Modal: overlay with form for title, category, description, attachment ── */}
           {showForm && (
             <div className="complaints-form-overlay" onClick={() => setShowForm(false)}>
               <div className="complaints-form-modal" onClick={(e) => e.stopPropagation()}>
@@ -164,6 +179,7 @@ export default function Complaints() {
             </div>
           )}
 
+          {/* ── Toolbar: search input and status filter button group ── */}
           <div className="complaints-toolbar">
             <div className="complaints-search">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -191,6 +207,7 @@ export default function Complaints() {
             </div>
           </div>
 
+          {/* ── Complaint table (or empty state) ── */}
           {filtered.length === 0 ? (
             <div className="complaints-empty">
               <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -226,6 +243,7 @@ export default function Complaints() {
                           {new Date(c.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
                         </td>
                         <td>
+                          {/* ── Status badge with color-coded dot and label from statusConfig ── */}
                           <span className="complaints-status-badge" style={{ background: cfg.bg, color: cfg.color }}>
                             <span className="complaints-status-dot" style={{ background: cfg.color }} />
                             {cfg.label}
@@ -239,6 +257,7 @@ export default function Complaints() {
             </div>
           )}
 
+          {/* ── Summary cards: counts for pending, in-progress, resolved, and total ── */}
           <div className="complaints-summary">
             <div className="complaints-summary-item">
               <span className="complaints-summary-value">{list.filter((c) => c.status === 'pending').length}</span>

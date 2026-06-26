@@ -1,16 +1,23 @@
+// ============================================
+// InputField - Reusable form input with label,
+//               icon support, error messages, and
+//               password visibility toggle
+// ============================================
+
 import { useState } from 'react'
 import './InputField.css'
 
 export default function InputField({
-  label,
-  type = 'text',
-  name,
-  value,
-  onChange,
-  placeholder,
-  error,
-  icon
+  label,        // Text displayed above the input
+  type = 'text', // Input type (e.g. 'text', 'email', 'password')
+  name,          // Input name attribute (also used as htmlFor id)
+  value,         // Controlled value from parent state
+  onChange,      // Change handler passed from parent
+  placeholder,   // Placeholder text inside the input
+  error,         // Error message string (renders red border + message)
+  icon           // Optional SVG/icon rendered inside the input on the left
 }) {
+  // ── Local state for password reveal and focus tracking ──
   const [showPassword, setShowPassword] = useState(false)
   const [focused, setFocused] = useState(false)
   const isPassword = type === 'password'
@@ -18,9 +25,14 @@ export default function InputField({
 
   return (
     <div className={`input-field ${error ? 'has-error' : ''} ${focused ? 'is-focused' : ''}`}>
+      {/* ── Floating label linked to input via htmlFor ── */}
       <label className="input-label" htmlFor={name}>{label}</label>
+
       <div className="input-wrapper">
+        {/* ── Optional icon rendered before the input ── */}
         {icon && <span className="input-icon">{icon}</span>}
+
+        {/* ── Actual input control ── */}
         <input
           id={name}
           name={name}
@@ -33,6 +45,8 @@ export default function InputField({
           className={`input-control ${icon ? 'has-icon' : ''} ${isPassword ? 'has-toggle' : ''}`}
           autoComplete={isPassword ? 'current-password' : 'email'}
         />
+
+        {/* ── Password visibility toggle (eye icon) ── */}
         {isPassword && (
           <button
             type="button"
@@ -55,6 +69,8 @@ export default function InputField({
           </button>
         )}
       </div>
+
+      {/* ── Conditional error message ── */}
       {error && <span className="input-error">{error}</span>}
     </div>
   )

@@ -1,3 +1,12 @@
+// ============================================
+// Profile data - Mock data for the user profile page
+// profile: basic user info (name, enrollment, course, semester, contact, avatar)
+// academicInfo: array of label-value pairs for the Academic Information card
+// contactInfo: array of label-value-type entries for the Contact Information card
+//              (type: 'email' | 'phone' | 'text' controls link rendering)
+// recentActivity: timeline entries with action text, relative time, and emoji icon
+// ============================================
+
 export const profile = {
   name: 'Shubham Verma',
   enrollment: '2024CS056',

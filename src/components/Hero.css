@@ -1,3 +1,8 @@
+/* ============================================
+   Hero - Landing page hero section
+   ============================================ */
+
+/* ── Full-viewport hero with gradient background ── */
 .hero-section {
   position: relative;
   min-height: 100vh;
@@ -9,6 +14,7 @@
   background: linear-gradient(135deg, var(--bg) 0%, color-mix(in srgb, var(--primary) 5%, var(--bg)) 50%, var(--bg) 100%);
 }
 
+/* ── Decorative floating shapes container ── */
 .hero-bg-shapes {
   position: absolute;
   inset: 0;
@@ -16,6 +22,7 @@
   overflow: hidden;
 }
 
+/* ── Individual decorative circle ── */
 .shape {
   position: absolute;
   border-radius: 50%;
@@ -49,11 +56,13 @@
   animation: float 12s ease-in-out infinite;
 }
 
+/* ── Float keyframes for background shape animation ── */
 @keyframes float {
   0%, 100% { transform: translateY(0) rotate(0deg); }
   50% { transform: translateY(-30px) rotate(5deg); }
 }
 
+/* ── Content container (centered, stacked layout) ── */
 .hero-container {
   position: relative;
   max-width: 800px;
@@ -64,6 +73,7 @@
   gap: 28px;
 }
 
+/* ── Badge pill above heading ── */
 .hero-badge {
   display: inline-block;
   padding: 8px 20px;
@@ -77,6 +87,7 @@
   backdrop-filter: blur(4px);
 }
 
+/* ── Main hero title ── */
 .hero-title {
   font-size: 56px;
   font-weight: 800;
@@ -86,6 +97,7 @@
   letter-spacing: -1.5px;
 }
 
+/* ── Accent text with gradient fill ── */
 .hero-title-accent {
   background: linear-gradient(135deg, var(--primary), var(--primary));
   -webkit-background-clip: text;
@@ -93,6 +105,7 @@
   background-clip: text;
 }
 
+/* ── Subtitle paragraph ── */
 .hero-subtitle {
   font-size: 18px;
   line-height: 1.7;
@@ -101,6 +114,7 @@
   margin: 0;
 }
 
+/* ── Call-to-action buttons row ── */
 .hero-cta {
   display: flex;
   gap: 16px;
@@ -108,6 +122,7 @@
   justify-content: center;
 }
 
+/* ── Shared button base ── */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -121,6 +136,7 @@
   cursor: pointer;
 }
 
+/* ── Primary (filled) button ── */
 .btn-primary {
   background: var(--primary);
   color: white;
@@ -133,6 +149,7 @@
   box-shadow: 0 8px 24px color-mix(in srgb, var(--primary) 35%, transparent);
 }
 
+/* ── Secondary (outlined) button ── */
 .btn-secondary {
   background: var(--card);
   color: var(--primary);
@@ -146,6 +163,7 @@
   box-shadow: var(--shadow-xl);
 }
 
+/* ── Stats row with glassmorphism ── */
 .hero-stats-row {
   display: flex;
   align-items: center;
@@ -159,6 +177,7 @@
   border-radius: var(--radius-lg);
 }
 
+/* ── Individual stat block ── */
 .hero-stat {
   display: flex;
   flex-direction: column;
@@ -178,12 +197,14 @@
   font-weight: 500;
 }
 
+/* ── Vertical divider between stats ── */
 .hero-stat-divider {
   width: 1px;
   height: 36px;
   background: var(--border);
 }
 
+/* ── Tablet responsive ── */
 @media (max-width: 768px) {
   .hero-title {
     font-size: 36px;
@@ -215,6 +236,7 @@
   }
 }
 
+/* ── Mobile responsive ── */
 @media (max-width: 480px) {
   .hero-section {
     padding: 100px 16px 60px;
