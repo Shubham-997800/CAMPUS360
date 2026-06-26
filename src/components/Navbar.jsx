@@ -59,7 +59,7 @@ export default function Navbar() {
           <Link to="/register" onClick={() => setOpen(false)} className="text-sm font-semibold text-gray-500 dark:text-[#94A3B8] hover:text-[#6C5CE7] dark:hover:text-[#7C5CFF] md:hidden">Create Account</Link>
         </div>
 
-        <button onClick={toggle} className="p-2 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all cursor-pointer" aria-label="Toggle theme">
+        <button onClick={toggle} className="p-2 rounded-lg text-gray-600 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white transition-all cursor-pointer" aria-label="Toggle theme">
           {dark ? <Sun size={20} /> : <Moon size={20} />}
         </button>
         <button onClick={() => setOpen(!open)} className="p-1 text-gray-900 dark:text-white md:hidden" aria-label="Toggle menu">
