@@ -6,7 +6,6 @@ export const profile = {
   email: 'shubham@campus360.edu',
   phone: '+91 98765 43210',
   avatar: null,
-  avatarGradient: 'linear-gradient(135deg, #2563EB, #3B82F6)',
   avatarInitials: 'SV',
 }
 

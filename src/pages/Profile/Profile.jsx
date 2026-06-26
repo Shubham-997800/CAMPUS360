@@ -14,11 +14,10 @@ export default function Profile() {
       <div className="dashboard-main">
         <TopNavbar onMenuToggle={() => setSidebarOpen((prev) => !prev)} />
         <div className="profile-page">
-          <div className="profile-banner">
-            <div className="profile-banner-bg" style={{ background: profile.avatarGradient }} />
-            <div className="profile-banner-content">
+          <div className="profile-header">
+            <div className="profile-header-top">
               <div className="profile-avatar-wrapper">
-                <div className="profile-avatar-large" style={{ background: profile.avatarGradient }}>
+                <div className="profile-avatar-large">
                   <span>{profile.avatarInitials}</span>
                 </div>
                 <button className="profile-avatar-edit" aria-label="Change photo">
@@ -28,27 +27,16 @@ export default function Profile() {
                   </svg>
                 </button>
               </div>
-              <div className="profile-banner-info">
+              <div className="profile-header-info">
                 <h1 className="profile-name">{profile.name}</h1>
                 <p className="profile-enrollment">{profile.enrollment} · {profile.course}</p>
-                <div className="profile-banner-meta">
-                  <span className="profile-banner-tag">{profile.semester} Semester</span>
-                  <span className="profile-banner-tag">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                      <polyline points="22,6 12,13 2,6" />
-                    </svg>
-                    {profile.email}
-                  </span>
-                  <span className="profile-banner-tag">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-                    </svg>
-                    {profile.phone}
-                  </span>
+                <div className="profile-meta">
+                  <span className="profile-tag">{profile.semester} Semester</span>
+                  <span className="profile-tag">{profile.email}</span>
+                  <span className="profile-tag">{profile.phone}</span>
                 </div>
               </div>
-              <div className="profile-banner-actions">
+              <div className="profile-header-actions">
                 <button className="profile-btn profile-btn-primary">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
