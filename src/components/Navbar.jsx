@@ -6,7 +6,6 @@ const NAV_LINKS = [
   { id: 'home', label: 'Home' },
   { id: 'features', label: 'Features' },
   { id: 'about', label: 'About' },
-  { id: 'contact', label: 'Contact' },
 ]
 
 function scrollToSection(id) {
