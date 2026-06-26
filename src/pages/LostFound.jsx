@@ -132,7 +132,7 @@ export default function LostFound() {
                     </div>
                     <div className="flex items-center gap-1 text-xs text-gray-500 dark:text-[#94A3B8] mb-2"><MapPin size={12} /> {item.location}</div>
                     <p className="text-xs text-gray-500 dark:text-[#94A3B8] leading-relaxed mb-4">{item.description}</p>
-                    <button className="w-full text-xs font-semibold text-[#6C5CE7] dark:text-[#7C5CFF] hover:bg-[#EDE9FE] dark:hover:bg-[rgba(124,92,255,0.15)] py-2 rounded-xl transition-all cursor-pointer">Contact Admin</button>
+                    <button className="w-full text-xs font-semibold bg-[#6C5CE7] text-white hover:bg-[#5B4BD6] dark:bg-[#7C5CFF] dark:hover:bg-[#6B4BEE] py-2 rounded-xl transition-all cursor-pointer">Contact Admin</button>
                   </div>
                 </div>
               ))}
