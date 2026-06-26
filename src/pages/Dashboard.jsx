@@ -135,13 +135,13 @@ export default function Dashboard() {
             <h2 className="font-bold text-gray-900 mb-3.5">Quick Actions</h2>
             <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
               {[
-                { label: 'Report Complaint', color: '#EF4444', emoji: '📋' },
-                { label: 'View Notices', color: '#2563EB', emoji: '📢' },
-                { label: 'Explore Events', color: '#8B5CF6', emoji: '🎉' },
-                { label: 'Lost & Found', color: '#F59E0B', emoji: '🔍' },
-                { label: 'Study Hub', color: '#10B981', emoji: '📚' },
+                { label: 'Report Complaint', to: '/dashboard/complaints', emoji: '📋' },
+                { label: 'View Notices', to: '/dashboard/notices-events', emoji: '📢' },
+                { label: 'Explore Events', to: '/dashboard/notices-events', emoji: '🎉' },
+                { label: 'Lost & Found', to: '/dashboard/lost-found', emoji: '🔍' },
+                { label: 'Study Hub', to: '/dashboard/study-hub', emoji: '📚' },
               ].map(a => (
-                <button key={a.label} className="flex items-center gap-2.5 p-3.5 bg-white rounded-xl border border-gray-200 shadow-sm hover:-translate-y-1 hover:shadow-lg transition-all text-left cursor-pointer" style={{ '--action-color': a.color }}>
+                <button key={a.label} onClick={() => navigate(a.to)} className="flex items-center gap-2.5 p-3.5 bg-white rounded-xl border border-gray-200 shadow-sm hover:-translate-y-1 hover:shadow-lg transition-all text-left cursor-pointer">
                   <span className="text-xl">{a.emoji}</span>
                   <span className="text-xs font-semibold text-gray-900">{a.label}</span>
                 </button>
@@ -156,7 +156,7 @@ export default function Dashboard() {
               <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
                 <div className="flex items-center justify-between mb-5">
                   <h3 className="font-bold text-gray-900">Recent Notices</h3>
-                  <button className="text-xs font-semibold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-lg hover:bg-blue-100 transition-all cursor-pointer">View All</button>
+                  <button onClick={() => navigate('/dashboard/notices-events')} className="text-xs font-semibold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-lg hover:bg-blue-100 transition-all cursor-pointer">View All</button>
                 </div>
                 <div className="space-y-0">
                   {NOTICES.map(n => (
@@ -183,7 +183,7 @@ export default function Dashboard() {
               <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
                 <div className="flex items-center justify-between mb-5">
                   <h3 className="font-bold text-gray-900">Complaint Status</h3>
-                  <button className="text-xs font-semibold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-lg hover:bg-blue-100 transition-all cursor-pointer">View All</button>
+                  <button onClick={() => navigate('/dashboard/complaints')} className="text-xs font-semibold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-lg hover:bg-blue-100 transition-all cursor-pointer">View All</button>
                 </div>
                 <div className="space-y-4">
                   <div className="flex h-2.5 rounded-full overflow-hidden bg-gray-100">
@@ -211,7 +211,7 @@ export default function Dashboard() {
               <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
                 <div className="flex items-center justify-between mb-5">
                   <h3 className="font-bold text-gray-900">Recent Activity</h3>
-                  <button className="text-xs font-semibold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-lg hover:bg-blue-100 transition-all cursor-pointer">View All</button>
+                  <button onClick={() => navigate('/dashboard/profile')} className="text-xs font-semibold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-lg hover:bg-blue-100 transition-all cursor-pointer">View All</button>
                 </div>
                 <div className="space-y-0">
                   {RECENT_ACTIVITY.map((item, i) => (
@@ -239,7 +239,7 @@ export default function Dashboard() {
               <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
                 <div className="flex items-center justify-between mb-5">
                   <h3 className="font-bold text-gray-900">Upcoming Events</h3>
-                  <button className="text-xs font-semibold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-lg hover:bg-blue-100 transition-all cursor-pointer">View All</button>
+                  <button onClick={() => navigate('/dashboard/notices-events')} className="text-xs font-semibold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-lg hover:bg-blue-100 transition-all cursor-pointer">View All</button>
                 </div>
                 <div className="space-y-0">
                   {EVENTS.map(e => (
