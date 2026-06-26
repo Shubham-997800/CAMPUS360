@@ -3,9 +3,9 @@ import { Link, useNavigate } from 'react-router-dom'
 import { Mail, Lock, LogIn, Eye, EyeOff, AlertCircle, Loader2 } from 'lucide-react'
 
 const DUMMY_USERS = [
-  { email: 'shubham@campus360.edu', password: 'password123', name: 'Shubham' },
-  { email: 'admin@campus360.edu', password: 'admin123', name: 'Admin' },
-  { email: 'student@campus360.edu', password: 'student123', name: 'Student' },
+  { email: 'student@campus360.edu', password: 'student123', name: 'Rahul', role: 'Student' },
+  { email: 'faculty@campus360.edu', password: 'faculty123', name: 'Dr. Sharma', role: 'Faculty' },
+  { email: 'admin@campus360.edu', password: 'admin123', name: 'Admin', role: 'Admin' },
 ]
 
 export default function Login() {
@@ -41,7 +41,7 @@ export default function Login() {
     setSubmitError('')
     setTimeout(() => {
       const user = DUMMY_USERS.find(u => u.email === form.email && u.password === form.password)
-      if (user) navigate('/dashboard')
+      if (user) navigate('/dashboard', { state: { user } })
       else { setLoading(false); setSubmitError('Invalid email or password.') }
     }, 1000)
   }
@@ -123,7 +123,18 @@ export default function Login() {
             Continue with Google
           </button>
 
-          <p className="text-center text-sm text-gray-500 mt-6">Don't have an account? <Link to="/register" className="text-blue-600 font-medium hover:underline">Create Account</Link></p>
+          <div className="mt-6 p-3 bg-gray-50 rounded-xl border border-gray-200 text-xs text-gray-500">
+            <p className="font-semibold text-gray-700 mb-1.5">Demo Credentials:</p>
+            {DUMMY_USERS.map(u => (
+              <div key={u.email} className="flex items-center gap-2 mb-1 last:mb-0">
+                <span className={`w-1.5 h-1.5 rounded-full ${u.role === 'Student' ? 'bg-blue-500' : u.role === 'Faculty' ? 'bg-purple-500' : 'bg-green-500'}`} />
+                <span className="font-medium">{u.role}:</span>
+                <span>{u.email}</span>
+                <span className="text-gray-400">/ {u.password}</span>
+              </div>
+            ))}
+          </div>
+          <p className="text-center text-sm text-gray-500 mt-4">Don't have an account? <Link to="/register" className="text-blue-600 font-medium hover:underline">Create Account</Link></p>
         </div>
       </div>
     </div>
