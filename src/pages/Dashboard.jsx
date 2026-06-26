@@ -239,22 +239,7 @@ export default function Dashboard() {
                 </div>
               </div>
 
-              <div className="bg-white dark:bg-[#1E293B] rounded-2xl p-6 border border-gray-200 dark:border-white/10 shadow-sm">
-                <h3 className="font-bold text-gray-900 dark:text-white mb-3">This Week</h3>
-                <div className="grid grid-cols-2 gap-4">
-                  {[
-                    { label: 'New Notices', value: '4' },
-                    { label: 'Events', value: '2' },
-                    { label: 'Complaints', value: '1' },
-                    { label: 'Downloads', value: '8' },
-                  ].map(item => (
-                    <div key={item.label} className="bg-gray-50 dark:bg-white/5 rounded-xl p-3">
-                      <span className="text-2xl font-extrabold block leading-none mb-1 text-gray-900 dark:text-white">{item.value}</span>
-                      <span className="text-xs text-gray-500 dark:text-[#94A3B8]">{item.label}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
+
             </div>
           </div>
         </main>
