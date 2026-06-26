@@ -12,6 +12,8 @@ import Notices from './pages/Notices/Notices'
 import Events from './pages/Events/Events'
 import Complaints from './pages/Complaints/Complaints'
 import LostFound from './pages/LostFound/LostFound'
+import StudyHub from './pages/StudyHub/StudyHub'
+import Profile from './pages/Profile/Profile'
 
 function HomePage() {
   return (
@@ -40,6 +42,8 @@ function App() {
         <Route path="/dashboard/events" element={<Events />} />
         <Route path="/dashboard/complaints" element={<Complaints />} />
         <Route path="/dashboard/lost-found" element={<LostFound />} />
+        <Route path="/dashboard/study-hub" element={<StudyHub />} />
+        <Route path="/dashboard/profile" element={<Profile />} />
       </Routes>
     </BrowserRouter>
   )

@@ -6,7 +6,6 @@ import QuickActions from './components/QuickActions'
 import RecentNotices from './components/RecentNotices'
 import UpcomingEvents from './components/UpcomingEvents'
 import ComplaintStatus from './components/ComplaintStatus'
-import EmergencySOS from './components/EmergencySOS'
 import RecentActivity from './components/RecentActivity'
 import './Dashboard.css'
 
@@ -30,7 +29,6 @@ export default function Dashboard() {
             </div>
             <div className="dashboard-grid-right">
               <UpcomingEvents />
-              <EmergencySOS />
             </div>
           </div>
         </div>
