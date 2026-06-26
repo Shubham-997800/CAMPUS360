@@ -1,9 +1,16 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import InputField from '../components/InputField'
 import './Login.css'
 
+const DUMMY_USERS = [
+  { email: 'shubham@campus360.edu', password: 'password123', name: 'Shubham' },
+  { email: 'admin@campus360.edu', password: 'admin123', name: 'Admin' },
+  { email: 'student@campus360.edu', password: 'student123', name: 'Student' },
+]
+
 export default function Login() {
+  const navigate = useNavigate()
   const [form, setForm] = useState({ email: '', password: '' })
   const [errors, setErrors] = useState({})
   const [remember, setRemember] = useState(false)
@@ -43,9 +50,16 @@ export default function Login() {
     setLoading(true)
     setSubmitError('')
     setTimeout(() => {
-      setLoading(false)
-      setSubmitError('Invalid email or password. Please try again.')
-    }, 1500)
+      const user = DUMMY_USERS.find(
+        (u) => u.email === form.email && u.password === form.password
+      )
+      if (user) {
+        navigate('/dashboard')
+      } else {
+        setLoading(false)
+        setSubmitError('Invalid email or password. Please try again.')
+      }
+    }, 1200)
   }
 
   return (
