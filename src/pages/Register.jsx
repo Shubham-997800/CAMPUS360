@@ -4,7 +4,7 @@ import { Mail, Lock, User, Eye, EyeOff, AlertCircle, Loader2, CheckCircle2 } fro
 
 export default function Register() {
   const navigate = useNavigate()
-  const [form, setForm] = useState({ name: '', email: '', password: '', confirmPassword: '' })
+  const [form, setForm] = useState({ name: '', email: '', role: 'Student', password: '', confirmPassword: '' })
   const [errors, setErrors] = useState({})
   const [showPw, setShowPw] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -20,6 +20,7 @@ export default function Register() {
   function validate() {
     const errs = {}
     if (!form.name.trim()) errs.name = 'Name is required'
+    if (!form.role) errs.role = 'Select a role'
     if (!form.email) errs.email = 'Email is required'
     else if (!/\S+@\S+\.\S+/.test(form.email)) errs.email = 'Enter a valid email'
     if (!form.password) errs.password = 'Password is required'
@@ -81,6 +82,16 @@ export default function Register() {
                 <input type="text" name="name" value={form.name} onChange={handleChange} placeholder="John Doe" className="flex-1 bg-transparent border-none outline-none py-3 text-sm text-gray-900 placeholder:text-gray-400" />
               </div>
               {errors.name && <p className="text-xs text-red-500 mt-1.5">{errors.name}</p>}
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1.5">Role</label>
+              <select name="role" value={form.role} onChange={handleChange} className={`w-full border ${errors.role ? 'border-red-400' : 'border-gray-200'} bg-gray-50 rounded-xl px-3.5 py-3 text-sm text-gray-900 outline-none focus:border-blue-500 transition-all`}>
+                <option value="Student">Student</option>
+                <option value="Faculty">Faculty</option>
+                <option value="Admin">Admin</option>
+              </select>
+              {errors.role && <p className="text-xs text-red-500 mt-1.5">{errors.role}</p>}
             </div>
 
             <div>
