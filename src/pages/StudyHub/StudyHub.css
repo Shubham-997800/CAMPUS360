@@ -1,0 +1,418 @@
+/* ── Page ── */
+.studyhub-page {
+  flex: 1;
+  padding: 0;
+  max-width: 1440px;
+  width: 100%;
+}
+
+/* ── Banner ── */
+.studyhub-banner {
+  background: linear-gradient(135deg, #1E3A8A, #2563EB, #3B82F6);
+  padding: 36px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.studyhub-banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 20% 50%, rgba(255,255,255,0.08) 0%, transparent 60%),
+              radial-gradient(ellipse at 80% 20%, rgba(255,255,255,0.05) 0%, transparent 50%);
+}
+
+.studyhub-banner-content {
+  position: relative;
+}
+
+.studyhub-banner-title {
+  font-size: 28px;
+  font-weight: 800;
+  color: white;
+  margin: 0 0 6px;
+  letter-spacing: -0.03em;
+}
+
+.studyhub-banner-subtitle {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+}
+
+.studyhub-banner-art {
+  flex-shrink: 0;
+  opacity: 0.9;
+}
+
+/* ── Tabs ── */
+.studyhub-tabs {
+  display: flex;
+  gap: 0;
+  padding: 0 28px;
+  border-bottom: 2px solid #F1F5F9;
+  margin-top: 8px;
+  overflow-x: auto;
+}
+
+.studyhub-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 22px;
+  border: none;
+  background: none;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  color: #94A3B8;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  white-space: nowrap;
+}
+
+.studyhub-tab:hover {
+  color: #64748B;
+}
+
+.studyhub-tab.active {
+  color: #2563EB;
+  border-bottom-color: #2563EB;
+}
+
+.studyhub-tab svg {
+  flex-shrink: 0;
+}
+
+.studyhub-tab-count {
+  font-size: 11px;
+  font-weight: 700;
+  background: #F1F5F9;
+  color: #64748B;
+  padding: 2px 8px;
+  border-radius: 12px;
+  transition: all 0.2s;
+}
+
+.studyhub-tab.active .studyhub-tab-count {
+  background: #EFF6FF;
+  color: #2563EB;
+}
+
+/* ── Toolbar ── */
+.studyhub-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 28px;
+}
+
+.studyhub-search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 10px;
+  padding: 0 14px;
+  flex: 1;
+  max-width: 360px;
+  transition: all 0.2s;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+.studyhub-search:focus-within {
+  border-color: #2563EB;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.studyhub-search svg {
+  color: #94A3B8;
+  flex-shrink: 0;
+}
+
+.studyhub-search-input {
+  border: none;
+  background: none;
+  outline: none;
+  padding: 10px 0;
+  font-size: 14px;
+  font-family: inherit;
+  color: #1F2937;
+  width: 100%;
+}
+
+.studyhub-search-input::placeholder {
+  color: #94A3B8;
+}
+
+.studyhub-sem-filter {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 10px;
+  padding: 0 12px;
+  transition: all 0.2s;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+.studyhub-sem-filter:focus-within {
+  border-color: #2563EB;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.studyhub-sem-filter svg {
+  color: #94A3B8;
+  flex-shrink: 0;
+}
+
+.studyhub-select {
+  border: none;
+  background: none;
+  outline: none;
+  padding: 10px 4px 10px 0;
+  font-size: 14px;
+  font-family: inherit;
+  color: #1F2937;
+  cursor: pointer;
+  min-width: 120px;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+/* ── Empty ── */
+.studyhub-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 64px 24px;
+  text-align: center;
+  color: #94A3B8;
+  font-size: 15px;
+  gap: 12px;
+}
+
+/* ── Grid ── */
+.studyhub-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 0 28px 28px;
+}
+
+/* ── Card ── */
+.studyhub-card {
+  background: #FFFFFF;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #F1F5F9;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+  transition: all 0.3s;
+  display: flex;
+  flex-direction: column;
+}
+
+.studyhub-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.03);
+  border-color: #E2E8F0;
+}
+
+.studyhub-card-accent {
+  height: 4px;
+  flex-shrink: 0;
+}
+
+.studyhub-card-body {
+  padding: 18px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.studyhub-card-type {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.studyhub-type-icon {
+  font-size: 22px;
+}
+
+.studyhub-type-badge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.studyhub-type-badge.notes { background: #EFF6FF; color: #2563EB; }
+.studyhub-type-badge.papers { background: #F5F3FF; color: #7C3AED; }
+.studyhub-type-badge.assignments { background: #F0FDF4; color: #059669; }
+.studyhub-type-badge.syllabus { background: #FFF7ED; color: #D97706; }
+
+.studyhub-card-subject {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1F2937;
+  margin: 0 0 10px;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  flex: 1;
+}
+
+.studyhub-card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  gap: 8px;
+}
+
+.studyhub-card-sem {
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748B;
+  background: #F1F5F9;
+  padding: 3px 10px;
+  border-radius: 6px;
+}
+
+.studyhub-card-sem.all {
+  background: #FFF7ED;
+  color: #D97706;
+}
+
+.studyhub-card-downloads {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: #94A3B8;
+  font-weight: 500;
+}
+
+.studyhub-card-downloads svg {
+  flex-shrink: 0;
+}
+
+.studyhub-card-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: #2563EB;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.3s;
+  width: 100%;
+}
+
+.studyhub-card-btn:hover {
+  background: #1D4ED8;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.3);
+}
+
+.studyhub-card-btn svg {
+  transition: transform 0.2s;
+}
+
+.studyhub-card-btn:hover svg {
+  transform: translateY(1px);
+}
+
+/* ── Responsive ── */
+@media (max-width: 1200px) {
+  .studyhub-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 1024px) {
+  .studyhub-banner {
+    padding: 28px 24px;
+  }
+  .studyhub-banner-title {
+    font-size: 24px;
+  }
+  .studyhub-banner-art {
+    width: 140px;
+    height: auto;
+  }
+  .studyhub-tabs,
+  .studyhub-toolbar {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .studyhub-grid {
+    padding: 0 20px 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .studyhub-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px 20px;
+  }
+  .studyhub-banner-title {
+    font-size: 22px;
+  }
+  .studyhub-banner-art {
+    display: none;
+  }
+  .studyhub-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .studyhub-search {
+    max-width: 100%;
+  }
+  .studyhub-grid {
+    grid-template-columns: 1fr;
+    padding: 0 16px 20px;
+    gap: 16px;
+  }
+  .studyhub-tabs {
+    padding-left: 16px;
+    padding-right: 16px;
+    gap: 0;
+  }
+  .studyhub-tab {
+    padding: 12px 16px;
+    font-size: 13px;
+  }
+  .studyhub-toolbar {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .studyhub-banner {
+    padding: 20px 16px;
+  }
+  .studyhub-card-body {
+    padding: 16px;
+  }
+}
