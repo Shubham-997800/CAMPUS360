@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Bell, CalendarDays, MessageSquareWarning, PackageSearch, UserRound, CheckCircle2, Sparkles, BookOpen, ArrowRight } from 'lucide-react'
 import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
 
 const FEATURES = [
   { icon: Bell, title: 'Notice Board', desc: 'Real-time campus announcements and updates.' },
@@ -86,11 +87,7 @@ export default function Landing() {
         </div>
       </section>
 
-      <footer className="bg-gray-950 text-gray-500 px-6 py-6">
-        <div className="max-w-5xl mx-auto text-center">
-          <p className="text-xs">© {new Date().getFullYear()} NexCampus. All rights reserved.</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   )
 }
