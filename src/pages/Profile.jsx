@@ -1,36 +1,57 @@
 import { useState } from 'react'
-import { Menu, Mail, Phone, MapPin, CalendarDays, BookOpen, Edit3, Lock } from 'lucide-react'
+import { Menu, Mail, Phone, MapPin, BookOpen, Edit3, Lock, Save, X, User } from 'lucide-react'
 import Sidebar from '../components/Sidebar'
-
-const PROFILE = {
-  name: 'Shubham',
-  enrollment: '2024CSE0123',
-  course: 'B.Tech Computer Science',
-  semester: '4th',
-  email: 'shubham@campus.edu',
-  phone: '+91 98765 43210',
-  avatarInitials: 'S',
-}
-
-const ACADEMIC_INFO = [
-  { label: 'Course', value: 'B.Tech Computer Science' },
-  { label: 'Enrollment No.', value: '2024CSE0123' },
-  { label: 'Current Semester', value: '4th' },
-  { label: 'Batch', value: '2024-2028' },
-  { label: 'Section', value: 'A' },
-  { label: 'CGPA', value: '8.6 / 10.0' },
-  { label: 'Advisor', value: 'Dr. Sharma' },
-]
-
-const CONTACT_INFO = [
-  { label: 'Email', value: 'shubham@campus.edu', type: 'email' },
-  { label: 'Phone', value: '+91 98765 43210', type: 'phone' },
-  { label: 'Address', value: 'Room 204, Boys Hostel Block B', type: 'text' },
-  { label: 'Emergency Contact', value: '+91 98765 43211', type: 'phone' },
-]
 
 export default function Profile() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [editing, setEditing] = useState(false)
+
+  const [profile, setProfile] = useState({
+    name: 'Shubham',
+    enrollment: '2024CSE0123',
+    course: 'B.Tech Computer Science',
+    semester: '4th',
+    email: 'shubham@campus.edu',
+    phone: '+91 98765 43210',
+    avatarInitials: 'S',
+    batch: '2024-2028',
+    section: 'A',
+    cgpa: '8.6 / 10.0',
+    advisor: 'Dr. Sharma',
+    address: 'Room 204, Boys Hostel Block B',
+    emergency: '+91 98765 43211',
+  })
+
+  const [draft, setDraft] = useState({ ...profile })
+
+  function handleChange(e) {
+    setDraft(prev => ({ ...prev, [e.target.name]: e.target.value }))
+  }
+
+  function startEditing() {
+    setDraft({ ...profile })
+    setEditing(true)
+  }
+
+  function cancelEditing() {
+    setEditing(false)
+  }
+
+  function saveProfile() {
+    setProfile({ ...draft })
+    setEditing(false)
+  }
+
+  const row = (label, name) => (
+    <div key={name} className="flex items-center justify-between py-3 border-b border-gray-50 last:border-0">
+      <span className="text-sm text-gray-500">{label}</span>
+      {editing ? (
+        <input type="text" name={name} value={draft[name]} onChange={handleChange} className="text-right text-sm font-semibold text-gray-900 bg-gray-50 border border-gray-200 rounded-lg px-3 py-1.5 outline-none focus:border-blue-500 w-48" />
+      ) : (
+        <span className="text-sm font-semibold text-gray-900">{profile[name]}</span>
+      )}
+    </div>
+  )
 
   return (
     <div className="flex min-h-screen bg-gray-50">
@@ -46,21 +67,33 @@ export default function Profile() {
           <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 md:p-8 mb-6">
             <div className="flex flex-col sm:flex-row items-center sm:items-start gap-5">
               <div className="relative">
-                <div className="w-20 h-20 rounded-2xl bg-blue-600 flex items-center justify-center text-white font-bold text-2xl">{PROFILE.avatarInitials}</div>
-                <button className="absolute -bottom-1 -right-1 w-7 h-7 bg-white border border-gray-200 rounded-lg flex items-center justify-center shadow-sm hover:bg-gray-50 cursor-pointer" aria-label="Change photo"><Edit3 size={14} className="text-gray-500" /></button>
+                <div className="w-20 h-20 rounded-2xl bg-blue-600 flex items-center justify-center text-white font-bold text-2xl">{profile.avatarInitials}</div>
               </div>
               <div className="flex-1 text-center sm:text-left">
-                <h1 className="text-2xl font-bold text-gray-900">{PROFILE.name}</h1>
-                <p className="text-sm text-gray-500 mt-0.5">{PROFILE.enrollment} · {PROFILE.course}</p>
+                {editing ? (
+                  <input type="text" name="name" value={draft.name} onChange={handleChange} className="text-2xl font-bold text-gray-900 bg-gray-50 border border-gray-200 rounded-lg px-3 py-1 outline-none focus:border-blue-500 w-64 mb-1" />
+                ) : (
+                  <h1 className="text-2xl font-bold text-gray-900">{profile.name}</h1>
+                )}
+                <p className="text-sm text-gray-500 mt-0.5">{profile.enrollment} · {profile.course}</p>
                 <div className="flex flex-wrap gap-2 mt-3 justify-center sm:justify-start">
-                  <span className="flex items-center gap-1.5 text-xs font-medium text-blue-600 bg-blue-50 px-3 py-1 rounded-lg"><BookOpen size={13} /> {PROFILE.semester} Semester</span>
-                  <span className="flex items-center gap-1.5 text-xs font-medium text-gray-600 bg-gray-100 px-3 py-1 rounded-lg"><Mail size={13} /> {PROFILE.email}</span>
-                  <span className="flex items-center gap-1.5 text-xs font-medium text-gray-600 bg-gray-100 px-3 py-1 rounded-lg"><Phone size={13} /> {PROFILE.phone}</span>
+                  <span className="flex items-center gap-1.5 text-xs font-medium text-blue-600 bg-blue-50 px-3 py-1 rounded-lg"><BookOpen size={13} /> {profile.semester} Semester</span>
+                  <span className="flex items-center gap-1.5 text-xs font-medium text-gray-600 bg-gray-100 px-3 py-1 rounded-lg"><Mail size={13} /> {profile.email}</span>
+                  <span className="flex items-center gap-1.5 text-xs font-medium text-gray-600 bg-gray-100 px-3 py-1 rounded-lg"><Phone size={13} /> {profile.phone}</span>
                 </div>
               </div>
               <div className="flex gap-2">
-                <button className="flex items-center gap-2 text-sm font-semibold text-gray-700 bg-gray-100 px-4 py-2 rounded-xl hover:bg-gray-200 transition-all cursor-pointer"><Edit3 size={15} /> Edit</button>
-                <button className="flex items-center gap-2 text-sm font-semibold text-gray-700 bg-gray-100 px-4 py-2 rounded-xl hover:bg-gray-200 transition-all cursor-pointer"><Lock size={15} /> Password</button>
+                {editing ? (
+                  <>
+                    <button onClick={saveProfile} className="flex items-center gap-2 text-sm font-semibold text-white bg-blue-600 px-4 py-2 rounded-xl hover:bg-blue-700 transition-all cursor-pointer"><Save size={15} /> Save</button>
+                    <button onClick={cancelEditing} className="flex items-center gap-2 text-sm font-semibold text-gray-600 bg-gray-100 px-4 py-2 rounded-xl hover:bg-gray-200 transition-all cursor-pointer"><X size={15} /> Cancel</button>
+                  </>
+                ) : (
+                  <>
+                    <button onClick={startEditing} className="flex items-center gap-2 text-sm font-semibold text-gray-700 bg-gray-100 px-4 py-2 rounded-xl hover:bg-gray-200 transition-all cursor-pointer"><Edit3 size={15} /> Edit</button>
+                    <button className="flex items-center gap-2 text-sm font-semibold text-gray-700 bg-gray-100 px-4 py-2 rounded-xl hover:bg-gray-200 transition-all cursor-pointer"><Lock size={15} /> Password</button>
+                  </>
+                )}
               </div>
             </div>
           </div>
@@ -74,12 +107,13 @@ export default function Profile() {
                 <h2 className="font-bold text-gray-900">Academic Information</h2>
               </div>
               <div className="space-y-0">
-                {ACADEMIC_INFO.map(item => (
-                  <div key={item.label} className="flex items-center justify-between py-3 border-b border-gray-50 last:border-0">
-                    <span className="text-sm text-gray-500">{item.label}</span>
-                    <span className="text-sm font-semibold text-gray-900">{item.value}</span>
-                  </div>
-                ))}
+                {row('Course', 'course')}
+                {row('Enrollment No.', 'enrollment')}
+                {row('Current Semester', 'semester')}
+                {row('Batch', 'batch')}
+                {row('Section', 'section')}
+                {row('CGPA', 'cgpa')}
+                {row('Advisor', 'advisor')}
               </div>
             </div>
 
@@ -90,18 +124,38 @@ export default function Profile() {
                 <h2 className="font-bold text-gray-900">Contact Information</h2>
               </div>
               <div className="space-y-0">
-                {CONTACT_INFO.map(item => (
-                  <div key={item.label} className="flex items-center justify-between py-3 border-b border-gray-50 last:border-0">
-                    <span className="text-sm text-gray-500">{item.label}</span>
-                    {item.type === 'email' ? (
-                      <a href={`mailto:${item.value}`} className="text-sm font-semibold text-blue-600 hover:underline">{item.value}</a>
-                    ) : item.type === 'phone' ? (
-                      <a href={`tel:${item.value.replace(/\s/g, '')}`} className="text-sm font-semibold text-blue-600 hover:underline">{item.value}</a>
-                    ) : (
-                      <span className="text-sm font-semibold text-gray-900">{item.value}</span>
-                    )}
-                  </div>
-                ))}
+                <div className="flex items-center justify-between py-3 border-b border-gray-50">
+                  <span className="text-sm text-gray-500">Email</span>
+                  {editing ? (
+                    <input type="email" name="email" value={draft.email} onChange={handleChange} className="text-right text-sm font-semibold text-gray-900 bg-gray-50 border border-gray-200 rounded-lg px-3 py-1.5 outline-none focus:border-blue-500 w-48" />
+                  ) : (
+                    <a href={`mailto:${profile.email}`} className="text-sm font-semibold text-blue-600 hover:underline">{profile.email}</a>
+                  )}
+                </div>
+                <div className="flex items-center justify-between py-3 border-b border-gray-50">
+                  <span className="text-sm text-gray-500">Phone</span>
+                  {editing ? (
+                    <input type="text" name="phone" value={draft.phone} onChange={handleChange} className="text-right text-sm font-semibold text-gray-900 bg-gray-50 border border-gray-200 rounded-lg px-3 py-1.5 outline-none focus:border-blue-500 w-48" />
+                  ) : (
+                    <a href={`tel:${profile.phone.replace(/\s/g, '')}`} className="text-sm font-semibold text-blue-600 hover:underline">{profile.phone}</a>
+                  )}
+                </div>
+                <div className="flex items-center justify-between py-3 border-b border-gray-50">
+                  <span className="text-sm text-gray-500">Address</span>
+                  {editing ? (
+                    <input type="text" name="address" value={draft.address} onChange={handleChange} className="text-right text-sm font-semibold text-gray-900 bg-gray-50 border border-gray-200 rounded-lg px-3 py-1.5 outline-none focus:border-blue-500 w-48" />
+                  ) : (
+                    <span className="text-sm font-semibold text-gray-900">{profile.address}</span>
+                  )}
+                </div>
+                <div className="flex items-center justify-between py-3 border-b border-gray-50 last:border-0">
+                  <span className="text-sm text-gray-500">Emergency Contact</span>
+                  {editing ? (
+                    <input type="text" name="emergency" value={draft.emergency} onChange={handleChange} className="text-right text-sm font-semibold text-gray-900 bg-gray-50 border border-gray-200 rounded-lg px-3 py-1.5 outline-none focus:border-blue-500 w-48" />
+                  ) : (
+                    <span className="text-sm font-semibold text-gray-900">{profile.emergency}</span>
+                  )}
+                </div>
               </div>
             </div>
           </div>
