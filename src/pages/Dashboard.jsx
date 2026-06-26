@@ -1,6 +1,6 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
-import { Bell, CalendarDays, MessageSquareWarning, BookOpen, CheckCircle2, AlertCircle, Clock, Search, Menu } from 'lucide-react'
+import { Bell, CalendarDays, MessageSquareWarning, BookOpen, CheckCircle2, AlertCircle, Clock, Menu, X } from 'lucide-react'
 import Sidebar from '../components/Sidebar'
 import StatCard from '../components/StatCard'
 
@@ -32,16 +32,39 @@ const RECENT_ACTIVITY = [
 
 const ACTIVITY_COLORS = { complaint: '#EF4444', study: '#10B981', event: '#8B5CF6', notice: '#2563EB', lost: '#F59E0B', profile: '#6B7280' }
 
+const NOTIFICATIONS_DATA = [
+  { id: 1, text: 'New notice: Exam schedule released', time: '2 min ago', type: 'notice' },
+  { id: 2, text: 'Tech Symposium registration closes soon', time: '15 min ago', type: 'event' },
+  { id: 3, text: 'Your complaint #1003 has been resolved', time: '1 hour ago', type: 'complaint' },
+  { id: 4, text: 'New study material added for DBMS', time: '3 hours ago', type: 'study' },
+]
+
 function formatDate(dateStr) {
   return new Date(dateStr).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
 }
 
 export default function Dashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [notifOpen, setNotifOpen] = useState(false)
+  const [notifications, setNotifications] = useState(NOTIFICATIONS_DATA)
   const { state } = useLocation()
   const user = state?.user || { name: 'Shubham', role: 'Student' }
   const initial = user.name.charAt(0).toUpperCase()
   const total = COMPLAINT_STATS.pending + COMPLAINT_STATS.inProgress + COMPLAINT_STATS.resolved
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const msgs = [
+        { text: 'Campus cafe menu updated for this week', type: 'notice' },
+        { text: 'Sports meet registrations are now open', type: 'event' },
+        { text: 'Library announced extended weekend hours', type: 'notice' },
+        { text: 'New assignment posted for Web Development', type: 'study' },
+      ]
+      const pick = msgs[Math.floor(Math.random() * msgs.length)]
+      setNotifications(prev => [{ id: Date.now(), ...pick, time: 'Just now' }, ...prev].slice(0, 8))
+    }, 15000)
+    return () => clearInterval(interval)
+  }, [])
 
   return (
     <div className="flex min-h-screen bg-gray-50">
@@ -54,14 +77,43 @@ export default function Dashboard() {
           <div className="flex-1 min-w-0">
             <h1 className="text-lg font-bold text-gray-900">Welcome Back, {user.name} <span className="inline-block animate-bounce">👋</span></h1>
           </div>
-          <div className="hidden sm:flex items-center gap-3 bg-gray-100 rounded-xl px-3.5 w-64">
-            <Search size={16} className="text-gray-400 shrink-0" />
-            <input type="text" placeholder="Search..." className="flex-1 bg-transparent border-none outline-none py-2.5 text-sm text-gray-900 placeholder:text-gray-400" />
+          <div className="relative">
+            <button onClick={() => setNotifOpen(!notifOpen)} className="relative p-2 rounded-lg text-gray-500 hover:bg-gray-100 cursor-pointer" aria-label="Notifications">
+              <Bell size={20} />
+              {notifications.length > 0 && <span className="absolute top-1.5 right-1.5 w-4 h-4 bg-red-500 text-white text-[9px] font-bold rounded-full flex items-center justify-center border-2 border-white">{notifications.length}</span>}
+            </button>
+            {notifOpen && (
+              <>
+                <div className="fixed inset-0 z-40" onClick={() => setNotifOpen(false)} />
+                <div className="absolute right-0 top-full mt-2 w-80 bg-white rounded-2xl border border-gray-200 shadow-xl z-50 p-4">
+                  <div className="flex items-center justify-between mb-3">
+                    <h3 className="font-bold text-gray-900 text-sm">Notifications</h3>
+                    <button onClick={() => setNotifOpen(false)} className="text-gray-400 hover:text-gray-600 cursor-pointer"><X size={16} /></button>
+                  </div>
+                  <div className="space-y-0 max-h-72 overflow-y-auto">
+                    {notifications.length === 0 ? (
+                      <p className="text-sm text-gray-400 py-4 text-center">No new notifications</p>
+                    ) : (
+                      notifications.map((n, i) => (
+                        <div key={n.id} className={`flex items-start gap-3 py-3 ${i < notifications.length - 1 ? 'border-b border-gray-100' : ''}`}>
+                          <div className="w-7 h-7 rounded-full flex items-center justify-center shrink-0 mt-0.5" style={{ backgroundColor: ACTIVITY_COLORS[n.type] || '#6B7280' }}>
+                            {n.type === 'notice' && <Bell size={13} className="text-white" />}
+                            {n.type === 'event' && <CalendarDays size={13} className="text-white" />}
+                            {n.type === 'complaint' && <AlertCircle size={13} className="text-white" />}
+                            {n.type === 'study' && <BookOpen size={13} className="text-white" />}
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-sm text-gray-900 leading-snug">{n.text}</p>
+                            <span className="text-xs text-gray-400">{n.time}</span>
+                          </div>
+                        </div>
+                      ))
+                    )}
+                  </div>
+                </div>
+              </>
+            )}
           </div>
-          <button className="relative p-2 rounded-lg text-gray-500 hover:bg-gray-100 cursor-pointer" aria-label="Notifications">
-            <Bell size={20} />
-            <span className="absolute top-1.5 right-1.5 w-4 h-4 bg-red-500 text-white text-[9px] font-bold rounded-full flex items-center justify-center border-2 border-white">3</span>
-          </button>
           <div className="flex items-center gap-2.5 pl-1">
             <div className="w-9 h-9 rounded-xl bg-blue-600 flex items-center justify-center text-white font-bold text-sm">{initial}</div>
             <div className="hidden sm:block">
