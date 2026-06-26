@@ -1,8 +1,10 @@
 import { useState } from 'react'
-import { Menu, Mail, Phone, MapPin, BookOpen, Edit3, Lock, Save, X, User } from 'lucide-react'
+import { Menu, Mail, Phone, MapPin, BookOpen, Edit3, Lock, Save, X, User, Sun, Moon } from 'lucide-react'
 import Sidebar from '../components/Sidebar'
+import { useTheme } from '../context/ThemeContext'
 
 export default function Profile() {
+  const { dark, toggle } = useTheme()
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [editing, setEditing] = useState(false)
 
@@ -60,6 +62,9 @@ export default function Profile() {
         <header className="sticky top-0 z-30 flex items-center gap-4 px-6 md:px-8 h-16 bg-white/85 backdrop-blur-lg border-b border-gray-200 dark:bg-gray-900/85 dark:border-gray-700/50">
           <button onClick={() => setSidebarOpen(true)} className="md:hidden p-2 rounded-lg text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800 cursor-pointer"><Menu size={22} /></button>
           <h1 className="text-lg font-bold text-gray-900 dark:text-white">My Profile</h1>
+          <button onClick={toggle} className="ml-auto p-2 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all cursor-pointer" aria-label="Toggle theme">
+            {dark ? <Sun size={20} /> : <Moon size={20} />}
+          </button>
         </header>
 
         <main className="flex-1 p-6 md:p-8 max-w-4xl w-full animate-fadeIn">
