@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { Bell, CalendarDays, MessageSquareWarning, BookOpen, AlertCircle, Menu, X, FileText, Search, Clock } from 'lucide-react'
+import { Bell, CalendarDays, MessageSquareWarning, BookOpen, AlertCircle, Menu, X, FileText, Search, Clock, Sun, Moon } from 'lucide-react'
 import Sidebar from '../components/Sidebar'
 import StatCard from '../components/StatCard'
+import { useTheme } from '../context/ThemeContext'
 
 const STATS = {
   totalNotices: { value: 12, label: 'Total Notices', change: '+3 this week', barClass: 'bg-[#6C5CE7]', iconClass: 'bg-[#6C5CE7]', icon: Bell },
@@ -53,6 +54,7 @@ const categoryStyles = {
 }
 
 export default function Dashboard() {
+  const { dark, toggle } = useTheme()
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [notifOpen, setNotifOpen] = useState(false)
   const [notifications, setNotifications] = useState(NOTIFICATIONS_DATA)
@@ -124,6 +126,9 @@ export default function Dashboard() {
               </>
             )}
           </div>
+          <button onClick={toggle} className="p-2 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all cursor-pointer" aria-label="Toggle theme">
+            {dark ? <Sun size={20} /> : <Moon size={20} />}
+          </button>
           <button onClick={() => navigate('/dashboard/profile')} className="flex items-center gap-2.5 pl-1 cursor-pointer">
             <div className="w-9 h-9 rounded-xl bg-[#6C5CE7] dark:bg-[#7C5CFF] flex items-center justify-center text-white font-bold text-sm">{initial}</div>
             <div className="hidden sm:block text-left">
