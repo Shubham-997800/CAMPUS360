@@ -112,40 +112,6 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* ── Statistics ── */}
-      <section className="py-16 px-6 bg-gradient-to-br from-blue-600 to-purple-700">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-center text-2xl md:text-3xl font-extrabold text-white mb-10">Trusted by Campuses Nationwide</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 bg-white/10 rounded-2xl backdrop-blur-sm">
-            {STATS.map(s => <StatItem key={s.label} {...s} />)}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Testimonials ── */}
-      <section className="py-20 px-6 bg-white">
-        <div className="max-w-5xl mx-auto">
-          <SectionTitle label="Testimonials" title="What People Say" desc="Hear from students, faculty, and administration about Campus360." />
-          <div className="grid md:grid-cols-3 gap-6">
-            {TESTIMONIALS.map(t => (
-              <div key={t.name} className="bg-gray-50 rounded-2xl p-6 border border-gray-100">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white font-bold text-sm">{t.avatar}</div>
-                  <div>
-                    <p className="font-semibold text-gray-900 text-sm">{t.name}</p>
-                    <p className="text-xs text-gray-400">{t.role}</p>
-                  </div>
-                </div>
-                <p className="text-sm text-gray-600 leading-relaxed">"{t.text}"</p>
-                <div className="flex gap-1 mt-3">
-                  {[1, 2, 3, 4, 5].map(i => <span key={i} className="text-yellow-400 text-sm">★</span>)}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ── Footer ── */}
       <footer id="contact" className="bg-gray-950 text-gray-500 px-6 pt-16 pb-0">
         <div className="max-w-5xl mx-auto">
@@ -159,13 +125,6 @@ export default function Landing() {
                 <span>Campus<span className="text-blue-500">360</span></span>
               </div>
               <p className="text-sm leading-relaxed max-w-xs">Empowering campuses with smart management solutions. Connecting students, faculty, and administration seamlessly.</p>
-              <div className="flex gap-2.5 mt-5">
-                {[Twitter, Linkedin, Github].map((Icon, i) => (
-                  <a key={i} href="#" className="w-9 h-9 flex items-center justify-center rounded-lg bg-white/5 hover:bg-blue-600 hover:text-white transition-all text-gray-500" aria-label="Social">
-                    <Icon size={18} />
-                  </a>
-                ))}
-              </div>
             </div>
             <div>
               <h4 className="text-white font-bold mb-5">Quick Links</h4>
