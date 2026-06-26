@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { Bell, CalendarDays, MessageSquareWarning, BookOpen, CheckCircle2, AlertCircle, Clock, Menu, X } from 'lucide-react'
+import { Bell, CalendarDays, MessageSquareWarning, BookOpen, AlertCircle, Menu, X, FileText, Search } from 'lucide-react'
 import Sidebar from '../components/Sidebar'
 import StatCard from '../components/StatCard'
 
@@ -24,12 +24,6 @@ const EVENTS = [
 
 const COMPLAINT_STATS = { pending: 3, inProgress: 2, resolved: 15 }
 
-const RECENT_ACTIVITY = [
-  { id: 1, action: 'Submitted complaint about Wi-Fi connectivity', time: '2 hours ago', type: 'complaint' },
-  { id: 2, action: 'Downloaded "Data Structures" study material', time: '4 hours ago', type: 'study' },
-  { id: 3, action: 'Registered for Tech Symposium 2026', time: '1 day ago', type: 'event' },
-]
-
 const ACTIVITY_COLORS = { complaint: '#EF4444', study: '#10B981', event: '#8B5CF6', notice: '#2563EB', lost: '#F59E0B', profile: '#6B7280' }
 
 const NOTIFICATIONS_DATA = [
@@ -39,8 +33,23 @@ const NOTIFICATIONS_DATA = [
   { id: 4, text: 'New study material added for DBMS', time: '3 hours ago', type: 'study' },
 ]
 
+const QUICK_ACTIONS = [
+  { label: 'Report Complaint', to: '/dashboard/complaints', icon: MessageSquareWarning, color: '#EF4444' },
+  { label: 'View Notices', to: '/dashboard/notices-events', icon: Bell, color: '#2563EB' },
+  { label: 'Explore Events', to: '/dashboard/notices-events', icon: CalendarDays, color: '#8B5CF6' },
+  { label: 'Lost & Found', to: '/dashboard/lost-found', icon: Search, color: '#F59E0B' },
+  { label: 'Study Hub', to: '/dashboard/study-hub', icon: BookOpen, color: '#10B981' },
+]
+
 function formatDate(dateStr) {
   return new Date(dateStr).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+}
+
+const categoryStyles = {
+  Academic: 'bg-blue-50 text-blue-600 ring-1 ring-blue-200/50',
+  Library: 'bg-green-50 text-green-600 ring-1 ring-green-200/50',
+  Facility: 'bg-orange-50 text-orange-600 ring-1 ring-orange-200/50',
+  Events: 'bg-purple-50 text-purple-600 ring-1 ring-purple-200/50',
 }
 
 export default function Dashboard() {
@@ -125,6 +134,7 @@ export default function Dashboard() {
         </header>
 
         <main className="flex-1 p-6 md:p-8 max-w-6xl w-full">
+
           {/* ── Stats Grid ── */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-7">
             {Object.entries(STATS).map(([key, s]) => <StatCard key={key} {...s} />)}
@@ -134,44 +144,40 @@ export default function Dashboard() {
           <div className="mb-7">
             <h2 className="font-bold text-gray-900 mb-3.5">Quick Actions</h2>
             <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
-              {[
-                { label: 'Report Complaint', to: '/dashboard/complaints', emoji: '📋' },
-                { label: 'View Notices', to: '/dashboard/notices-events', emoji: '📢' },
-                { label: 'Explore Events', to: '/dashboard/notices-events', emoji: '🎉' },
-                { label: 'Lost & Found', to: '/dashboard/lost-found', emoji: '🔍' },
-                { label: 'Study Hub', to: '/dashboard/study-hub', emoji: '📚' },
-              ].map(a => (
-                <button key={a.label} onClick={() => navigate(a.to)} className="flex items-center gap-2.5 p-3.5 bg-white rounded-xl border border-gray-200 shadow-sm hover:-translate-y-1 hover:shadow-lg transition-all text-left cursor-pointer">
-                  <span className="text-xl">{a.emoji}</span>
-                  <span className="text-xs font-semibold text-gray-900">{a.label}</span>
+              {QUICK_ACTIONS.map(a => (
+                <button key={a.label} onClick={() => navigate(a.to)} className="group flex items-center gap-3 p-4 bg-white rounded-xl border border-gray-200 shadow-sm hover:-translate-y-1 hover:shadow-lg transition-all text-left cursor-pointer">
+                  <div className="w-10 h-10 rounded-xl flex items-center justify-center text-white shrink-0 transition-transform group-hover:scale-110" style={{ backgroundColor: a.color }}>
+                    <a.icon size={20} strokeWidth={2.5} />
+                  </div>
+                  <span className="text-sm font-semibold text-gray-900">{a.label}</span>
                 </button>
               ))}
             </div>
           </div>
 
-          {/* ── Content Grid ── */}
-          <div className="grid lg:grid-cols-[1.5fr_1fr] gap-6">
+          {/* ── Main Content Grid ── */}
+          <div className="grid lg:grid-cols-[1.6fr_1fr] gap-6">
+
+            {/* ── Left Column ── */}
             <div className="space-y-6">
+
               {/* ── Recent Notices ── */}
               <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
                 <div className="flex items-center justify-between mb-5">
                   <h3 className="font-bold text-gray-900">Recent Notices</h3>
-                  <button onClick={() => navigate('/dashboard/notices-events')} className="text-xs font-semibold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-lg hover:bg-blue-100 transition-all cursor-pointer">View All</button>
+                  <button onClick={() => navigate('/dashboard/notices-events')} className="text-xs font-semibold text-blue-600 bg-blue-50 hover:bg-blue-100 transition-all px-3 py-1.5 rounded-lg cursor-pointer">View All</button>
                 </div>
                 <div className="space-y-0">
                   {NOTICES.map(n => (
-                    <div key={n.id} className="flex items-start gap-3.5 py-3.5 border-b border-gray-100 last:border-0 last:pb-0 first:pt-0">
-                      <div className="w-2 h-2 rounded-full bg-blue-600 mt-1.5 shrink-0" />
+                    <div key={n.id} className="flex items-start gap-4 py-3.5 border-b border-gray-100 last:border-0 last:pb-0 first:pt-0">
+                      <div className="w-9 h-9 rounded-xl bg-blue-50 flex items-center justify-center shrink-0">
+                        <FileText size={16} className="text-blue-600" />
+                      </div>
                       <div className="flex-1 min-w-0">
                         <span className="block text-sm font-semibold text-gray-900 mb-1">{n.title}</span>
                         <div className="flex items-center gap-2.5 text-xs text-gray-500">
                           <span>{formatDate(n.date)}</span>
-                          <span className={`px-2 py-0.5 rounded font-semibold text-[10px] ${
-                            n.category === 'Academic' ? 'bg-blue-50 text-blue-600' :
-                            n.category === 'Library' ? 'bg-green-50 text-green-600' :
-                            n.category === 'Facility' ? 'bg-orange-50 text-orange-600' :
-                            n.category === 'Events' ? 'bg-purple-50 text-purple-600' : 'bg-red-50 text-red-600'
-                          }`}>{n.category}</span>
+                          <span className={`px-2 py-0.5 rounded font-semibold text-[10px] ${categoryStyles[n.category] || 'bg-gray-50 text-gray-600'}`}>{n.category}</span>
                         </div>
                       </div>
                     </div>
@@ -183,76 +189,77 @@ export default function Dashboard() {
               <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
                 <div className="flex items-center justify-between mb-5">
                   <h3 className="font-bold text-gray-900">Complaint Status</h3>
-                  <button onClick={() => navigate('/dashboard/complaints')} className="text-xs font-semibold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-lg hover:bg-blue-100 transition-all cursor-pointer">View All</button>
+                  <button onClick={() => navigate('/dashboard/complaints')} className="text-xs font-semibold text-blue-600 bg-blue-50 hover:bg-blue-100 transition-all px-3 py-1.5 rounded-lg cursor-pointer">View All</button>
                 </div>
-                <div className="space-y-4">
-                  <div className="flex h-2.5 rounded-full overflow-hidden bg-gray-100">
-                    <div className="h-full transition-all duration-600" style={{ width: `${(COMPLAINT_STATS.pending / total) * 100}%`, backgroundColor: '#F59E0B' }} />
-                    <div className="h-full transition-all duration-600" style={{ width: `${(COMPLAINT_STATS.inProgress / total) * 100}%`, backgroundColor: '#3B82F6' }} />
-                    <div className="h-full transition-all duration-600" style={{ width: `${(COMPLAINT_STATS.resolved / total) * 100}%`, backgroundColor: '#10B981' }} />
+                <div className="space-y-5">
+                  <div className="flex h-3 rounded-full overflow-hidden bg-gray-100 ring-1 ring-gray-200/50">
+                    <div className="h-full transition-all duration-700" style={{ width: `${(COMPLAINT_STATS.pending / total) * 100}%`, backgroundColor: '#F59E0B' }} title="Pending" />
+                    <div className="h-full transition-all duration-700" style={{ width: `${(COMPLAINT_STATS.inProgress / total) * 100}%`, backgroundColor: '#3B82F6' }} title="In Progress" />
+                    <div className="h-full transition-all duration-700" style={{ width: `${(COMPLAINT_STATS.resolved / total) * 100}%`, backgroundColor: '#10B981' }} title="Resolved" />
                   </div>
-                  <div className="flex gap-5 text-xs text-gray-500">
+                  <div className="flex gap-6 text-xs">
                     {[
-                      { label: 'Pending', value: COMPLAINT_STATS.pending, color: '#F59E0B' },
-                      { label: 'In Progress', value: COMPLAINT_STATS.inProgress, color: '#3B82F6' },
-                      { label: 'Resolved', value: COMPLAINT_STATS.resolved, color: '#10B981' },
+                      { label: 'Pending', value: COMPLAINT_STATS.pending, color: '#F59E0B', icon: Clock },
+                      { label: 'In Progress', value: COMPLAINT_STATS.inProgress, color: '#3B82F6', icon: AlertCircle },
+                      { label: 'Resolved', value: COMPLAINT_STATS.resolved, color: '#10B981', icon: Bell },
                     ].map(item => (
-                      <div key={item.label} className="flex items-center gap-1.5">
-                        <span className="w-2 h-2 rounded-full" style={{ backgroundColor: item.color }} />
-                        <span>{item.label}</span>
-                        <span className="font-bold text-gray-900">{item.value}</span>
+                      <div key={item.label} className="flex items-center gap-2">
+                        <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ backgroundColor: item.color + '15' }}>
+                          <item.icon size={14} style={{ color: item.color }} />
+                        </div>
+                        <div>
+                          <span className="text-gray-500">{item.label}</span>
+                          <span className="font-bold text-gray-900 ml-1">{item.value}</span>
+                        </div>
                       </div>
                     ))}
                   </div>
                 </div>
               </div>
-
-              {/* ── Recent Activity ── */}
-              <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
-                <div className="flex items-center justify-between mb-5">
-                  <h3 className="font-bold text-gray-900">Recent Activity</h3>
-                  <button onClick={() => navigate('/dashboard/profile')} className="text-xs font-semibold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-lg hover:bg-blue-100 transition-all cursor-pointer">View All</button>
-                </div>
-                <div className="space-y-0">
-                  {RECENT_ACTIVITY.map((item, i) => (
-                    <div key={item.id} className="flex gap-3.5">
-                      <div className="flex flex-col items-center w-6 shrink-0">
-                        <div className="w-6 h-6 rounded-full flex items-center justify-center" style={{ backgroundColor: ACTIVITY_COLORS[item.type] }}>
-                          {item.type === 'complaint' && <AlertCircle size={12} className="text-white" />}
-                          {item.type === 'study' && <BookOpen size={12} className="text-white" />}
-                          {item.type === 'event' && <CalendarDays size={12} className="text-white" />}
-                        </div>
-                        {i < RECENT_ACTIVITY.length - 1 && <div className="w-0.5 flex-1 bg-gray-200 my-1" />}
-                      </div>
-                      <div className="flex-1 min-w-0 pb-5 last:pb-0">
-                        <p className="text-sm text-gray-900 leading-relaxed">{item.action}</p>
-                        <span className="text-xs text-gray-500">{item.time}</span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
             </div>
 
-            {/* ── Upcoming Events (right column) ── */}
+            {/* ── Right Column ── */}
             <div className="space-y-6">
+
+              {/* ── Upcoming Events ── */}
               <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
                 <div className="flex items-center justify-between mb-5">
                   <h3 className="font-bold text-gray-900">Upcoming Events</h3>
-                  <button onClick={() => navigate('/dashboard/notices-events')} className="text-xs font-semibold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-lg hover:bg-blue-100 transition-all cursor-pointer">View All</button>
+                  <button onClick={() => navigate('/dashboard/notices-events')} className="text-xs font-semibold text-blue-600 bg-blue-50 hover:bg-blue-100 transition-all px-3 py-1.5 rounded-lg cursor-pointer">View All</button>
                 </div>
                 <div className="space-y-0">
                   {EVENTS.map(e => (
                     <div key={e.id} className="flex items-center gap-4 py-3.5 border-b border-gray-100 last:border-0 last:pb-0 first:pt-0">
-                      <div className="flex flex-col items-center w-12 py-2 bg-gray-50 rounded-xl shrink-0">
-                        <span className="text-[10px] font-bold text-blue-600 uppercase">{new Date(e.date).toLocaleDateString('en-US', { month: 'short' })}</span>
-                        <span className="text-lg font-extrabold text-gray-900 leading-tight">{new Date(e.date).getDate()}</span>
+                      <div className="flex flex-col items-center w-14 py-2.5 bg-gradient-to-b from-blue-50 to-white rounded-xl shrink-0 ring-1 ring-blue-100">
+                        <span className="text-[10px] font-bold text-blue-600 uppercase leading-none">{new Date(e.date).toLocaleDateString('en-US', { month: 'short' })}</span>
+                        <span className="text-xl font-extrabold text-gray-900 leading-tight mt-0.5">{new Date(e.date).getDate()}</span>
                       </div>
                       <div className="flex-1 min-w-0">
-                        <span className="block text-sm font-semibold text-gray-900">{e.name}</span>
-                        <span className="text-xs text-gray-500">{e.venue} · {e.time}</span>
+                        <span className="block text-sm font-semibold text-gray-900 mb-0.5">{e.name}</span>
+                        <span className="text-xs text-gray-500 flex items-center gap-1">
+                          <CalendarDays size={11} />
+                          {e.venue} · {e.time}
+                        </span>
                       </div>
-                      <button className="text-xs font-semibold text-gray-500 bg-white border border-gray-200 px-3 py-1.5 rounded-lg hover:border-blue-500 hover:text-blue-600 hover:bg-blue-50 transition-all cursor-pointer">Details</button>
+                      <button className="text-xs font-semibold text-blue-600 bg-blue-50 px-3 py-1.5 rounded-lg hover:bg-blue-100 transition-all cursor-pointer">Details</button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* ── Quick Stats Mini ── */}
+              <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl p-6 text-white shadow-sm">
+                <h3 className="font-bold text-white/90 mb-3">This Week</h3>
+                <div className="grid grid-cols-2 gap-4">
+                  {[
+                    { label: 'New Notices', value: '4', color: 'bg-white/20' },
+                    { label: 'Events', value: '2', color: 'bg-white/20' },
+                    { label: 'Complaints', value: '1', color: 'bg-white/20' },
+                    { label: 'Downloads', value: '8', color: 'bg-white/20' },
+                  ].map(item => (
+                    <div key={item.label} className="bg-white/10 rounded-xl p-3 backdrop-blur-sm">
+                      <span className="text-2xl font-extrabold block leading-none mb-1">{item.value}</span>
+                      <span className="text-xs text-blue-100">{item.label}</span>
                     </div>
                   ))}
                 </div>
