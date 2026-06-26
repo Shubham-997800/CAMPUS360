@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Mail, Lock, User, Eye, EyeOff, AlertCircle, Loader2, CheckCircle2 } from 'lucide-react'
+import Logo from '../components/Logo'
 
 export default function Register() {
   const navigate = useNavigate()
@@ -44,29 +45,27 @@ export default function Register() {
 
   return (
     <div className="min-h-screen flex animate-fadeIn">
-      <div className="hidden lg:flex w-1/2 bg-gradient-to-br from-blue-600 to-purple-700 items-center justify-center p-12 relative overflow-hidden">
+      <div className="hidden lg:flex w-1/2 bg-gradient-to-br from-[#6C5CE7] dark:from-[#7C5CFF] to-purple-700 items-center justify-center p-12 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <svg viewBox="0 0 400 300" className="w-full h-full"><circle cx="200" cy="160" r="120" fill="white" /><rect x="80" y="100" width="60" height="80" rx="6" fill="white" /><rect x="85" y="105" width="50" height="8" rx="2" fill="white" opacity="0.7" /><rect x="85" y="118" width="50" height="8" rx="2" fill="white" opacity="0.7" /><rect x="85" y="131" width="50" height="8" rx="2" fill="white" opacity="0.7" /><rect x="260" y="80" width="60" height="100" rx="6" fill="white" /><rect x="265" y="85" width="50" height="8" rx="2" fill="white" opacity="0.7" /><rect x="265" y="98" width="50" height="8" rx="2" fill="white" opacity="0.7" /><rect x="265" y="111" width="50" height="8" rx="2" fill="white" opacity="0.7" /></svg>
         </div>
         <div className="relative z-10 text-center text-white">
-          <Link to="/" className="inline-flex items-center gap-2.5 text-white text-xl font-bold mb-8">
-            <svg width="36" height="36" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="white" /><path d="M8 22V12L16 6L24 12V22H20V16L16 20L12 16V22H8Z" fill="#2563EB" /></svg>
-            <span>Campus<span className="text-blue-200">360</span></span>
+          <Link to="/" className="inline-flex items-center gap-2.5 mb-8">
+            <Logo className="h-9 w-auto" />
           </Link>
-          <h1 className="text-3xl font-extrabold mb-3">Join Campus360!</h1>
-          <p className="text-blue-100 max-w-sm mx-auto">Create your account and start managing your campus life.</p>
+          <h1 className="text-3xl font-extrabold mb-3">Join NexCampus!</h1>
+          <p className="text-white/80 max-w-sm mx-auto">Create your account and start managing your campus life.</p>
         </div>
       </div>
 
-      <div className="flex-1 flex items-center justify-center p-8 dark:bg-gray-950">
+      <div className="flex-1 flex items-center justify-center p-8 dark:bg-[#0F172A]">
         <div className="w-full max-w-sm">
-          <Link to="/" className="inline-flex items-center gap-2.5 text-lg font-bold text-gray-900 dark:text-gray-100 mb-6 lg:hidden">
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="#2563EB" /><path d="M8 22V12L16 6L24 12V22H20V16L16 20L12 16V22H8Z" fill="white" /></svg>
-            Campus<span className="text-blue-600">360</span>
+          <Link to="/" className="inline-flex items-center gap-2.5 mb-6 lg:hidden">
+            <Logo className="h-8 w-auto" />
           </Link>
 
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-1">Create Account</h2>
-          <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">Fill in the details to get started.</p>
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-1">Create Account</h2>
+          <p className="text-sm text-gray-500 dark:text-[#94A3B8] mb-6">Fill in the details to get started.</p>
 
           {submitError && (
             <div className="flex items-center gap-2.5 bg-red-50 text-red-600 text-sm p-3 rounded-xl mb-5 dark:bg-red-950/40">
@@ -77,18 +76,17 @@ export default function Register() {
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Full Name</label>
-              <div className={`flex items-center gap-3 bg-gray-50 border rounded-xl px-3.5 transition-all focus-within:ring-2 focus-within:ring-blue-500/20 focus-within:border-blue-500 ${errors.name ? 'border-red-400 bg-red-50' : 'border-gray-200 dark:border-gray-700/50'} dark:bg-gray-800`}>
+              <div className={`flex items-center gap-3 bg-gray-50 border rounded-xl px-3.5 transition-all focus-within:ring-2 focus-within:ring-[#6C5CE7]/20 focus-within:border-[#6C5CE7] ${errors.name ? 'border-red-400 bg-red-50' : 'border-gray-200 dark:border-white/10'} dark:bg-gray-800`}>
                 <User size={18} className="text-gray-400 dark:text-gray-500 shrink-0" />
-                <input type="text" name="name" value={form.name} onChange={handleChange} placeholder="John Doe" className="flex-1 bg-transparent border-none outline-none py-3 text-sm text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500" />
+                <input type="text" name="name" value={form.name} onChange={handleChange} placeholder="John Doe" className="flex-1 bg-transparent border-none outline-none py-3 text-sm text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-gray-500" />
               </div>
               {errors.name && <p className="text-xs text-red-500 mt-1.5">{errors.name}</p>}
             </div>
 
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Role</label>
-              <select name="role" value={form.role} onChange={handleChange} className={`w-full border ${errors.role ? 'border-red-400' : 'border-gray-200 dark:border-gray-700/50'} bg-gray-50 rounded-xl px-3.5 py-3 text-sm text-gray-900 outline-none focus:border-blue-500 transition-all dark:bg-gray-800 dark:text-gray-100`}>
+              <select name="role" value={form.role} onChange={handleChange} className={`w-full border ${errors.role ? 'border-red-400' : 'border-gray-200 dark:border-white/10'} bg-gray-50 rounded-xl px-3.5 py-3 text-sm text-gray-900 outline-none focus:border-[#6C5CE7] transition-all dark:bg-gray-800 dark:text-white`}>
                 <option value="Student">Student</option>
-                <option value="Faculty">Faculty</option>
                 <option value="Admin">Admin</option>
               </select>
               {errors.role && <p className="text-xs text-red-500 mt-1.5">{errors.role}</p>}
@@ -96,18 +94,18 @@ export default function Register() {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Email</label>
-              <div className={`flex items-center gap-3 bg-gray-50 border rounded-xl px-3.5 transition-all focus-within:ring-2 focus-within:ring-blue-500/20 focus-within:border-blue-500 ${errors.email ? 'border-red-400 bg-red-50' : 'border-gray-200 dark:border-gray-700/50'} dark:bg-gray-800`}>
+              <div className={`flex items-center gap-3 bg-gray-50 border rounded-xl px-3.5 transition-all focus-within:ring-2 focus-within:ring-[#6C5CE7]/20 focus-within:border-[#6C5CE7] ${errors.email ? 'border-red-400 bg-red-50' : 'border-gray-200 dark:border-white/10'} dark:bg-gray-800`}>
                 <Mail size={18} className="text-gray-400 dark:text-gray-500 shrink-0" />
-                <input type="email" name="email" value={form.email} onChange={handleChange} placeholder="you@university.edu" className="flex-1 bg-transparent border-none outline-none py-3 text-sm text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500" />
+                <input type="email" name="email" value={form.email} onChange={handleChange} placeholder="you@university.edu" className="flex-1 bg-transparent border-none outline-none py-3 text-sm text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-gray-500" />
               </div>
               {errors.email && <p className="text-xs text-red-500 mt-1.5">{errors.email}</p>}
             </div>
 
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Password</label>
-              <div className={`flex items-center gap-3 bg-gray-50 border rounded-xl px-3.5 transition-all focus-within:ring-2 focus-within:ring-blue-500/20 focus-within:border-blue-500 ${errors.password ? 'border-red-400 bg-red-50' : 'border-gray-200 dark:border-gray-700/50'} dark:bg-gray-800`}>
+              <div className={`flex items-center gap-3 bg-gray-50 border rounded-xl px-3.5 transition-all focus-within:ring-2 focus-within:ring-[#6C5CE7]/20 focus-within:border-[#6C5CE7] ${errors.password ? 'border-red-400 bg-red-50' : 'border-gray-200 dark:border-white/10'} dark:bg-gray-800`}>
                 <Lock size={18} className="text-gray-400 dark:text-gray-500 shrink-0" />
-                <input type={showPw ? 'text' : 'password'} name="password" value={form.password} onChange={handleChange} placeholder="Min 6 characters" className="flex-1 bg-transparent border-none outline-none py-3 text-sm text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500" />
+                <input type={showPw ? 'text' : 'password'} name="password" value={form.password} onChange={handleChange} placeholder="Min 6 characters" className="flex-1 bg-transparent border-none outline-none py-3 text-sm text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-gray-500" />
                 <button type="button" onClick={() => setShowPw(!showPw)} className="text-gray-400 hover:text-gray-600 dark:text-gray-500 cursor-pointer">
                   {showPw ? <EyeOff size={18} /> : <Eye size={18} />}
                 </button>
@@ -117,19 +115,19 @@ export default function Register() {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Confirm Password</label>
-              <div className={`flex items-center gap-3 bg-gray-50 border rounded-xl px-3.5 transition-all focus-within:ring-2 focus-within:ring-blue-500/20 focus-within:border-blue-500 ${errors.confirmPassword ? 'border-red-400 bg-red-50' : 'border-gray-200 dark:border-gray-700/50'} dark:bg-gray-800`}>
+              <div className={`flex items-center gap-3 bg-gray-50 border rounded-xl px-3.5 transition-all focus-within:ring-2 focus-within:ring-[#6C5CE7]/20 focus-within:border-[#6C5CE7] ${errors.confirmPassword ? 'border-red-400 bg-red-50' : 'border-gray-200 dark:border-white/10'} dark:bg-gray-800`}>
                 <Lock size={18} className="text-gray-400 dark:text-gray-500 shrink-0" />
-                <input type="password" name="confirmPassword" value={form.confirmPassword} onChange={handleChange} placeholder="Re-enter your password" className="flex-1 bg-transparent border-none outline-none py-3 text-sm text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500" />
+                <input type="password" name="confirmPassword" value={form.confirmPassword} onChange={handleChange} placeholder="Re-enter your password" className="flex-1 bg-transparent border-none outline-none py-3 text-sm text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-gray-500" />
               </div>
               {errors.confirmPassword && <p className="text-xs text-red-500 mt-1.5">{errors.confirmPassword}</p>}
             </div>
 
-            <button type="submit" disabled={loading} className="w-full flex items-center justify-center gap-2 bg-blue-600 text-white py-3 rounded-xl font-semibold hover:bg-blue-700 transition-all disabled:opacity-70 cursor-pointer">
+            <button type="submit" disabled={loading} className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-violet-600 to-cyan-500 text-white py-3 rounded-xl font-semibold hover:from-violet-700 hover:to-cyan-600 dark:from-violet-500 dark:to-cyan-400 dark:hover:from-violet-600 dark:hover:to-cyan-500 transition-all disabled:opacity-70 cursor-pointer">
               {loading ? <><Loader2 size={18} className="animate-spin" /> Creating account...</> : <><CheckCircle2 size={18} /> Create Account</>}
             </button>
           </form>
 
-          <p className="text-center text-sm text-gray-500 dark:text-gray-400 mt-6">Already have an account? <Link to="/login" className="text-blue-600 font-medium hover:underline">Sign In</Link></p>
+          <p className="text-center text-sm text-gray-500 dark:text-[#94A3B8] mt-6">Already have an account? <Link to="/login" className="text-[#6C5CE7] dark:text-[#7C5CFF] font-medium hover:underline">Sign In</Link></p>
         </div>
       </div>
     </div>
