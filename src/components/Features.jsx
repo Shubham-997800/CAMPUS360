@@ -1,6 +1,12 @@
+// ============================================
+// Features - Grid of product feature cards with
+//             scroll-triggered fade-in animation
+// ============================================
+
 import { useRef, useEffect, useState } from 'react'
 import './Features.css'
 
+// ── Static feature data (icons as inline SVGs) ──
 const features = [
   {
     icon: (
@@ -73,9 +79,11 @@ const features = [
 ]
 
 export default function Features() {
+  // ── State: tracks which cards have animated into view ──
   const [visible, setVisible] = useState({})
   const ref = useRef(null)
 
+  // ── IntersectionObserver: triggers staggered fade-in on scroll ──
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -85,7 +93,7 @@ export default function Features() {
             cards.forEach((card, i) => {
               setTimeout(() => {
                 setVisible(prev => ({ ...prev, [i]: true }))
-              }, i * 100)
+              }, i * 100) // each card fades in 100ms after the previous
             })
             observer.unobserve(entry.target)
           }
@@ -101,6 +109,7 @@ export default function Features() {
   return (
     <section className="features-section" id="features">
       <div className="features-container">
+        {/* ── Section header (badge + title + description) ── */}
         <div className="section-header">
           <span className="section-badge">Features</span>
           <h2 className="section-title">Everything You Need</h2>
@@ -108,6 +117,7 @@ export default function Features() {
             Powerful tools to streamline campus life for students, faculty, and administrators.
           </p>
         </div>
+        {/* ── Feature cards grid ── */}
         <div className="features-grid" ref={ref}>
           {features.map((feature, index) => (
             <div

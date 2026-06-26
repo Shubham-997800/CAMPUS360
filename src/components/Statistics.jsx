@@ -1,6 +1,12 @@
+// ============================================
+// Statistics - Animated stat counters section
+//               with decorative background shapes
+// ============================================
+
 import { useRef, useEffect, useState } from 'react'
 import './Statistics.css'
 
+// ── Static stats data with SVG icons ──
 const stats = [
   { number: '5000+', label: 'Students', icon: (
     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -34,9 +40,11 @@ const stats = [
 ]
 
 export default function Statistics() {
+  // ── State: triggers a one-time reveal animation ──
   const [visible, setVisible] = useState(false)
   const ref = useRef(null)
 
+  // ── IntersectionObserver: activates animation when section scrolls into view ──
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -54,6 +62,7 @@ export default function Statistics() {
 
   return (
     <section className="stats-section" ref={ref}>
+      {/* ── Background decorative shapes ── */}
       <div className="stats-bg-shapes">
         <div className="stats-shape stats-shape-1"></div>
         <div className="stats-shape stats-shape-2"></div>

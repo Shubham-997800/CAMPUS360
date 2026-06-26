@@ -1,3 +1,9 @@
+// ============================================
+// Footer - Site footer with brand info, social
+//           links, quick links, services, and
+//           contact details
+// ============================================
+
 import './Footer.css'
 
 export default function Footer() {
@@ -5,6 +11,7 @@ export default function Footer() {
     <footer className="footer" id="contact">
       <div className="footer-container">
         <div className="footer-grid">
+          {/* ── Brand column: logo + description + social icons ── */}
           <div className="footer-brand">
             <div className="footer-logo">
               <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
@@ -43,6 +50,8 @@ export default function Footer() {
               </a>
             </div>
           </div>
+
+          {/* ── Quick links column ── */}
           <div className="footer-links-group">
             <h4 className="footer-heading">Quick Links</h4>
             <a href="#home">Home</a>
@@ -50,6 +59,8 @@ export default function Footer() {
             <a href="#about">About Us</a>
             <a href="#contact">Contact</a>
           </div>
+
+          {/* ── Services column ── */}
           <div className="footer-links-group">
             <h4 className="footer-heading">Services</h4>
             <a href="#">Notice Board</a>
@@ -57,6 +68,8 @@ export default function Footer() {
             <a href="#">Complaints</a>
             <a href="#">Study Hub</a>
           </div>
+
+          {/* ── Contact column with address, email, phone ── */}
           <div className="footer-links-group">
             <h4 className="footer-heading">Contact</h4>
             <div className="footer-contact-item">
@@ -81,6 +94,8 @@ export default function Footer() {
             </div>
           </div>
         </div>
+
+        {/* ── Copyright bar ── */}
         <div className="footer-bottom">
           <p>&copy; {new Date().getFullYear()} Campus360. All rights reserved.</p>
         </div>

@@ -1,3 +1,8 @@
+/* ============================================
+   Statistics - Animated stat counters section
+   ============================================ */
+
+/* ── Section with primary-colored background ── */
 .stats-section {
   position: relative;
   padding: 80px 24px;
@@ -5,6 +10,7 @@
   overflow: hidden;
 }
 
+/* ── Decorative background shapes container ── */
 .stats-bg-shapes {
   position: absolute;
   inset: 0;
@@ -12,6 +18,7 @@
   overflow: hidden;
 }
 
+/* ── Individual decorative circle ── */
 .stats-shape {
   position: absolute;
   border-radius: 50%;
@@ -32,6 +39,7 @@
   left: -80px;
 }
 
+/* ── Stats grid (4 columns) ── */
 .stats-container {
   max-width: 1100px;
   margin: 0 auto;
@@ -41,6 +49,7 @@
   position: relative;
 }
 
+/* ── Individual stat card with glassmorphism ── */
 .stat-item {
   display: flex;
   flex-direction: column;
@@ -57,22 +66,26 @@
   transition: all 0.6s;
 }
 
+/* ── Visible state (triggered by IntersectionObserver) ── */
 .stat-item.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
+/* ── Stat card hover effect ── */
 .stat-item:hover {
   background: rgba(255, 255, 255, 0.14);
   transform: translateY(-4px) !important;
   opacity: 1 !important;
 }
 
+/* ── Stat icon ── */
 .stat-icon {
   color: rgba(255, 255, 255, 0.5);
   margin-bottom: 4px;
 }
 
+/* ── Stat number (large, bold, white) ── */
 .stat-number {
   font-size: 36px;
   font-weight: 800;
@@ -80,6 +93,7 @@
   line-height: 1.2;
 }
 
+/* ── Stat label ── */
 .stat-label {
   font-size: 14px;
   color: rgba(255, 255, 255, 0.7);
@@ -87,6 +101,7 @@
   letter-spacing: 0.3px;
 }
 
+/* ── Tablet: 2 columns ── */
 @media (max-width: 768px) {
   .stats-container {
     grid-template-columns: repeat(2, 1fr);
@@ -98,6 +113,7 @@
   }
 }
 
+/* ── Mobile ── */
 @media (max-width: 480px) {
   .stats-section {
     padding: 56px 16px;

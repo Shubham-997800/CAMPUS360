@@ -1,3 +1,12 @@
+// ============================================
+// Complaints data - Mock data for complaint management
+// complaintCategories: options for the new complaint form dropdown
+// complaints: list of submitted complaints with id, title, category, description,
+//             status (pending / in-progress / resolved), date, attachments
+// statusFilters: button labels for the segmented filter control
+// statusConfig: maps status key to display label, color, and background color
+// ============================================
+
 export const complaintCategories = [
   'Academic',
   'Facility',

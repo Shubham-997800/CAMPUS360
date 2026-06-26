@@ -1,3 +1,9 @@
+// ============================================
+// Dashboard data - Mock data for dashboard display
+// Each export corresponds to a dashboard widget (stats, quick actions, notices, events, complaints, activity)
+// ============================================
+
+// ── Stats: Summary metrics showing counts for notices, events, complaints, and study materials ──
 export const stats = {
   totalNotices: { value: 12, label: 'Total Notices', change: '+3 this week' },
   upcomingEvents: { value: 5, label: 'Upcoming Events', change: 'Next: Tomorrow' },
@@ -5,6 +11,7 @@ export const stats = {
   studyMaterials: { value: 24, label: 'Study Materials', change: '4 new this week' },
 }
 
+// ── Quick Actions: Array of shortcut buttons displayed in the dashboard toolbar ──
 export const quickActions = [
   { id: 1, label: 'Report Complaint', icon: '📋', color: '#EF4444' },
   { id: 2, label: 'View Notices', icon: '📢', color: '#2563EB' },
@@ -13,6 +20,7 @@ export const quickActions = [
   { id: 5, label: 'Study Hub', icon: '📚', color: '#10B981' },
 ]
 
+// ── Notices: Recent campus notices with title, date, and category ──
 export const notices = [
   { id: 1, title: 'Final Exam Schedule Released', date: '2026-06-25', category: 'Academic' },
   { id: 2, title: 'Library Hours Extended for Exams', date: '2026-06-24', category: 'Library' },
@@ -21,6 +29,7 @@ export const notices = [
   { id: 5, title: 'Hostel Fee Payment Deadline Extended', date: '2026-06-21', category: 'Finance' },
 ]
 
+// ── Events: Upcoming campus events with date, venue, and time ──
 export const events = [
   { id: 1, name: 'Tech Symposium 2026', date: '2026-07-15', venue: 'Auditorium A', time: '10:00 AM' },
   { id: 2, name: 'Cultural Fest', date: '2026-07-20', venue: 'Open Air Theatre', time: '9:00 AM' },
@@ -28,12 +37,14 @@ export const events = [
   { id: 4, name: 'Sports Meet 2026', date: '2026-08-01', venue: 'Sports Complex', time: '7:00 AM' },
 ]
 
+// ── Complaint Stats: Counts used for the complaint status progress bar ──
 export const complaintStats = {
   pending: 3,
   inProgress: 2,
   resolved: 15,
 }
 
+// ── Recent Activity: Timeline entries with action text, timestamp, and type (determines icon/color) ──
 export const recentActivity = [
   { id: 1, action: 'Submitted complaint about Wi-Fi connectivity', time: '2 hours ago', type: 'complaint' },
   { id: 2, action: 'Downloaded "Data Structures" study material', time: '4 hours ago', type: 'study' },

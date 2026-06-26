@@ -1,3 +1,7 @@
+/* ============================================
+   LostFound - Styles for Lost & Found page (banner, tabs, toolbar, cards, modal)
+   ============================================ */
+
 /* ── Page ── */
 .lostfound-page {
   flex: 1;
@@ -6,7 +10,7 @@
   width: 100%;
 }
 
-/* ── Banner ── */
+/* ── Banner: header with title, subtitle, and "Report Lost Item" button ── */
 .lostfound-banner {
   background: var(--primary);
   padding: 36px 32px;
@@ -69,7 +73,7 @@
   transform: translateY(-1px);
 }
 
-/* ── Tabs ── */
+/* ── Tabs: "Lost Items" / "Found Items" with active underline indicator ── */
 .lostfound-tabs {
   display: flex;
   gap: 0;
@@ -123,8 +127,7 @@
   background: color-mix(in srgb, var(--primary) 10%, var(--card));
   color: var(--primary);
 }
-
-/* ── Toolbar ── */
+/* ── Toolbar: search input and category filter ── */
 .lostfound-toolbar {
   display: flex;
   align-items: center;
@@ -207,7 +210,7 @@
   -webkit-appearance: none;
 }
 
-/* ── Empty ── */
+/* ── Empty: shown when no items match the search/filter ── */
 .lostfound-empty {
   display: flex;
   flex-direction: column;
@@ -219,7 +222,7 @@
   gap: 12px;
 }
 
-/* ── Grid ── */
+/* ── Grid: 3-column card layout ── */
 .lostfound-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -227,7 +230,7 @@
   padding: 0 28px 28px;
 }
 
-/* ── Card ── */
+/* ── Card: item card with hover lift effect ── */
 .lostfound-card {
   background: var(--card);
   border-radius: var(--radius-lg);
@@ -253,7 +256,7 @@
   opacity: 1;
 }
 
-/* ── Poster ── */
+/* ── Poster: gradient background, emoji icon, status badge ── */
 .lostfound-card-poster {
   height: 140px;
   display: flex;
@@ -296,7 +299,7 @@
   color: white;
 }
 
-/* ── Card Body ── */
+/* ── Card Body: name, date, category, location, description, action button ── */
 .lostfound-card-body {
   padding: 18px 20px 20px;
   display: flex;
@@ -395,7 +398,7 @@
   box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
 }
 
-/* ── Form Modal ── */
+/* ── Form Modal: overlay and form for reporting a lost item ── */
 .lostfound-overlay {
   position: fixed;
   inset: 0;
@@ -539,13 +542,14 @@
   box-shadow: 0 6px 20px rgba(37, 99, 235, 0.3);
 }
 
-/* ── Responsive ── */
+/* ── Responsive: tablet landscape ── */
 @media (max-width: 1200px) {
   .lostfound-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
+/* ── Responsive: tablet portrait ── */
 @media (max-width: 1024px) {
   .lostfound-banner {
     padding: 28px 24px;
@@ -563,6 +567,7 @@
   }
 }
 
+/* ── Responsive: mobile ── */
 @media (max-width: 768px) {
   .lostfound-banner {
     flex-direction: column;
@@ -610,6 +615,7 @@
   }
 }
 
+/* ── Responsive: small mobile ── */
 @media (max-width: 480px) {
   .lostfound-banner {
     padding: 20px var(--radius-lg);

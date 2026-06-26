@@ -1,6 +1,12 @@
+// ============================================
+// Testimonials - Student testimonial cards with
+//                 scroll-triggered reveal animation
+// ============================================
+
 import { useRef, useEffect, useState } from 'react'
 import './Testimonials.css'
 
+// ── Static testimonials data ──
 const testimonials = [
   {
     name: 'Priya Sharma',
@@ -23,9 +29,11 @@ const testimonials = [
 ]
 
 export default function Testimonials() {
+  // ── State: triggers one-time reveal animation ──
   const [visible, setVisible] = useState(false)
   const ref = useRef(null)
 
+  // ── IntersectionObserver: reveals cards when section enters viewport ──
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -44,6 +52,7 @@ export default function Testimonials() {
   return (
     <section className="testimonials-section" id="testimonials">
       <div className="testimonials-container">
+        {/* ── Section header ── */}
         <div className="section-header">
           <span className="section-badge">Testimonials</span>
           <h2 className="section-title">What Students Say</h2>
@@ -51,6 +60,7 @@ export default function Testimonials() {
             Hear from students who use Campus360 every day.
           </p>
         </div>
+        {/* ── Testimonials grid ── */}
         <div className="testimonials-grid" ref={ref}>
           {testimonials.map((t, i) => (
             <div key={i} className={`testimonial-card ${visible ? 'visible' : ''}`} style={{ transitionDelay: `${i * 0.15}s` }}>

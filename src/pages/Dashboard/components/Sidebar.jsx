@@ -1,5 +1,11 @@
+// ============================================
+// Sidebar - Fixed left navigation panel with brand logo, nav links, and logout
+// Uses NavLink for automatic active-state class detection based on current route
+// ============================================
+
 import { NavLink } from 'react-router-dom'
 
+// ── Navigation items: Each entry defines the route path, display label, and SVG icon path data ──
 const navItems = [
   { to: '/dashboard', label: 'Dashboard', icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6' },
   { to: '/dashboard/notices', label: 'Notices', icon: 'M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z' },
@@ -13,6 +19,7 @@ const navItems = [
 export default function Sidebar({ open, onClose }) {
   return (
     <aside className={`dashboard-sidebar ${open ? 'open' : ''}`}>
+      {/* ── Brand: App logo (SVG icon) + "Campus360" text with accent on "360" ── */}
       <div className="sidebar-brand">
         <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
           <rect width="32" height="32" rx="8" fill="#2563EB" />
@@ -21,15 +28,18 @@ export default function Sidebar({ open, onClose }) {
         <span className="sidebar-brand-text">Campus<span>360</span></span>
       </div>
 
+      {/* ── Navigation Links: Rendered via NavLink which applies the "active" class automatically based on current route ── */}
       <nav className="sidebar-nav">
         {navItems.map((item) => (
           <NavLink
             key={item.to}
             to={item.to}
+            // Only exact match for "/dashboard" so sub-routes don't also mark it active
             end={item.to === '/dashboard'}
             className={({ isActive }) =>
               `sidebar-link ${isActive ? 'active' : ''}`
             }
+            // Close sidebar on navigation (primarily for mobile drawer behavior)
             onClick={onClose}
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -40,6 +50,7 @@ export default function Sidebar({ open, onClose }) {
         ))}
       </nav>
 
+      {/* ── Footer: Logout link styled with danger color on hover ── */}
       <div className="sidebar-footer">
         <NavLink to="/logout" className="sidebar-link logout-link">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

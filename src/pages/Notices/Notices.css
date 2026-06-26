@@ -1,3 +1,7 @@
+/* ============================================
+   Notices - Styles for the notices listing page (search, filter, cards, pagination)
+   ============================================ */
+
 /* ── Page Layout ── */
 .notices-page {
   flex: 1;
@@ -6,7 +10,7 @@
   width: 100%;
 }
 
-/* ── Header ── */
+/* ── Header: title, subtitle, search bar, and category filter ── */
 .notices-header {
   display: flex;
   align-items: flex-start;
@@ -42,6 +46,7 @@
   flex-wrap: wrap;
 }
 
+/* ── Search input container ── */
 .notices-search {
   display: flex;
   align-items: center;
@@ -80,6 +85,7 @@
   color: var(--text-secondary);
 }
 
+/* ── Category filter dropdown ── */
 .notices-filter {
   display: flex;
   align-items: center;
@@ -116,7 +122,7 @@
   -webkit-appearance: none;
 }
 
-/* ── Empty State ── */
+/* ── Empty State: shown when no notices match the filter/search ── */
 .notices-empty {
   display: flex;
   flex-direction: column;
@@ -129,14 +135,14 @@
   gap: 12px;
 }
 
-/* ── Grid ── */
+/* ── Grid: 2-column notice card layout ── */
 .notices-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
 }
 
-/* ── Card ── */
+/* ── Card: individual notice card with hover effect ── */
 .notice-card {
   background: var(--card);
   border-radius: var(--radius-lg);
@@ -154,6 +160,7 @@
   border-color: var(--border);
 }
 
+/* ── Card top row: category badge + date ── */
 .notice-card-top {
   display: flex;
   align-items: center;
@@ -161,6 +168,7 @@
   margin-bottom: var(--radius);
 }
 
+/* ── Category badge (color-coded by category) ── */
 .notice-card-category {
   font-size: 11px;
   font-weight: 700;
@@ -182,6 +190,7 @@
   font-weight: 500;
 }
 
+/* ── Card title ── */
 .notice-card-title {
   font-size: 16px;
   font-weight: 700;
@@ -191,6 +200,7 @@
   letter-spacing: -0.02em;
 }
 
+/* ── Card description (clamped to 3 lines) ── */
 .notice-card-desc {
   font-size: 13px;
   color: var(--text-secondary);
@@ -203,6 +213,7 @@
   overflow: hidden;
 }
 
+/* ── Card action buttons (Download / Read More) ── */
 .notice-card-actions {
   display: flex;
   align-items: center;
@@ -256,7 +267,7 @@
   transform: translateX(2px);
 }
 
-/* ── Pagination ── */
+/* ── Pagination: prev/next buttons + page number list ── */
 .notices-pagination {
   display: flex;
   align-items: center;
@@ -328,7 +339,7 @@
   border-color: var(--primary);
 }
 
-/* ── Responsive ── */
+/* ── Responsive: tablet ── */
 @media (max-width: 1024px) {
   .notices-page {
     padding: 20px;
@@ -351,6 +362,7 @@
   }
 }
 
+/* ── Responsive: mobile ── */
 @media (max-width: 768px) {
   .notices-page {
     padding: 16px;
@@ -380,6 +392,7 @@
   }
 }
 
+/* ── Responsive: small mobile ── */
 @media (max-width: 480px) {
   .notices-page {
     padding: 12px;

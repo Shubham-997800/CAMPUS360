@@ -1,3 +1,9 @@
+// ============================================
+// Notices data - Mock data for campus notices
+// Each notice has: id, title, category, date, description
+// categories array drives the filter dropdown
+// ============================================
+
 export const categories = ['All', 'Academic', 'Examination', 'Placement', 'Event', 'Circular']
 
 export const notices = [

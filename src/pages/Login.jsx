@@ -1,8 +1,14 @@
+// ============================================
+// Login - Split-screen login page with form
+//          validation and dummy authentication
+// ============================================
+
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import InputField from '../components/InputField'
 import './Login.css'
 
+// ── Dummy user database for local authentication ──
 const DUMMY_USERS = [
   { email: 'shubham@campus360.edu', password: 'password123', name: 'Shubham' },
   { email: 'admin@campus360.edu', password: 'admin123', name: 'Admin' },
@@ -11,12 +17,15 @@ const DUMMY_USERS = [
 
 export default function Login() {
   const navigate = useNavigate()
+
+  // ── Form state ──
   const [form, setForm] = useState({ email: '', password: '' })
   const [errors, setErrors] = useState({})
   const [remember, setRemember] = useState(false)
   const [loading, setLoading] = useState(false)
   const [submitError, setSubmitError] = useState('')
 
+  // ── Handles input changes and clears field-level errors on edit ──
   function handleChange(e) {
     const { name, value } = e.target
     setForm(prev => ({ ...prev, [name]: value }))
@@ -26,6 +35,7 @@ export default function Login() {
     if (submitError) setSubmitError('')
   }
 
+  // ── Client-side form validation (email format, password length) ──
   function validate() {
     const errs = {}
     if (!form.email) {
@@ -41,6 +51,7 @@ export default function Login() {
     return errs
   }
 
+  // ── Handles form submission with dummy auth + simulated delay ──
   function handleSubmit(e) {
     e.preventDefault()
     const errs = validate()
@@ -49,6 +60,7 @@ export default function Login() {
 
     setLoading(true)
     setSubmitError('')
+    // Simulate async login with 1.2s delay
     setTimeout(() => {
       const user = DUMMY_USERS.find(
         (u) => u.email === form.email && u.password === form.password
@@ -64,6 +76,7 @@ export default function Login() {
 
   return (
     <div className="login-page">
+      {/* ── Left panel: brand illustration + welcome copy ── */}
       <div className="login-left">
         <div className="login-left-content">
           <Link to="/" className="login-left-logo">
@@ -104,6 +117,7 @@ export default function Login() {
         </div>
       </div>
 
+      {/* ── Right panel: login form ── */}
       <div className="login-right">
         <div className="login-card">
           <div className="login-card-header">
@@ -111,6 +125,7 @@ export default function Login() {
             <p className="login-card-desc">Enter your credentials to access your account</p>
           </div>
 
+          {/* ── General submission error banner (invalid credentials) ── */}
           {submitError && (
             <div className="login-error-banner">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -122,6 +137,7 @@ export default function Login() {
             </div>
           )}
 
+          {/* ── Login form (noValidate disables browser validation) ── */}
           <form onSubmit={handleSubmit} noValidate>
             <InputField
               label="Email"
@@ -149,6 +165,7 @@ export default function Login() {
               error={errors.password}
             />
 
+            {/* ── Remember me checkbox + forgot password link ── */}
             <div className="login-options">
               <label className="login-remember">
                 <input
@@ -162,6 +179,7 @@ export default function Login() {
               <a href="#" className="login-forgot">Forgot Password?</a>
             </div>
 
+            {/* ── Submit button with loading spinner state ── */}
             <button
               type="submit"
               className={`login-btn ${loading ? 'loading' : ''}`}
@@ -178,12 +196,14 @@ export default function Login() {
             </button>
           </form>
 
+          {/* ── Divider ── */}
           <div className="login-divider">
             <span></span>
             <span className="login-divider-text">OR</span>
             <span></span>
           </div>
 
+          {/* ── Google sign-in button (UI only) ── */}
           <button className="google-btn">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
               <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4" />
@@ -194,6 +214,7 @@ export default function Login() {
             Continue with Google
           </button>
 
+          {/* ── Create account link ── */}
           <p className="login-signup">
             Don't have an account? <a href="#">Create Account</a>
           </p>

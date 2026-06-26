@@ -1,3 +1,11 @@
+// ============================================
+// LostFound - Lost & Found page with:
+//   - Tabs to switch between lost items / found items
+//   - "Report Lost Item" modal form with validation
+//   - Search + category filter toolbar
+//   - Grid of item cards with gradient poster, icon, location, description
+// ============================================
+
 import { useState } from 'react'
 import Sidebar from '../Dashboard/components/Sidebar'
 import TopNavbar from '../Dashboard/components/TopNavbar'
@@ -13,10 +21,13 @@ export default function LostFound() {
   const [form, setForm] = useState({ name: '', category: '', location: '', description: '' })
   const [formErrors, setFormErrors] = useState({})
   const [lostList, setLostList] = useState(lostItems)
-  const [foundList] = useState(foundItems)
+  // foundItems is static (no setter needed since only admin can add found items)
+  const foundList = foundItems
 
+  // ── Pick the active list based on selected tab ──
   const currentList = tab === 'lost' ? lostList : foundList
 
+  // ── Filter items by search text (name/description/location) and category ──
   const filtered = currentList.filter((item) => {
     const matchSearch =
       item.name.toLowerCase().includes(search.toLowerCase()) ||
@@ -26,12 +37,14 @@ export default function LostFound() {
     return matchSearch && matchFilter
   })
 
+  // ── Update form field and clear validation error ──
   function handleFormChange(e) {
     const { name, value } = e.target
     setForm((prev) => ({ ...prev, [name]: value }))
     if (formErrors[name]) setFormErrors((prev) => ({ ...prev, [name]: '' }))
   }
 
+  // ── Validate lost item report form ──
   function validateForm() {
     const errs = {}
     if (!form.name.trim()) errs.name = 'Item name is required'
@@ -42,6 +55,7 @@ export default function LostFound() {
     return errs
   }
 
+  // ── Handle form submission: validate, create new item, prepend to lost list ──
   function handleSubmit(e) {
     e.preventDefault()
     const errs = validateForm()
@@ -72,6 +86,7 @@ export default function LostFound() {
       <div className="dashboard-main">
         <TopNavbar onMenuToggle={() => setSidebarOpen((prev) => !prev)} />
         <div className="lostfound-page">
+          {/* ── Banner: title, subtitle, and "Report Lost Item" button ── */}
           <div className="lostfound-banner">
             <div className="lostfound-banner-content">
               <h1 className="lostfound-banner-title">Lost & Found</h1>
@@ -86,6 +101,7 @@ export default function LostFound() {
             </button>
           </div>
 
+          {/* ── Report Lost Item Modal: form with name, category, location, description ── */}
           {showForm && (
             <div className="lostfound-overlay" onClick={() => setShowForm(false)}>
               <div className="lostfound-modal" onClick={(e) => e.stopPropagation()}>
@@ -165,6 +181,7 @@ export default function LostFound() {
             </div>
           )}
 
+          {/* ── Tabs: "Lost Items" / "Found Items" with item counts ── */}
           <div className="lostfound-tabs">
             <button
               className={`lostfound-tab ${tab === 'lost' ? 'active' : ''}`}
@@ -190,6 +207,7 @@ export default function LostFound() {
             </button>
           </div>
 
+          {/* ── Toolbar: search input and category filter dropdown ── */}
           <div className="lostfound-toolbar">
             <div className="lostfound-search">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -218,6 +236,7 @@ export default function LostFound() {
             </div>
           </div>
 
+          {/* ── Item grid (or empty state) ── */}
           {filtered.length === 0 ? (
             <div className="lostfound-empty">
               <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -230,6 +249,7 @@ export default function LostFound() {
             <div className="lostfound-grid">
               {filtered.map((item) => (
                 <div key={item.id} className={`lostfound-card ${item.status}`}>
+                  {/* ── Card poster: gradient background, emoji icon, lost/found badge ── */}
                   <div className="lostfound-card-poster" style={{ background: item.gradient }}>
                     <span className="lostfound-card-icon">{item.icon}</span>
                     <span className={`lostfound-card-badge ${item.status}`}>

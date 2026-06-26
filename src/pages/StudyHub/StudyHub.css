@@ -1,3 +1,7 @@
+/* ============================================
+   StudyHub - Styles for Study Hub page (banner, tabs, toolbar, resource cards)
+   ============================================ */
+
 /* ── Page ── */
 .studyhub-page {
   flex: 1;
@@ -6,7 +10,7 @@
   width: 100%;
 }
 
-/* ── Banner ── */
+/* ── Banner: header with title, subtitle, decorative art ── */
 .studyhub-banner {
   background: var(--primary);
   padding: 36px 32px;
@@ -49,7 +53,7 @@
   opacity: 0.9;
 }
 
-/* ── Tabs ── */
+/* ── Tabs: resource type tabs with active underline indicator ── */
 .studyhub-tabs {
   display: flex;
   gap: 0;
@@ -106,7 +110,7 @@
   color: var(--primary);
 }
 
-/* ── Toolbar ── */
+/* ── Toolbar: search input and semester filter dropdown ── */
 .studyhub-toolbar {
   display: flex;
   align-items: center;
@@ -189,7 +193,7 @@
   -webkit-appearance: none;
 }
 
-/* ── Empty ── */
+/* ── Empty: shown when no resources match the current filter ── */
 .studyhub-empty {
   display: flex;
   flex-direction: column;
@@ -201,7 +205,7 @@
   gap: 12px;
 }
 
-/* ── Grid ── */
+/* ── Grid: 3-column resource card layout ── */
 .studyhub-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -209,7 +213,7 @@
   padding: 0 28px 28px;
 }
 
-/* ── Card ── */
+/* ── Card: resource card with color accent bar at top ── */
 .studyhub-card {
   background: var(--card);
   border-radius: var(--radius-lg);
@@ -341,13 +345,14 @@
   transform: translateY(1px);
 }
 
-/* ── Responsive ── */
+/* ── Responsive: tablet landscape ── */
 @media (max-width: 1200px) {
   .studyhub-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
+/* ── Responsive: tablet portrait ── */
 @media (max-width: 1024px) {
   .studyhub-banner {
     padding: 28px 24px;
@@ -369,6 +374,7 @@
   }
 }
 
+/* ── Responsive: mobile ── */
 @media (max-width: 768px) {
   .studyhub-banner {
     flex-direction: column;
@@ -408,6 +414,7 @@
   }
 }
 
+/* ── Responsive: small mobile ── */
 @media (max-width: 480px) {
   .studyhub-banner {
     padding: 20px var(--radius-lg);

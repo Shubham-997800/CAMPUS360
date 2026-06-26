@@ -1,13 +1,20 @@
+/* ============================================
+   Testimonials - Student testimonial cards
+   ============================================ */
+
+/* ── Section wrapper ── */
 .testimonials-section {
   padding: 100px 24px;
   background: var(--card);
 }
 
+/* ── Max-width container ── */
 .testimonials-container {
   max-width: 1100px;
   margin: 0 auto;
 }
 
+/* ── Testimonials grid (3 columns) ── */
 .testimonials-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -15,6 +22,7 @@
   margin-top: 48px;
 }
 
+/* ── Individual testimonial card ── */
 .testimonial-card {
   background: var(--card);
   border: 1px solid var(--border);
@@ -26,11 +34,13 @@
   position: relative;
 }
 
+/* ── Visible state (triggered by IntersectionObserver) ── */
 .testimonial-card.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
+/* ── Card hover effect ── */
 .testimonial-card:hover {
   transform: translateY(-6px) !important;
   opacity: 1 !important;
@@ -38,6 +48,7 @@
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.05);
 }
 
+/* ── Large decorative quote mark ── */
 .testimonial-quote {
   font-size: 48px;
   line-height: 1;
@@ -47,6 +58,7 @@
   font-family: Georgia, serif;
 }
 
+/* ── Testimonial body text ── */
 .testimonial-text {
   font-size: 15px;
   line-height: 1.7;
@@ -55,12 +67,14 @@
   min-height: 80px;
 }
 
+/* ── Author row (avatar + name/role) ── */
 .testimonial-author {
   display: flex;
   align-items: center;
   gap: 12px;
 }
 
+/* ── Avatar circle with initials ── */
 .testimonial-avatar {
   width: 44px;
   height: 44px;
@@ -75,24 +89,28 @@
   flex-shrink: 0;
 }
 
+/* ── Author name ── */
 .testimonial-name {
   font-size: 15px;
   font-weight: 700;
   color: var(--text);
 }
 
+/* ── Author role ── */
 .testimonial-role {
   font-size: 13px;
   color: var(--text-secondary);
   margin-top: 2px;
 }
 
+/* ── Tablet: 2 columns ── */
 @media (max-width: 900px) {
   .testimonials-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
+/* ── Mobile: 1 column ── */
 @media (max-width: 640px) {
   .testimonials-section {
     padding: 64px 16px;

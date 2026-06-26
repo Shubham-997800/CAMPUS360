@@ -1,3 +1,7 @@
+// ============================================
+// Notices - Displays campus notices with search, category filter, and pagination
+// ============================================
+
 import { useState } from 'react'
 import Sidebar from '../Dashboard/components/Sidebar'
 import TopNavbar from '../Dashboard/components/TopNavbar'
@@ -7,11 +11,13 @@ import './Notices.css'
 const ITEMS_PER_PAGE = 6
 
 export default function Notices() {
+  // ── State: sidebar toggle, search query, category filter, current page ──
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [search, setSearch] = useState('')
   const [filter, setFilter] = useState('All')
   const [page, setPage] = useState(1)
 
+  // ── Filter notices by search text (title/description) and category ──
   const filtered = notices.filter((n) => {
     const matchSearch =
       n.title.toLowerCase().includes(search.toLowerCase()) ||
@@ -20,9 +26,11 @@ export default function Notices() {
     return matchSearch && matchFilter
   })
 
+  // ── Pagination: calculate total pages and slice current page items ──
   const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE)
   const paginated = filtered.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE)
 
+  // ── Reset to first page when filter or search changes ──
   function handleFilterChange(e) {
     setFilter(e.target.value)
     setPage(1)
@@ -40,6 +48,7 @@ export default function Notices() {
       <div className="dashboard-main">
         <TopNavbar onMenuToggle={() => setSidebarOpen((prev) => !prev)} />
         <div className="notices-page">
+          {/* ── Header: title, subtitle, search input, and category dropdown ── */}
           <div className="notices-header">
             <div className="notices-header-left">
               <h1 className="notices-title">Notices</h1>
@@ -74,6 +83,7 @@ export default function Notices() {
             </div>
           </div>
 
+          {/* ── Notice cards grid or empty state ── */}
           {paginated.length === 0 ? (
             <div className="notices-empty">
               <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -84,6 +94,7 @@ export default function Notices() {
             </div>
           ) : (
             <>
+              {/* ── Notice cards grid ── */}
               <div className="notices-grid">
                 {paginated.map((notice) => (
                   <div key={notice.id} className="notice-card">
@@ -122,6 +133,7 @@ export default function Notices() {
                 ))}
               </div>
 
+              {/* ── Pagination: previous/next buttons and page number buttons ── */}
               {totalPages > 1 && (
                 <div className="notices-pagination">
                   <button

@@ -1,15 +1,21 @@
-/* ── Layout ── */
+/* ============================================
+   Dashboard Styles - Full-page layout for the Campus360 dashboard
+   Covers: sidebar, topbar, stats cards, quick actions, notices, events, complaints, activity timeline, and responsive breakpoints
+   ============================================ */
+
+/* ── Layout: Flex container spanning the full viewport height ── */
 .dashboard-layout {
   display: flex;
   min-height: 100vh;
   background: var(--bg);
 }
 
+/* ── Sidebar Overlay: Transparent backdrop shown on mobile when sidebar is open ── */
 .sidebar-overlay {
   display: none;
 }
 
-/* ── Sidebar ── */
+/* ── Sidebar Container: Fixed-width left panel with brand, nav links, and logout footer ── */
 .dashboard-sidebar {
   width: 260px;
   background: var(--card);
@@ -24,6 +30,7 @@
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* ── Sidebar Brand: Logo and app name at the top of the sidebar ── */
 .sidebar-brand {
   display: flex;
   align-items: center;
@@ -39,10 +46,12 @@
   letter-spacing: -0.03em;
 }
 
+/* Brand accent: "360" portion highlighted with primary color */
 .sidebar-brand-text span {
   color: var(--primary);
 }
 
+/* ── Sidebar Nav: Scrollable list of navigation items (Dashboard, Notices, Events, etc.) ── */
 .sidebar-nav {
   flex: 1;
   padding: 12px 12px;
@@ -52,6 +61,7 @@
   gap: 2px;
 }
 
+/* ── Sidebar Link: Individual nav-item with icon + label, uses NavLink for active detection ── */
 .sidebar-link {
   display: flex;
   align-items: center;
@@ -71,17 +81,19 @@
   color: var(--text);
 }
 
+/* Active nav-link: highlighted with primary color background tint */
 .sidebar-link.active {
   background: rgba(37, 99, 235, 0.08);
   color: var(--primary);
   font-weight: 600;
 }
 
+/* Active link icon: matches the primary color of the label */
 .sidebar-link.active svg {
   stroke: var(--primary);
 }
 
-
+/* ── Sidebar Footer: Contains the logout link, separated by a border ── */
 .sidebar-footer {
   padding: 12px;
   border-top: 1px solid var(--border);
@@ -96,7 +108,7 @@
   background: rgba(220, 38, 38, 0.08);
 }
 
-/* ── Top Navbar ── */
+/* ── Top Navbar: Sticky header with greeting, search bar, notifications, and user profile ── */
 .dashboard-main {
   flex: 1;
   margin-left: 260px;
@@ -105,6 +117,7 @@
   min-height: 100vh;
 }
 
+/* ── Topbar Container: Sticky header row inside the main area ── */
 .dashboard-topbar {
   display: flex;
   align-items: center;
@@ -119,6 +132,7 @@
   z-index: 50;
 }
 
+/* ── Sidebar Toggle: Hamburger button visible only on mobile/tablet ── */
 .sidebar-toggle {
   display: none;
   background: none;
@@ -135,6 +149,7 @@
   color: var(--text);
 }
 
+/* ── Greeting: "Good Morning" text with animated wave emoji and subtitle ── */
 .topbar-greeting {
   flex: 1;
   min-width: 0;
@@ -148,6 +163,7 @@
   letter-spacing: -0.02em;
 }
 
+/* Waving-hand animation looped infinitely */
 .greeting-wave {
   display: inline-block;
   animation: wave 2s ease-in-out infinite;
@@ -167,6 +183,7 @@
   margin: 2px 0 0;
 }
 
+/* ── Search Bar: Inline search input with magnifying-glass icon ── */
 .topbar-search {
   display: flex;
   align-items: center;
@@ -178,6 +195,7 @@
   transition: all var(--transition);
 }
 
+/* Focus state: white background with primary ring glow */
 .topbar-search:focus-within {
   background: var(--card);
   box-shadow: 0 0 0 2px var(--primary), 0 4px 12px rgba(37, 99, 235, 0.1);
@@ -203,6 +221,7 @@
   color: var(--text-secondary);
 }
 
+/* ── Topbar Actions: Notification bell and user profile, aligned to the right ── */
 .topbar-actions {
   display: flex;
   align-items: center;
@@ -210,6 +229,7 @@
   flex-shrink: 0;
 }
 
+/* ── Icon Button: Transparent circular button used for notifications ── */
 .topbar-icon-btn {
   position: relative;
   background: none;
@@ -226,6 +246,7 @@
   color: var(--text);
 }
 
+/* ── Notification Badge: Red circle with count, positioned at top-right of bell icon ── */
 .notification-badge {
   position: absolute;
   top: 4px;
@@ -243,6 +264,7 @@
   border: 2px solid rgba(255, 255, 255, 0.85);
 }
 
+/* ── Profile: Avatar circle + name/role stacked vertically ── */
 .topbar-profile {
   display: flex;
   align-items: center;
@@ -286,7 +308,7 @@
   color: var(--text-secondary);
 }
 
-/* ── Dashboard Content ── */
+/* ── Dashboard Content: Scrollable main content area with constrained max-width ── */
 .dashboard-content {
   flex: 1;
   padding: 28px 32px;
@@ -294,7 +316,7 @@
   width: 100%;
 }
 
-/* ── Stats Cards ── */
+/* ── Stats Cards: 4-column grid of metric cards (notices, events, complaints, materials) ── */
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -302,6 +324,7 @@
   margin-bottom: 28px;
 }
 
+/* ── Stat Card: Individual metric with icon wrapper, value, label, and change indicator ── */
 .stat-card {
   background: var(--card);
   border-radius: var(--radius-lg);
@@ -321,6 +344,7 @@
   box-shadow: var(--shadow-xl);
 }
 
+/* Left accent strip whose color is set dynamically via --stat-gradient */
 .stat-card::before {
   content: '';
   position: absolute;
@@ -332,6 +356,7 @@
   border-radius: 0 4px 4px 0;
 }
 
+/* ── Icon Wrapper: Colored circle background behind the SVG icon ── */
 .stat-icon-wrapper {
   width: 44px;
   height: 44px;
@@ -344,6 +369,7 @@
   flex-shrink: 0;
 }
 
+/* ── Stat Content: Value (large number) and label stacked vertically ── */
 .stat-content {
   display: flex;
   flex-direction: column;
@@ -363,6 +389,7 @@
   font-weight: 500;
 }
 
+/* ── Stat Change: Pill badge showing the delta/trend text (e.g. "+3 this week") ── */
 .stat-change {
   margin-left: auto;
   font-size: 12px;
@@ -374,11 +401,12 @@
   white-space: nowrap;
 }
 
-/* ── Quick Actions ── */
+/* ── Quick Actions: Section with label and a grid of action buttons ── */
 .quick-actions {
   margin-bottom: 28px;
 }
 
+/* ── Section Title: Reusable heading for dashboard sections ── */
 .section-title {
   font-size: 16px;
   font-weight: 700;
@@ -387,12 +415,14 @@
   letter-spacing: -0.02em;
 }
 
+/* ── Quick Actions Grid: 5-column button row for common tasks ── */
 .quick-actions-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 12px;
 }
 
+/* ── Quick Action Button: Card-style clickable button with icon + label ── */
 .quick-action-btn {
   display: flex;
   align-items: center;
@@ -425,26 +455,28 @@
   color: var(--text);
 }
 
-/* ── Dashboard Grid ── */
+/* ── Dashboard Grid: Two-column layout (left = 1.5fr, right = 1fr) ── */
 .dashboard-grid {
   display: grid;
   grid-template-columns: 1.5fr 1fr;
   gap: 24px;
 }
 
+/* ── Left Column: Stacks notices, complaints, and activity cards vertically ── */
 .dashboard-grid-left {
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
 
+/* ── Right Column: Stacks cards vertically (currently only upcoming events) ── */
 .dashboard-grid-right {
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
 
-/* ── Card Common ── */
+/* ── Card Common: Shared styles for all dashboard cards (notices, events, complaints, activity) ── */
 .dashboard-card {
   background: var(--card);
   border-radius: var(--radius-lg);
@@ -458,6 +490,7 @@
   box-shadow: var(--shadow-lg);
 }
 
+/* ── Card Header: Title + action button row at the top of each card ── */
 .card-header {
   display: flex;
   align-items: center;
@@ -473,6 +506,7 @@
   letter-spacing: -0.02em;
 }
 
+/* ── Card Action: Subtle text button ("View All") in the card header ── */
 .card-action {
   background: none;
   border: none;
@@ -490,7 +524,7 @@
   background: rgba(37, 99, 235, 0.08);
 }
 
-/* ── Notices ── */
+/* ── Notices: Vertical list of notice items with dot indicator, title, meta (date + category) ── */
 .notices-list {
   display: flex;
   flex-direction: column;
@@ -514,6 +548,7 @@
   padding-top: 0;
 }
 
+/* ── Notice Dot: Small colored circle indicating unread/important status ── */
 .notice-dot {
   width: 8px;
   height: 8px;
@@ -537,6 +572,7 @@
   line-height: 1.4;
 }
 
+/* ── Notice Meta: Row with formatted date and category badge ── */
 .notice-meta {
   display: flex;
   align-items: center;
@@ -545,6 +581,7 @@
   color: var(--text-secondary);
 }
 
+/* ── Notice Category: Pill badge whose color varies by category (academic, library, facility, etc.) ── */
 .notice-category {
   padding: 2px 8px;
   border-radius: 4px;
@@ -558,7 +595,7 @@
 .notice-category.events { background: color-mix(in srgb, var(--purple) 12%, var(--card)); color: var(--purple); }
 .notice-category.finance { background: rgba(220, 38, 38, 0.1); color: var(--danger); }
 
-/* ── Events ── */
+/* ── Events: Vertical list of event items with date badge, name, venue, and details button ── */
 .events-list {
   display: flex;
   flex-direction: column;
@@ -582,6 +619,7 @@
   padding-top: 0;
 }
 
+/* ── Event Date Badge: Month abbreviation + day number stacked vertically ── */
 .event-date-badge {
   display: flex;
   flex-direction: column;
@@ -607,6 +645,7 @@
   line-height: 1.2;
 }
 
+/* ── Event Content: Name + venue/time text stacked vertically ── */
 .event-content {
   flex: 1;
   min-width: 0;
@@ -626,6 +665,7 @@
   color: var(--text-secondary);
 }
 
+/* ── Event Details Button: Outlined button on the right side of each event row ── */
 .event-details-btn {
   padding: 6px 14px;
   border: 1px solid var(--border);
@@ -646,13 +686,14 @@
   background: rgba(37, 99, 235, 0.08);
 }
 
-/* ── Complaints ── */
+/* ── Complaints: Progress bar showing distribution of pending, in-progress, resolved complaints ── */
 .complaints-progress {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
+/* ── Complaints Bar: Horizontal segmented bar with proportional widths ── */
 .complaints-bar {
   display: flex;
   height: 10px;
@@ -665,6 +706,7 @@
   transition: width 0.6s ease;
 }
 
+/* ── Complaints Legend: Row of colored dots with label + count ── */
 .complaints-legend {
   display: flex;
   gap: 20px;
@@ -690,13 +732,13 @@
   margin-left: auto;
 }
 
-
+/* ── Fade-In Animation: Used for activity items or generic entrance ── */
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(6px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* ── Activity ── */
+/* ── Activity: Vertical timeline with colored dots, connector lines, action text, and timestamps ── */
 .activity-timeline {
   display: flex;
   flex-direction: column;
@@ -707,6 +749,7 @@
   gap: 14px;
 }
 
+/* ── Activity Line: Column containing the dot and the connecting line ── */
 .activity-line {
   display: flex;
   flex-direction: column;
@@ -715,6 +758,7 @@
   flex-shrink: 0;
 }
 
+/* ── Activity Dot: Colored circle with a centered icon; color varies by activity type ── */
 .activity-dot {
   width: 24px;
   height: 24px;
@@ -727,6 +771,7 @@
   z-index: 1;
 }
 
+/* ── Activity Connector: Vertical line connecting dots in the timeline ── */
 .activity-connector {
   width: 2px;
   flex: 1;
@@ -741,6 +786,7 @@
   padding-bottom: 20px;
 }
 
+/* Remove bottom padding on the last item so connector doesn't extend past content */
 .activity-item:last-child .activity-content {
   padding-bottom: 0;
 }
@@ -757,7 +803,7 @@
   color: var(--text-secondary);
 }
 
-/* ── Responsive ── */
+/* ── Responsive: Medium screens (<=1200px) ── */
 @media (max-width: 1200px) {
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -770,6 +816,7 @@
   }
 }
 
+/* ── Responsive: Tablet / small desktop (<=1024px) — sidebar becomes a drawer ── */
 @media (max-width: 1024px) {
   .dashboard-sidebar {
     transform: translateX(-100%);
@@ -808,6 +855,7 @@
   }
 }
 
+/* ── Responsive: Mobile (<=768px) — compact padding, hide greeting + search, 2-col stats ── */
 @media (max-width: 768px) {
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -846,6 +894,7 @@
   }
 }
 
+/* ── Responsive: Small mobile (<=480px) — single-column stats, stacked quick-action buttons ── */
 @media (max-width: 480px) {
   .stats-grid {
     grid-template-columns: 1fr;

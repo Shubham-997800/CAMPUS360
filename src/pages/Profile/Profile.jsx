@@ -1,3 +1,12 @@
+// ============================================
+// Profile - User profile page displaying:
+//   - Header with avatar, name, enrollment, semester/email/phone tags
+//   - Edit Profile / Change Password action buttons
+//   - Academic Information card
+//   - Contact Information card (with mailto/tel links)
+//   - Recent Activity timeline card
+// ============================================
+
 import { useState } from 'react'
 import Sidebar from '../Dashboard/components/Sidebar'
 import TopNavbar from '../Dashboard/components/TopNavbar'
@@ -14,6 +23,7 @@ export default function Profile() {
       <div className="dashboard-main">
         <TopNavbar onMenuToggle={() => setSidebarOpen((prev) => !prev)} />
         <div className="profile-page">
+          {/* ── Profile header: avatar with edit button, name, enrollment, meta tags, actions ── */}
           <div className="profile-header">
             <div className="profile-header-top">
               <div className="profile-avatar-wrapper">
@@ -55,7 +65,9 @@ export default function Profile() {
             </div>
           </div>
 
+          {/* ── Info cards: Academic, Contact, and Recent Activity ── */}
           <div className="profile-cards">
+            {/* ── Academic Information card ── */}
             <div className="profile-card">
               <div className="profile-card-header">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563EB" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -74,6 +86,7 @@ export default function Profile() {
               </div>
             </div>
 
+            {/* ── Contact Information card (with clickable email/phone links) ── */}
             <div className="profile-card">
               <div className="profile-card-header">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563EB" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -98,6 +111,7 @@ export default function Profile() {
               </div>
             </div>
 
+            {/* ── Recent Activity card (timeline-style list) ── */}
             <div className="profile-card">
               <div className="profile-card-header">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563EB" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
