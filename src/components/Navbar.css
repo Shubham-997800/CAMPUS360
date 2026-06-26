@@ -8,11 +8,11 @@
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid rgba(229, 231, 235, 0.5);
-  transition: box-shadow 0.3s;
+  transition: box-shadow var(--transition);
 }
 
 .navbar.scrolled {
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  box-shadow: var(--shadow);
 }
 
 .navbar-container {
@@ -32,8 +32,8 @@
   text-decoration: none;
   font-size: 22px;
   font-weight: 700;
-  color: #1F2937;
-  transition: opacity 0.2s;
+  color: var(--text);
+  transition: opacity var(--transition);
 }
 
 .navbar-logo:hover {
@@ -41,7 +41,7 @@
 }
 
 .logo-accent {
-  color: #2563EB;
+  color: var(--primary);
 }
 
 .nav-links {
@@ -52,10 +52,10 @@
 
 .nav-links a {
   text-decoration: none;
-  color: #4B5563;
+  color: var(--text);
   font-size: 15px;
   font-weight: 500;
-  transition: color 0.2s;
+  transition: color var(--transition);
   position: relative;
 }
 
@@ -66,13 +66,13 @@
   left: 0;
   width: 0;
   height: 2px;
-  background: #2563EB;
+  background: var(--primary);
   transition: width 0.3s;
   border-radius: 1px;
 }
 
 .nav-links a:hover {
-  color: #2563EB;
+  color: var(--primary);
 }
 
 .nav-links a:hover::after {
@@ -80,10 +80,10 @@
 }
 
 .nav-login-btn {
-  background: #2563EB;
+  background: var(--primary);
   color: white !important;
   padding: 8px 24px;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   font-weight: 600 !important;
   transition: all 0.3s !important;
 }
@@ -93,9 +93,9 @@
 }
 
 .nav-login-btn:hover {
-  background: #1D4ED8 !important;
+  background: var(--primary-hover) !important;
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--primary) 30%, transparent);
   color: white !important;
 }
 
@@ -112,7 +112,7 @@
 .hamburger span {
   width: 24px;
   height: 2px;
-  background: #1F2937;
+  background: var(--text);
   border-radius: 2px;
   transition: all 0.3s;
 }
@@ -149,7 +149,7 @@
     opacity: 0;
     pointer-events: none;
     transition: all 0.4s;
-    border-bottom: 1px solid #E5E7EB;
+    border-bottom: 1px solid var(--border);
   }
 
   .nav-links.active {
@@ -162,12 +162,12 @@
     font-size: 17px;
   }
 
-.nav-link {
-  color: #2563EB !important;
-  font-weight: 600 !important;
-}
+  .nav-link {
+    color: var(--primary) !important;
+    font-weight: 600 !important;
+  }
 
-.nav-login-btn {
+  .nav-login-btn {
     width: 100%;
     text-align: center;
   }

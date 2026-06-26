@@ -1,6 +1,6 @@
 .testimonials-section {
   padding: 100px 24px;
-  background: #FFFFFF;
+  background: var(--card);
 }
 
 .testimonials-container {
@@ -16,9 +16,9 @@
 }
 
 .testimonial-card {
-  background: #FFFFFF;
-  border: 1px solid #F3F4F6;
-  border-radius: 16px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
   padding: 32px 28px;
   transition: all 0.5s;
   opacity: 0;
@@ -34,14 +34,14 @@
 .testimonial-card:hover {
   transform: translateY(-6px) !important;
   opacity: 1 !important;
-  border-color: rgba(37, 99, 235, 0.12);
+  border-color: color-mix(in srgb, var(--primary) 12%, transparent);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.05);
 }
 
 .testimonial-quote {
   font-size: 48px;
   line-height: 1;
-  color: rgba(37, 99, 235, 0.15);
+  color: color-mix(in srgb, var(--primary) 15%, transparent);
   font-weight: 800;
   margin-bottom: 12px;
   font-family: Georgia, serif;
@@ -50,7 +50,7 @@
 .testimonial-text {
   font-size: 15px;
   line-height: 1.7;
-  color: #4B5563;
+  color: var(--text);
   margin: 0 0 24px;
   min-height: 80px;
 }
@@ -64,8 +64,8 @@
 .testimonial-avatar {
   width: 44px;
   height: 44px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, #2563EB, #3B82F6);
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, var(--primary), var(--primary));
   color: white;
   display: flex;
   align-items: center;
@@ -78,12 +78,12 @@
 .testimonial-name {
   font-size: 15px;
   font-weight: 700;
-  color: #1F2937;
+  color: var(--text);
 }
 
 .testimonial-role {
   font-size: 13px;
-  color: #9CA3AF;
+  color: var(--text-secondary);
   margin-top: 2px;
 }
 
