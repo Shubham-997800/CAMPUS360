@@ -91,7 +91,7 @@ export default function LostFound() {
               { key: 'lost', label: 'Lost Items', count: lostList.length },
               { key: 'found', label: 'Found Items', count: FOUND_ITEMS.length },
             ].map(t => (
-              <button key={t.key} onClick={() => { setTab(t.key); setSearch(''); setFilter('All') }} className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition-all cursor-pointer ${tab === t.key ? 'bg-white text-gray-900 shadow-sm dark:bg-[#1E293B] dark:text-white' : 'text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-white'}`}>
+              <button key={t.key} onClick={() => { setTab(t.key); setSearch(''); setFilter('All') }} className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition-all cursor-pointer ${tab === t.key ? 'bg-white text-gray-900 shadow-sm dark:bg-gray-700 dark:text-white' : 'text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-white'}`}>
                 {t.label}
                 <span className="text-[10px] bg-gray-200 text-gray-600 px-1.5 py-0.5 rounded-full font-bold dark:bg-gray-700 dark:text-gray-300">{t.count}</span>
               </button>
