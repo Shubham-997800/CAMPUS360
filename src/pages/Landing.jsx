@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Bell, CalendarDays, MessageSquareWarning, PackageSearch, UserRound, CheckCircle2, Sparkles, BookOpen, ArrowRight, Mail, Phone, MapPin } from 'lucide-react'
+import { Bell, CalendarDays, MessageSquareWarning, PackageSearch, UserRound, CheckCircle2, Sparkles, BookOpen, ArrowRight } from 'lucide-react'
 import Navbar from '../components/Navbar'
 
 const FEATURES = [
@@ -90,37 +90,9 @@ export default function Landing() {
       </section>
 
       {/* ── Footer ── */}
-      <footer id="contact" className="bg-gray-950 text-gray-500 px-6 pt-16 pb-0">
-        <div className="max-w-5xl mx-auto">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-white/10">
-            <div>
-              <div className="flex items-center gap-2.5 text-white font-bold text-xl mb-4">
-                <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
-                  <rect width="32" height="32" rx="8" fill="#2563EB" />
-                  <path d="M8 22V12L16 6L24 12V22H20V16L16 20L12 16V22H8Z" fill="white" />
-                </svg>
-                <span>Campus<span className="text-blue-500">360</span></span>
-              </div>
-              <p className="text-sm leading-relaxed max-w-xs">Empowering campuses with smart management solutions. Connecting students, faculty, and administration seamlessly.</p>
-            </div>
-            <div>
-              <h4 className="text-white font-bold mb-5">Quick Links</h4>
-              {[{ l: 'Home', h: '/#home' }, { l: 'Features', h: '/#features' }, { l: 'About Us', h: '/#about' }, { l: 'Contact', h: '/#contact' }].map(({ l, h }) => <a key={l} href={h} className="block text-sm hover:text-blue-500 transition-colors mb-3">{l}</a>)}
-            </div>
-            <div>
-              <h4 className="text-white font-bold mb-5">Services</h4>
-              {[{ l: 'Notice Board', h: '/dashboard/notices-events' }, { l: 'Events', h: '/dashboard/notices-events' }, { l: 'Complaints', h: '/dashboard/complaints' }, { l: 'Study Hub', h: '/dashboard/study-hub' }].map(({ l, h }) => <Link key={l} to={h} className="block text-sm hover:text-blue-500 transition-colors mb-3">{l}</Link>)}
-            </div>
-            <div>
-              <h4 className="text-white font-bold mb-5">Contact</h4>
-              <div className="flex items-center gap-2.5 text-sm mb-3"><MapPin size={16} className="text-blue-500 shrink-0" /> 123 University Ave, Campus Town</div>
-              <div className="flex items-center gap-2.5 text-sm mb-3"><Mail size={16} className="text-blue-500 shrink-0" /> hello@campus360.edu</div>
-              <div className="flex items-center gap-2.5 text-sm mb-3"><Phone size={16} className="text-blue-500 shrink-0" /> +1 (555) 123-4567</div>
-            </div>
-          </div>
-          <div className="py-6 text-center">
-            <p className="text-xs">© {new Date().getFullYear()} Campus360. All rights reserved.</p>
-          </div>
+      <footer className="bg-gray-950 text-gray-500 px-6 py-6">
+        <div className="max-w-5xl mx-auto text-center">
+          <p className="text-xs">© {new Date().getFullYear()} Campus360. All rights reserved.</p>
         </div>
       </footer>
     </div>
