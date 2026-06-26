@@ -1,7 +1,7 @@
 .stats-section {
   position: relative;
   padding: 80px 24px;
-  background: linear-gradient(135deg, #1E3A8A, #2563EB, #3B82F6);
+  background: var(--primary);
   overflow: hidden;
 }
 
@@ -51,7 +51,7 @@
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 16px;
+  border-radius: var(--radius-lg);
   opacity: 0;
   transform: translateY(30px);
   transition: all 0.6s;

@@ -1,6 +1,6 @@
 .features-section {
   padding: 100px 24px;
-  background: #FFFFFF;
+  background: var(--card);
 }
 
 .features-container {
@@ -16,10 +16,10 @@
 .section-badge {
   display: inline-block;
   padding: 6px 16px;
-  background: rgba(37, 99, 235, 0.08);
-  border: 1px solid rgba(37, 99, 235, 0.15);
+  background: color-mix(in srgb, var(--primary) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--primary) 15%, transparent);
   border-radius: 100px;
-  color: #2563EB;
+  color: var(--primary);
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.5px;
@@ -29,14 +29,14 @@
 .section-title {
   font-size: 36px;
   font-weight: 800;
-  color: #1F2937;
+  color: var(--text);
   margin: 0 0 12px;
   letter-spacing: -0.03em;
 }
 
 .section-desc {
   font-size: 17px;
-  color: #6B7280;
+  color: var(--text-secondary);
   max-width: 550px;
   margin: 0 auto;
   line-height: 1.7;
@@ -49,9 +49,9 @@
 }
 
 .feature-card {
-  background: #FFFFFF;
-  border: 1px solid #F3F4F6;
-  border-radius: 16px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
   padding: 32px 28px;
   transition: all 0.4s;
   opacity: 0;
@@ -67,7 +67,7 @@
 .feature-card:hover {
   transform: translateY(-6px) !important;
   opacity: 1 !important;
-  border-color: rgba(37, 99, 235, 0.15);
+  border-color: color-mix(in srgb, var(--primary) 15%, transparent);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
 }
 
@@ -77,10 +77,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #EFF6FF, #DBEAFE);
-  border-radius: 14px;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--primary) 6%, var(--bg)), color-mix(in srgb, var(--primary) 14%, var(--bg)));
+  border-radius: var(--radius);
   margin-bottom: 20px;
-  color: #2563EB;
+  color: var(--primary);
   transition: transform 0.3s;
 }
 
@@ -91,14 +91,14 @@
 .feature-title {
   font-size: 18px;
   font-weight: 700;
-  color: #1F2937;
+  color: var(--text);
   margin: 0 0 10px;
 }
 
 .feature-desc {
   font-size: 14px;
   line-height: 1.6;
-  color: #6B7280;
+  color: var(--text-secondary);
   margin: 0;
 }
 
