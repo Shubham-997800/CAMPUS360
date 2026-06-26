@@ -45,31 +45,31 @@ export default function StudyHub() {
   const currentSection = SECTIONS.find(s => s.key === tab)
 
   return (
-    <div className="flex min-h-screen bg-gray-50">
+    <div className="flex min-h-screen bg-gray-50 dark:bg-gray-950">
       <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
       <div className="flex-1 ml-0 md:ml-64 flex flex-col min-h-screen">
-        <header className="sticky top-0 z-30 flex items-center gap-4 px-6 md:px-8 py-4 bg-white/85 backdrop-blur-lg border-b border-gray-200">
-          <button onClick={() => setSidebarOpen(true)} className="md:hidden p-2 rounded-lg text-gray-500 hover:bg-gray-100 cursor-pointer"><Menu size={22} /></button>
-          <h1 className="text-lg font-bold text-gray-900">Study Hub</h1>
+        <header className="sticky top-0 z-30 flex items-center gap-4 px-6 md:px-8 py-4 bg-white/85 backdrop-blur-lg border-b border-gray-200 dark:bg-gray-900/85 dark:border-gray-700/50">
+          <button onClick={() => setSidebarOpen(true)} className="md:hidden p-2 rounded-lg text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800 cursor-pointer"><Menu size={22} /></button>
+          <h1 className="text-lg font-bold text-gray-900 dark:text-gray-100">Study Hub</h1>
         </header>
 
-        <main className="flex-1 p-6 md:p-8 max-w-6xl w-full">
+        <main className="flex-1 p-6 md:p-8 max-w-6xl w-full animate-fadeIn">
           {/* ── Header ── */}
           <div className="mb-6">
-            <h1 className="text-2xl font-bold text-gray-900 tracking-tight">Study Hub</h1>
-            <p className="text-sm text-gray-500 mt-1">Access notes, previous year papers, assignments, and syllabus.</p>
+            <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100 tracking-tight">Study Hub</h1>
+            <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">Access notes, previous year papers, assignments, and syllabus.</p>
           </div>
 
           {/* ── Section Tabs ── */}
-          <div className="flex gap-1 mb-5 bg-gray-100 p-1 rounded-xl flex-wrap">
+          <div className="flex gap-1 mb-5 bg-gray-100 dark:bg-gray-800 p-1 rounded-xl flex-wrap">
             {SECTIONS.map(s => {
               const Icon = s.icon
               const count = RESOURCES.filter(r => r.type === s.key).length
               return (
-                <button key={s.key} onClick={() => { setTab(s.key); setSearch(''); setSemester('All') }} className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition-all cursor-pointer ${tab === s.key ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}>
+                <button key={s.key} onClick={() => { setTab(s.key); setSearch(''); setSemester('All') }} className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition-all cursor-pointer ${tab === s.key ? 'bg-white text-gray-900 shadow-sm dark:bg-gray-900 dark:text-gray-100' : 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300'}`}>
                   <Icon size={16} />
                   {s.label}
-                  <span className="text-[10px] bg-gray-200 text-gray-600 px-1.5 py-0.5 rounded-full font-bold">{count}</span>
+                  <span className="text-[10px] bg-gray-200 text-gray-600 px-1.5 py-0.5 rounded-full font-bold dark:bg-gray-700 dark:text-gray-300">{count}</span>
                 </button>
               )
             })}
@@ -77,13 +77,13 @@ export default function StudyHub() {
 
           {/* ── Toolbar ── */}
           <div className="flex flex-wrap gap-3 mb-6">
-            <div className="flex items-center gap-2 bg-white border border-gray-200 rounded-xl px-3.5 flex-1 min-w-0 max-w-xs">
-              <Search size={16} className="text-gray-400 shrink-0" />
-              <input type="text" placeholder={`Search ${currentSection?.label.toLowerCase()}...`} value={search} onChange={e => setSearch(e.target.value)} className="flex-1 bg-transparent border-none outline-none py-2.5 text-sm text-gray-900 placeholder:text-gray-400 min-w-0" />
+            <div className="flex items-center gap-2 bg-white border border-gray-200 rounded-xl px-3.5 flex-1 min-w-0 max-w-xs dark:bg-gray-900 dark:border-gray-700/50">
+              <Search size={16} className="text-gray-400 dark:text-gray-500 shrink-0" />
+              <input type="text" placeholder={`Search ${currentSection?.label.toLowerCase()}...`} value={search} onChange={e => setSearch(e.target.value)} className="flex-1 bg-transparent border-none outline-none py-2.5 text-sm text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500 min-w-0" />
             </div>
-            <div className="flex items-center gap-2 bg-white border border-gray-200 rounded-xl px-3.5">
-              <ChevronDown size={14} className="text-gray-400 shrink-0" />
-              <select value={semester} onChange={e => setSemester(e.target.value)} className="bg-transparent border-none outline-none py-2.5 text-sm text-gray-700 font-medium cursor-pointer">
+            <div className="flex items-center gap-2 bg-white border border-gray-200 rounded-xl px-3.5 dark:bg-gray-900 dark:border-gray-700/50">
+              <ChevronDown size={14} className="text-gray-400 dark:text-gray-500 shrink-0" />
+              <select value={semester} onChange={e => setSemester(e.target.value)} className="bg-transparent border-none outline-none py-2.5 text-sm text-gray-700 dark:text-gray-300 font-medium cursor-pointer">
                 {SEMESTERS.map(s => <option key={s}>{s === 'All' ? 'All Semesters' : `${s} Semester`}</option>)}
               </select>
             </div>
@@ -95,16 +95,16 @@ export default function StudyHub() {
           ) : (
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {filtered.map(r => (
-                <div key={r.id} className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden hover:shadow-md transition-all">
+                <div key={r.id} className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden hover:shadow-md transition-all dark:bg-gray-900 dark:border-gray-700/50 dark:shadow-sm dark:shadow-black/5">
                   <div className="h-1.5" style={{ backgroundColor: currentSection?.color }} />
                   <div className="p-5">
                     <div className="flex items-center gap-2 mb-2.5">
                       <span className="text-xs font-semibold px-2 py-0.5 rounded" style={{ color: currentSection?.color, backgroundColor: currentSection?.bg }}>{currentSection?.label}</span>
-                      {r.semester !== 'All' && <span className="text-xs text-gray-500 bg-gray-100 px-2 py-0.5 rounded">{r.semester} Sem</span>}
-                      {r.semester === 'All' && <span className="text-xs text-gray-500 bg-gray-100 px-2 py-0.5 rounded">All Semesters</span>}
+                      {r.semester !== 'All' && <span className="text-xs text-gray-500 bg-gray-100 px-2 py-0.5 rounded dark:text-gray-400 dark:bg-gray-800">{r.semester} Sem</span>}
+                      {r.semester === 'All' && <span className="text-xs text-gray-500 bg-gray-100 px-2 py-0.5 rounded dark:text-gray-400 dark:bg-gray-800">All Semesters</span>}
                     </div>
-                    <h3 className="font-bold text-gray-900 mb-2">{r.subject}</h3>
-                    <div className="flex items-center gap-1.5 text-xs text-gray-500 mb-4">
+                    <h3 className="font-bold text-gray-900 dark:text-gray-100 mb-2">{r.subject}</h3>
+                    <div className="flex items-center gap-1.5 text-xs text-gray-500 dark:text-gray-400 mb-4">
                       <Download size={13} />
                       <span>{r.downloads} downloads</span>
                     </div>
