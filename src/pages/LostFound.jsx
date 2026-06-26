@@ -121,7 +121,7 @@ export default function LostFound() {
               {filtered.map(item => (
                 <div key={item.id} className="rounded-2xl border border-gray-200 dark:border-white/10 overflow-hidden hover:bg-gray-50/50 dark:hover:bg-white/[0.03] transition-all">
                   <div className={`h-28 relative flex items-center justify-center p-4 ${item.bgClass}`}>
-                    <span className="text-6xl">{item.icon}</span>
+                    <span className="text-5xl">{item.icon}</span>
                     <span className={`absolute top-3 right-3 text-[10px] font-bold px-2 py-0.5 rounded-full ${tab === 'lost' ? 'bg-red-100 text-red-600' : 'bg-green-100 text-green-600'}`}>{tab === 'lost' ? 'Lost' : 'Found'}</span>
                   </div>
                   <div className="p-4">
