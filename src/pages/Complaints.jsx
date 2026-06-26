@@ -68,20 +68,20 @@ export default function Complaints() {
   }
 
   return (
-    <div className="flex min-h-screen bg-gray-50">
+    <div className="flex min-h-screen bg-gray-50 dark:bg-gray-950">
       <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
       <div className="flex-1 ml-0 md:ml-64 flex flex-col min-h-screen">
-        <header className="sticky top-0 z-30 flex items-center gap-4 px-6 md:px-8 py-4 bg-white/85 backdrop-blur-lg border-b border-gray-200">
-          <button onClick={() => setSidebarOpen(true)} className="md:hidden p-2 rounded-lg text-gray-500 hover:bg-gray-100 cursor-pointer"><Menu size={22} /></button>
-          <h1 className="text-lg font-bold text-gray-900">Complaint Management</h1>
+        <header className="sticky top-0 z-30 flex items-center gap-4 px-6 md:px-8 py-4 bg-white/85 backdrop-blur-lg border-b border-gray-200 dark:bg-gray-900/85 dark:border-gray-700/50">
+          <button onClick={() => setSidebarOpen(true)} className="md:hidden p-2 rounded-lg text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800 cursor-pointer"><Menu size={22} /></button>
+          <h1 className="text-lg font-bold text-gray-900 dark:text-gray-100">Complaint Management</h1>
         </header>
 
-        <main className="flex-1 p-6 md:p-8 max-w-6xl w-full">
+        <main className="flex-1 p-6 md:p-8 max-w-6xl w-full animate-fadeIn">
           {/* ── Header + New Complaint ── */}
           <div className="flex items-start justify-between mb-6 flex-wrap gap-4">
             <div>
-              <h1 className="text-2xl font-bold text-gray-900 tracking-tight">Complaints</h1>
-              <p className="text-sm text-gray-500 mt-1">Submit and track your campus complaints.</p>
+              <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100 tracking-tight">Complaints</h1>
+              <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">Submit and track your campus complaints.</p>
             </div>
             <button onClick={() => setShowForm(true)} className="flex items-center gap-2 text-sm font-semibold bg-blue-600 text-white px-5 py-2.5 rounded-xl hover:bg-blue-700 transition-all cursor-pointer"><Plus size={17} /> New Complaint</button>
           </div>
@@ -94,25 +94,25 @@ export default function Complaints() {
               { label: 'Resolved', value: counts.resolved, color: '#10B981' },
               { label: 'Total', value: counts.total, color: '#6B7280' },
             ].map(s => (
-              <div key={s.label} className="bg-white rounded-xl p-4 border border-gray-200 shadow-sm">
+              <div key={s.label} className="bg-white rounded-xl p-4 border border-gray-200 shadow-sm dark:bg-gray-900 dark:border-gray-700/50 dark:shadow-sm dark:shadow-black/5">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-medium text-gray-500">{s.label}</span>
+                  <span className="text-xs font-medium text-gray-500 dark:text-gray-400">{s.label}</span>
                   <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: s.color }} />
                 </div>
-                <span className="text-2xl font-bold text-gray-900 mt-1 block">{s.value}</span>
+                <span className="text-2xl font-bold text-gray-900 dark:text-gray-100 mt-1 block">{s.value}</span>
               </div>
             ))}
           </div>
 
           {/* ── Toolbar ── */}
           <div className="flex flex-wrap gap-3 mb-5">
-            <div className="flex items-center gap-2 bg-white border border-gray-200 rounded-xl px-3.5 flex-1 min-w-0 max-w-xs">
-              <Search size={16} className="text-gray-400 shrink-0" />
-              <input type="text" placeholder="Search complaints..." value={search} onChange={e => setSearch(e.target.value)} className="flex-1 bg-transparent border-none outline-none py-2.5 text-sm text-gray-900 placeholder:text-gray-400 min-w-0" />
+            <div className="flex items-center gap-2 bg-white border border-gray-200 rounded-xl px-3.5 flex-1 min-w-0 max-w-xs dark:bg-gray-900 dark:border-gray-700/50">
+              <Search size={16} className="text-gray-400 dark:text-gray-500 shrink-0" />
+              <input type="text" placeholder="Search complaints..." value={search} onChange={e => setSearch(e.target.value)} className="flex-1 bg-transparent border-none outline-none py-2.5 text-sm text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500 min-w-0" />
             </div>
-            <div className="flex gap-1 bg-gray-100 p-1 rounded-xl flex-wrap">
+            <div className="flex gap-1 bg-gray-100 dark:bg-gray-800 p-1 rounded-xl flex-wrap">
               {['all', 'pending', 'in-progress', 'resolved'].map(s => (
-                <button key={s} onClick={() => setStatusFilter(s)} className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${statusFilter === s ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}>
+                <button key={s} onClick={() => setStatusFilter(s)} className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${statusFilter === s ? 'bg-white text-gray-900 shadow-sm dark:bg-gray-900 dark:text-gray-100' : 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300'}`}>
                   {STATUS_MAP[s].label}
                 </button>
               ))}
@@ -121,34 +121,34 @@ export default function Complaints() {
 
           {/* ── Complaints Table ── */}
           {filtered.length === 0 ? (
-            <div className="flex flex-col items-center justify-center py-20 text-gray-400">
+            <div className="flex flex-col items-center justify-center py-20 text-gray-400 dark:text-gray-500">
               <AlertCircle size={48} className="mb-3" />
               <p className="text-sm font-medium">No complaints found.</p>
             </div>
           ) : (
-            <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+            <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden dark:bg-gray-900 dark:border-gray-700/50 dark:shadow-sm dark:shadow-black/5">
               <table className="w-full">
                 <thead>
-                  <tr className="border-b border-gray-100 bg-gray-50/50">
+                  <tr className="border-b border-gray-100 bg-gray-50/50 dark:border-gray-800 dark:bg-gray-800/50">
                     <th className="text-left text-xs font-semibold text-gray-500 py-3.5 px-5">ID</th>
-                    <th className="text-left text-xs font-semibold text-gray-500 py-3.5 px-5">Title</th>
-                    <th className="text-left text-xs font-semibold text-gray-500 py-3.5 px-5">Category</th>
-                    <th className="text-left text-xs font-semibold text-gray-500 py-3.5 px-5">Date</th>
-                    <th className="text-left text-xs font-semibold text-gray-500 py-3.5 px-5">Status</th>
+                    <th className="text-left text-xs font-semibold text-gray-500 dark:text-gray-400 py-3.5 px-5">Title</th>
+                    <th className="text-left text-xs font-semibold text-gray-500 dark:text-gray-400 py-3.5 px-5">Category</th>
+                    <th className="text-left text-xs font-semibold text-gray-500 dark:text-gray-400 py-3.5 px-5">Date</th>
+                    <th className="text-left text-xs font-semibold text-gray-500 dark:text-gray-400 py-3.5 px-5">Status</th>
                   </tr>
                 </thead>
                 <tbody>
                   {filtered.map(c => {
                     const status = STATUS_MAP[c.status]
                     return (
-                      <tr key={c.id} className="border-b border-gray-50 hover:bg-gray-50/50 transition-colors last:border-0">
-                        <td className="py-3.5 px-5 text-sm font-medium text-gray-900">#{c.id}</td>
+                      <tr key={c.id} className="border-b border-gray-50 hover:bg-gray-50/50 transition-colors last:border-0 dark:border-gray-800 dark:hover:bg-gray-800/50">
+                        <td className="py-3.5 px-5 text-sm font-medium text-gray-900 dark:text-gray-100">#{c.id}</td>
                         <td className="py-3.5 px-5">
-                          <span className="text-sm font-semibold text-gray-900 block">{c.title}</span>
-                          <span className="text-xs text-gray-400 block mt-0.5">{c.description.slice(0, 80)}...</span>
+                          <span className="text-sm font-semibold text-gray-900 dark:text-gray-100 block">{c.title}</span>
+                          <span className="text-xs text-gray-400 dark:text-gray-500 block mt-0.5">{c.description.slice(0, 80)}...</span>
                         </td>
-                        <td className="py-3.5 px-5"><span className="text-xs font-medium text-gray-600 bg-gray-100 px-2 py-1 rounded">{c.category}</span></td>
-                        <td className="py-3.5 px-5 text-sm text-gray-500">{new Date(c.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</td>
+                        <td className="py-3.5 px-5"><span className="text-xs font-medium text-gray-600 bg-gray-100 px-2 py-1 rounded dark:text-gray-300 dark:bg-gray-800">{c.category}</span></td>
+                        <td className="py-3.5 px-5 text-sm text-gray-500 dark:text-gray-400">{new Date(c.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</td>
                         <td className="py-3.5 px-5">
                           <span className="inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-lg" style={{ color: status.color, backgroundColor: status.bg }}>
                             {c.status === 'resolved' ? <CheckCircle2 size={12} /> : c.status === 'in-progress' ? <Clock size={12} /> : <AlertCircle size={12} />}
@@ -166,29 +166,29 @@ export default function Complaints() {
 
         {/* ── New Complaint Modal ── */}
         {showForm && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm" onClick={() => setShowForm(false)}>
-            <div className="bg-white rounded-2xl w-full max-w-lg mx-4 p-6 shadow-2xl" onClick={e => e.stopPropagation()}>
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm animate-fadeIn" onClick={() => setShowForm(false)}>
+            <div className="bg-white rounded-2xl w-full max-w-lg mx-4 p-6 shadow-2xl dark:bg-gray-900 dark:border dark:border-gray-700/50" onClick={e => e.stopPropagation()}>
               <div className="flex items-center justify-between mb-5">
-                <h2 className="text-lg font-bold text-gray-900">Submit a Complaint</h2>
-                <button onClick={() => setShowForm(false)} className="p-1.5 rounded-lg text-gray-400 hover:bg-gray-100 cursor-pointer"><X size={20} /></button>
+                <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100">Submit a Complaint</h2>
+                <button onClick={() => setShowForm(false)} className="p-1.5 rounded-lg text-gray-400 hover:bg-gray-100 dark:text-gray-500 dark:hover:bg-gray-800 cursor-pointer"><X size={20} /></button>
               </div>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-1.5">Title <span className="text-red-500">*</span></label>
-                  <input type="text" name="title" value={form.title} onChange={e => { setForm(p => ({ ...p, title: e.target.value })); setErrors(p => ({ ...p, title: '' })) }} placeholder="Brief title of your complaint" className={`w-full border ${errors.title ? 'border-red-400' : 'border-gray-200'} rounded-xl px-3.5 py-2.5 text-sm text-gray-900 outline-none focus:border-blue-500 transition-all placeholder:text-gray-400`} />
+                  <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1.5">Title <span className="text-red-500">*</span></label>
+                  <input type="text" name="title" value={form.title} onChange={e => { setForm(p => ({ ...p, title: e.target.value })); setErrors(p => ({ ...p, title: '' })) }} placeholder="Brief title of your complaint" className={`w-full border ${errors.title ? 'border-red-400' : 'border-gray-200 dark:border-gray-700/50'} rounded-xl px-3.5 py-2.5 text-sm text-gray-900 dark:text-gray-100 outline-none focus:border-blue-500 transition-all placeholder:text-gray-400 dark:placeholder:text-gray-500 dark:bg-gray-800`} />
                   {errors.title && <span className="text-xs text-red-500 mt-1 block">{errors.title}</span>}
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-1.5">Category <span className="text-red-500">*</span></label>
-                  <select name="category" value={form.category} onChange={e => { setForm(p => ({ ...p, category: e.target.value })); setErrors(p => ({ ...p, category: '' })) }} className={`w-full border ${errors.category ? 'border-red-400' : 'border-gray-200'} rounded-xl px-3.5 py-2.5 text-sm text-gray-900 outline-none focus:border-blue-500 transition-all`}>
+                  <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1.5">Category <span className="text-red-500">*</span></label>
+                  <select name="category" value={form.category} onChange={e => { setForm(p => ({ ...p, category: e.target.value })); setErrors(p => ({ ...p, category: '' })) }} className={`w-full border ${errors.category ? 'border-red-400' : 'border-gray-200 dark:border-gray-700/50'} rounded-xl px-3.5 py-2.5 text-sm text-gray-900 dark:text-gray-100 outline-none focus:border-blue-500 transition-all dark:bg-gray-800`}>
                     <option value="">Select a category</option>
                     {CATEGORIES.map(cat => <option key={cat}>{cat}</option>)}
                   </select>
                   {errors.category && <span className="text-xs text-red-500 mt-1 block">{errors.category}</span>}
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-1.5">Description <span className="text-red-500">*</span></label>
-                  <textarea name="description" value={form.description} onChange={e => { setForm(p => ({ ...p, description: e.target.value })); setErrors(p => ({ ...p, description: '' })) }} placeholder="Describe your complaint in detail..." rows={4} className={`w-full border ${errors.description ? 'border-red-400' : 'border-gray-200'} rounded-xl px-3.5 py-2.5 text-sm text-gray-900 outline-none focus:border-blue-500 transition-all placeholder:text-gray-400 resize-none`} />
+                  <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1.5">Description <span className="text-red-500">*</span></label>
+                  <textarea name="description" value={form.description} onChange={e => { setForm(p => ({ ...p, description: e.target.value })); setErrors(p => ({ ...p, description: '' })) }} placeholder="Describe your complaint in detail..." rows={4} className={`w-full border ${errors.description ? 'border-red-400' : 'border-gray-200 dark:border-gray-700/50'} rounded-xl px-3.5 py-2.5 text-sm text-gray-900 dark:text-gray-100 outline-none focus:border-blue-500 transition-all placeholder:text-gray-400 dark:placeholder:text-gray-500 resize-none dark:bg-gray-800`} />
                   {errors.description && <span className="text-xs text-red-500 mt-1 block">{errors.description}</span>}
                 </div>
                 <button type="submit" className="w-full flex items-center justify-center gap-2 text-sm font-semibold bg-blue-600 text-white py-3 rounded-xl hover:bg-blue-700 transition-all cursor-pointer"><CheckCircle2 size={17} /> Submit Complaint</button>

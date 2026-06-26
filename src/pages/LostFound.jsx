@@ -64,46 +64,46 @@ export default function LostFound() {
   }
 
   return (
-    <div className="flex min-h-screen bg-gray-50">
+    <div className="flex min-h-screen bg-gray-50 dark:bg-gray-950">
       <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
       <div className="flex-1 ml-0 md:ml-64 flex flex-col min-h-screen">
-        <header className="sticky top-0 z-30 flex items-center gap-4 px-6 md:px-8 py-4 bg-white/85 backdrop-blur-lg border-b border-gray-200">
-          <button onClick={() => setSidebarOpen(true)} className="md:hidden p-2 rounded-lg text-gray-500 hover:bg-gray-100 cursor-pointer"><Menu size={22} /></button>
-          <h1 className="text-lg font-bold text-gray-900">Lost & Found</h1>
+        <header className="sticky top-0 z-30 flex items-center gap-4 px-6 md:px-8 py-4 bg-white/85 backdrop-blur-lg border-b border-gray-200 dark:bg-gray-900/85 dark:border-gray-700/50">
+          <button onClick={() => setSidebarOpen(true)} className="md:hidden p-2 rounded-lg text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800 cursor-pointer"><Menu size={22} /></button>
+          <h1 className="text-lg font-bold text-gray-900 dark:text-gray-100">Lost & Found</h1>
         </header>
 
-        <main className="flex-1 p-6 md:p-8 max-w-6xl w-full">
+        <main className="flex-1 p-6 md:p-8 max-w-6xl w-full animate-fadeIn">
           {/* ── Header ── */}
           <div className="flex items-start justify-between mb-6 flex-wrap gap-4">
             <div>
-              <h1 className="text-2xl font-bold text-gray-900 tracking-tight">Lost & Found</h1>
-              <p className="text-sm text-gray-500 mt-1">Report lost items or help others find theirs.</p>
+              <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100 tracking-tight">Lost & Found</h1>
+              <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">Report lost items or help others find theirs.</p>
             </div>
             <button onClick={() => { setShowForm(true); setTab('lost') }} className="flex items-center gap-2 text-sm font-semibold bg-blue-600 text-white px-5 py-2.5 rounded-xl hover:bg-blue-700 transition-all cursor-pointer"><Plus size={17} /> Report Lost Item</button>
           </div>
 
           {/* ── Tabs ── */}
-          <div className="flex gap-1 mb-5 bg-gray-100 p-1 rounded-xl w-fit">
+          <div className="flex gap-1 mb-5 bg-gray-100 dark:bg-gray-800 p-1 rounded-xl w-fit">
             {[
               { key: 'lost', label: 'Lost Items', count: lostList.length },
               { key: 'found', label: 'Found Items', count: FOUND_ITEMS.length },
             ].map(t => (
-              <button key={t.key} onClick={() => { setTab(t.key); setSearch(''); setFilter('All') }} className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition-all cursor-pointer ${tab === t.key ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}>
+              <button key={t.key} onClick={() => { setTab(t.key); setSearch(''); setFilter('All') }} className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition-all cursor-pointer ${tab === t.key ? 'bg-white text-gray-900 shadow-sm dark:bg-gray-900 dark:text-gray-100' : 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300'}`}>
                 {t.label}
-                <span className="text-[10px] bg-gray-200 text-gray-600 px-1.5 py-0.5 rounded-full font-bold">{t.count}</span>
+                <span className="text-[10px] bg-gray-200 text-gray-600 px-1.5 py-0.5 rounded-full font-bold dark:bg-gray-700 dark:text-gray-300">{t.count}</span>
               </button>
             ))}
           </div>
 
           {/* ── Toolbar ── */}
           <div className="flex flex-wrap gap-3 mb-6">
-            <div className="flex items-center gap-2 bg-white border border-gray-200 rounded-xl px-3.5 flex-1 min-w-0 max-w-xs">
-              <Search size={16} className="text-gray-400 shrink-0" />
-              <input type="text" placeholder="Search items..." value={search} onChange={e => setSearch(e.target.value)} className="flex-1 bg-transparent border-none outline-none py-2.5 text-sm text-gray-900 placeholder:text-gray-400 min-w-0" />
+            <div className="flex items-center gap-2 bg-white border border-gray-200 rounded-xl px-3.5 flex-1 min-w-0 max-w-xs dark:bg-gray-900 dark:border-gray-700/50">
+              <Search size={16} className="text-gray-400 dark:text-gray-500 shrink-0" />
+              <input type="text" placeholder="Search items..." value={search} onChange={e => setSearch(e.target.value)} className="flex-1 bg-transparent border-none outline-none py-2.5 text-sm text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500 min-w-0" />
             </div>
-            <div className="flex items-center gap-2 bg-white border border-gray-200 rounded-xl px-3.5">
-              <ChevronDown size={14} className="text-gray-400 shrink-0" />
-              <select value={filter} onChange={e => setFilter(e.target.value)} className="bg-transparent border-none outline-none py-2.5 text-sm text-gray-700 font-medium cursor-pointer">
+            <div className="flex items-center gap-2 bg-white border border-gray-200 rounded-xl px-3.5 dark:bg-gray-900 dark:border-gray-700/50">
+              <ChevronDown size={14} className="text-gray-400 dark:text-gray-500 shrink-0" />
+              <select value={filter} onChange={e => setFilter(e.target.value)} className="bg-transparent border-none outline-none py-2.5 text-sm text-gray-700 dark:text-gray-300 font-medium cursor-pointer">
                 {CATEGORIES.map(c => <option key={c}>{c}</option>)}
               </select>
             </div>
@@ -111,27 +111,27 @@ export default function LostFound() {
 
           {/* ── Items Grid ── */}
           {filtered.length === 0 ? (
-            <div className="flex flex-col items-center justify-center py-20 text-gray-400">
+            <div className="flex flex-col items-center justify-center py-20 text-gray-400 dark:text-gray-500">
               <Search size={48} className="mb-3" />
               <p className="text-sm font-medium">No items found.</p>
             </div>
           ) : (
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {filtered.map(item => (
-                <div key={item.id} className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden hover:shadow-md transition-all">
+                <div key={item.id} className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden hover:shadow-md transition-all dark:bg-gray-900 dark:border-gray-700/50 dark:shadow-sm dark:shadow-black/5">
                   <div className="h-28 relative flex items-end p-4" style={{ background: item.gradient }}>
                     <span className="text-3xl">{item.icon}</span>
                     <span className={`absolute top-3 right-3 text-[10px] font-bold px-2 py-0.5 rounded-full ${tab === 'lost' ? 'bg-red-100 text-red-600' : 'bg-green-100 text-green-600'}`}>{tab === 'lost' ? 'Lost' : 'Found'}</span>
                   </div>
                   <div className="p-4">
-                    <h3 className="font-bold text-gray-900 mb-1.5">{item.name}</h3>
-                    <div className="flex items-center gap-3 text-xs text-gray-500 mb-1.5">
+                    <h3 className="font-bold text-gray-900 dark:text-gray-100 mb-1.5">{item.name}</h3>
+                    <div className="flex items-center gap-3 text-xs text-gray-500 dark:text-gray-400 mb-1.5">
                       <span className="flex items-center gap-1"><CalendarDays size={12} /> {new Date(item.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</span>
-                      {item.category !== 'All' && <span className="bg-gray-100 text-gray-600 px-1.5 py-0.5 rounded text-[10px] font-medium">{item.category}</span>}
+                      {item.category !== 'All' && <span className="bg-gray-100 text-gray-600 px-1.5 py-0.5 rounded text-[10px] font-medium dark:bg-gray-800 dark:text-gray-300">{item.category}</span>}
                     </div>
-                    <div className="flex items-center gap-1 text-xs text-gray-500 mb-2"><MapPin size={12} /> {item.location}</div>
-                    <p className="text-xs text-gray-500 leading-relaxed mb-4">{item.description}</p>
-                    <button className="w-full text-xs font-semibold text-blue-600 bg-blue-50 py-2 rounded-xl hover:bg-blue-100 transition-all cursor-pointer">Contact Admin</button>
+                    <div className="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400 mb-2"><MapPin size={12} /> {item.location}</div>
+                    <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed mb-4">{item.description}</p>
+                    <button className="w-full text-xs font-semibold text-blue-600 bg-blue-50 py-2 rounded-xl hover:bg-blue-100 transition-all cursor-pointer dark:text-blue-400 dark:bg-blue-950/40 dark:hover:bg-blue-950/60">Contact Admin</button>
                   </div>
                 </div>
               ))}
@@ -141,34 +141,34 @@ export default function LostFound() {
 
         {/* ── Report Lost Item Modal ── */}
         {showForm && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm" onClick={() => setShowForm(false)}>
-            <div className="bg-white rounded-2xl w-full max-w-lg mx-4 p-6 shadow-2xl" onClick={e => e.stopPropagation()}>
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm animate-fadeIn" onClick={() => setShowForm(false)}>
+            <div className="bg-white rounded-2xl w-full max-w-lg mx-4 p-6 shadow-2xl dark:bg-gray-900 dark:border dark:border-gray-700/50" onClick={e => e.stopPropagation()}>
               <div className="flex items-center justify-between mb-5">
-                <h2 className="text-lg font-bold text-gray-900">Report a Lost Item</h2>
-                <button onClick={() => setShowForm(false)} className="p-1.5 rounded-lg text-gray-400 hover:bg-gray-100 cursor-pointer"><X size={20} /></button>
+                <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100">Report a Lost Item</h2>
+                <button onClick={() => setShowForm(false)} className="p-1.5 rounded-lg text-gray-400 hover:bg-gray-100 dark:text-gray-500 dark:hover:bg-gray-800 cursor-pointer"><X size={20} /></button>
               </div>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-1.5">Item Name <span className="text-red-500">*</span></label>
-                  <input type="text" value={form.name} onChange={e => { setForm(p => ({ ...p, name: e.target.value })); setErrors(p => ({ ...p, name: '' })) }} placeholder="e.g. Black Water Bottle" className={`w-full border ${errors.name ? 'border-red-400' : 'border-gray-200'} rounded-xl px-3.5 py-2.5 text-sm text-gray-900 outline-none focus:border-blue-500 transition-all placeholder:text-gray-400`} />
+                  <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1.5">Item Name <span className="text-red-500">*</span></label>
+                  <input type="text" value={form.name} onChange={e => { setForm(p => ({ ...p, name: e.target.value })); setErrors(p => ({ ...p, name: '' })) }} placeholder="e.g. Black Water Bottle" className={`w-full border ${errors.name ? 'border-red-400' : 'border-gray-200 dark:border-gray-700/50'} rounded-xl px-3.5 py-2.5 text-sm text-gray-900 dark:text-gray-100 outline-none focus:border-blue-500 transition-all placeholder:text-gray-400 dark:placeholder:text-gray-500 dark:bg-gray-800`} />
                   {errors.name && <span className="text-xs text-red-500 mt-1 block">{errors.name}</span>}
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-1.5">Category <span className="text-red-500">*</span></label>
-                  <select value={form.category} onChange={e => { setForm(p => ({ ...p, category: e.target.value })); setErrors(p => ({ ...p, category: '' })) }} className={`w-full border ${errors.category ? 'border-red-400' : 'border-gray-200'} rounded-xl px-3.5 py-2.5 text-sm text-gray-900 outline-none focus:border-blue-500 transition-all`}>
+                  <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1.5">Category <span className="text-red-500">*</span></label>
+                  <select value={form.category} onChange={e => { setForm(p => ({ ...p, category: e.target.value })); setErrors(p => ({ ...p, category: '' })) }} className={`w-full border ${errors.category ? 'border-red-400' : 'border-gray-200 dark:border-gray-700/50'} rounded-xl px-3.5 py-2.5 text-sm text-gray-900 dark:text-gray-100 outline-none focus:border-blue-500 transition-all dark:bg-gray-800`}>
                     <option value="">Select a category</option>
                     {CATEGORIES.filter(c => c !== 'All').map(cat => <option key={cat}>{cat}</option>)}
                   </select>
                   {errors.category && <span className="text-xs text-red-500 mt-1 block">{errors.category}</span>}
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-1.5">Last Seen Location <span className="text-red-500">*</span></label>
-                  <input type="text" value={form.location} onChange={e => { setForm(p => ({ ...p, location: e.target.value })); setErrors(p => ({ ...p, location: '' })) }} placeholder="e.g. Library, 2nd Floor" className={`w-full border ${errors.location ? 'border-red-400' : 'border-gray-200'} rounded-xl px-3.5 py-2.5 text-sm text-gray-900 outline-none focus:border-blue-500 transition-all placeholder:text-gray-400`} />
+                  <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1.5">Last Seen Location <span className="text-red-500">*</span></label>
+                  <input type="text" value={form.location} onChange={e => { setForm(p => ({ ...p, location: e.target.value })); setErrors(p => ({ ...p, location: '' })) }} placeholder="e.g. Library, 2nd Floor" className={`w-full border ${errors.location ? 'border-red-400' : 'border-gray-200 dark:border-gray-700/50'} rounded-xl px-3.5 py-2.5 text-sm text-gray-900 dark:text-gray-100 outline-none focus:border-blue-500 transition-all placeholder:text-gray-400 dark:placeholder:text-gray-500 dark:bg-gray-800`} />
                   {errors.location && <span className="text-xs text-red-500 mt-1 block">{errors.location}</span>}
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-1.5">Description <span className="text-red-500">*</span></label>
-                  <textarea value={form.description} onChange={e => { setForm(p => ({ ...p, description: e.target.value })); setErrors(p => ({ ...p, description: '' })) }} placeholder="Describe the item in detail (color, brand, distinguishing features)..." rows={3} className={`w-full border ${errors.description ? 'border-red-400' : 'border-gray-200'} rounded-xl px-3.5 py-2.5 text-sm text-gray-900 outline-none focus:border-blue-500 transition-all placeholder:text-gray-400 resize-none`} />
+                  <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1.5">Description <span className="text-red-500">*</span></label>
+                  <textarea value={form.description} onChange={e => { setForm(p => ({ ...p, description: e.target.value })); setErrors(p => ({ ...p, description: '' })) }} placeholder="Describe the item in detail (color, brand, distinguishing features)..." rows={3} className={`w-full border ${errors.description ? 'border-red-400' : 'border-gray-200 dark:border-gray-700/50'} rounded-xl px-3.5 py-2.5 text-sm text-gray-900 dark:text-gray-100 outline-none focus:border-blue-500 transition-all placeholder:text-gray-400 dark:placeholder:text-gray-500 resize-none dark:bg-gray-800`} />
                   {errors.description && <span className="text-xs text-red-500 mt-1 block">{errors.description}</span>}
                 </div>
                 <button type="submit" className="w-full flex items-center justify-center gap-2 text-sm font-semibold bg-blue-600 text-white py-3 rounded-xl hover:bg-blue-700 transition-all cursor-pointer">Submit Report</button>

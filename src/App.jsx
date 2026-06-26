@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { ThemeProvider } from './context/ThemeContext'
 import Navbar from './components/Navbar'
 import Landing from './pages/Landing'
 import Login from './pages/Login'
@@ -13,17 +14,19 @@ import Profile from './pages/Profile'
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/dashboard/notices-events" element={<NoticeEvents />} />
-        <Route path="/dashboard/complaints" element={<Complaints />} />
-        <Route path="/dashboard/lost-found" element={<LostFound />} />
-        <Route path="/dashboard/study-hub" element={<StudyHub />} />
-        <Route path="/dashboard/profile" element={<Profile />} />
-      </Routes>
+      <ThemeProvider>
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard/notices-events" element={<NoticeEvents />} />
+          <Route path="/dashboard/complaints" element={<Complaints />} />
+          <Route path="/dashboard/lost-found" element={<LostFound />} />
+          <Route path="/dashboard/study-hub" element={<StudyHub />} />
+          <Route path="/dashboard/profile" element={<Profile />} />
+        </Routes>
+      </ThemeProvider>
     </BrowserRouter>
   )
 }
