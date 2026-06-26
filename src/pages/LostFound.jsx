@@ -4,16 +4,16 @@ import Sidebar from '../components/Sidebar'
 import { useTheme } from '../context/ThemeContext'
 
 const LOST_ITEMS = [
-  { id: 1, name: 'Black Water Bottle', category: 'Bottles', date: '2026-06-24', location: 'Library, 2nd Floor', description: 'Black Milton water bottle with a white stripe. Left near the reading area.', gradientClass: 'bg-gradient-to-br from-[#667eea] to-[#764ba2]', icon: '🧴' },
-  { id: 2, name: 'Blue Umbrella', category: 'Accessories', date: '2026-06-23', location: 'Canteen', description: 'Blue foldable umbrella with a wooden handle. Forgot near the counter.', gradientClass: 'bg-gradient-to-br from-[#f093fb] to-[#f5576c]', icon: '☂️' },
-  { id: 3, name: 'Scientific Calculator', category: 'Electronics', date: '2026-06-22', location: 'Room 204', description: 'Casio fx-991ES Plus calculator in a black case. Lost during lecture.', gradientClass: 'bg-gradient-to-br from-[#4facfe] to-[#00f2fe]', icon: '🔢' },
-  { id: 4, name: 'ID Card', category: 'Documents', date: '2026-06-21', location: 'Sports Complex', description: 'Student ID card with name Shubham. Lost near basketball court.', gradientClass: 'bg-gradient-to-br from-[#43e97b] to-[#38f9d7]', icon: '🪪' },
+  { id: 1, name: 'Black Water Bottle', category: 'Bottles', date: '2026-06-24', location: 'Library, 2nd Floor', description: 'Black Milton water bottle with a white stripe. Left near the reading area.', bgClass: 'bg-[#6C5CE7]', icon: '🧴' },
+  { id: 2, name: 'Blue Umbrella', category: 'Accessories', date: '2026-06-23', location: 'Canteen', description: 'Blue foldable umbrella with a wooden handle. Forgot near the counter.', bgClass: 'bg-[#EC4899]', icon: '☂️' },
+  { id: 3, name: 'Scientific Calculator', category: 'Electronics', date: '2026-06-22', location: 'Room 204', description: 'Casio fx-991ES Plus calculator in a black case. Lost during lecture.', bgClass: 'bg-[#3B82F6]', icon: '🔢' },
+  { id: 4, name: 'ID Card', category: 'Documents', date: '2026-06-21', location: 'Sports Complex', description: 'Student ID card with name Shubham. Lost near basketball court.', bgClass: 'bg-[#10B981]', icon: '🪪' },
 ]
 
 const FOUND_ITEMS = [
-  { id: 5, name: 'Red Notebook', category: 'Stationery', date: '2026-06-25', location: 'Auditorium', description: 'Red spiral notebook with Calculus notes. Found under seat A12.', gradientClass: 'bg-gradient-to-br from-[#fa709a] to-[#fee140]', icon: '📓' },
-  { id: 6, name: 'Wireless Mouse', category: 'Electronics', date: '2026-06-24', location: 'CS Lab 1', description: 'Logitech wireless mouse, white color. Found near computer 8.', gradientClass: 'bg-gradient-to-br from-[#a18cd1] to-[#fbc2eb]', icon: '🖱️' },
-  { id: 7, name: 'Keys', category: 'Accessories', date: '2026-06-23', location: 'Main Gate', description: 'Set of 3 keys with a blue keychain. Found near the security booth.', gradientClass: 'bg-gradient-to-br from-[#ffecd2] to-[#fcb69f]', icon: '🔑' },
+  { id: 5, name: 'Red Notebook', category: 'Stationery', date: '2026-06-25', location: 'Auditorium', description: 'Red spiral notebook with Calculus notes. Found under seat A12.', bgClass: 'bg-[#F59E0B]', icon: '📓' },
+  { id: 6, name: 'Wireless Mouse', category: 'Electronics', date: '2026-06-24', location: 'CS Lab 1', description: 'Logitech wireless mouse, white color. Found near computer 8.', bgClass: 'bg-[#8B5CF6]', icon: '🖱️' },
+  { id: 7, name: 'Keys', category: 'Accessories', date: '2026-06-23', location: 'Main Gate', description: 'Set of 3 keys with a blue keychain. Found near the security booth.', bgClass: 'bg-[#F97316]', icon: '🔑' },
 ]
 
 const CATEGORIES = ['All', 'Electronics', 'Accessories', 'Bottles', 'Documents', 'Stationery', 'Clothing', 'Other']
@@ -58,7 +58,7 @@ export default function LostFound() {
       date: new Date().toISOString().split('T')[0],
       location: form.location.trim(),
       description: form.description.trim(),
-      gradientClass: 'bg-gradient-to-br from-[#667eea] to-[#764ba2]',
+      bgClass: 'bg-[#6C5CE7]',
       icon: '🔍',
     }, ...prev])
     setForm({ name: '', category: '', location: '', description: '' })
@@ -83,7 +83,7 @@ export default function LostFound() {
               <h1 className="text-2xl font-bold text-gray-900 dark:text-white tracking-tight">Lost & Found</h1>
               <p className="text-sm text-gray-500 dark:text-[#94A3B8] mt-1">Report lost items or help others find theirs.</p>
             </div>
-            <button onClick={() => { setShowForm(true); setTab('lost') }} className="flex items-center gap-2 text-sm font-semibold bg-gradient-to-r from-violet-600 to-cyan-500 text-white px-5 py-2.5 rounded-xl hover:from-violet-700 hover:to-cyan-600 dark:from-violet-500 dark:to-cyan-400 dark:hover:from-violet-600 dark:hover:to-cyan-500 transition-all cursor-pointer"><Plus size={17} /> Report Lost Item</button>
+            <button onClick={() => { setShowForm(true); setTab('lost') }} className="flex items-center gap-2 text-sm font-semibold bg-[#6C5CE7] text-white px-5 py-2.5 rounded-xl hover:bg-[#5B4BD6] dark:bg-[#7C5CFF] dark:hover:bg-[#6B4BEE] transition-all cursor-pointer"><Plus size={17} /> Report Lost Item</button>
           </div>
 
           <div className="flex gap-1 mb-5 bg-gray-100 dark:bg-gray-800 p-1 rounded-xl w-fit">
@@ -120,8 +120,8 @@ export default function LostFound() {
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {filtered.map(item => (
                 <div key={item.id} className="rounded-2xl border border-gray-200 dark:border-white/10 overflow-hidden hover:bg-gray-50/50 dark:hover:bg-white/[0.03] transition-all">
-                  <div className={`h-28 relative flex items-end p-4 ${item.gradientClass}`}>
-                    <span className="text-3xl">{item.icon}</span>
+                  <div className={`h-28 relative flex items-center justify-center p-4 ${item.bgClass}`}>
+                    <span className="text-6xl">{item.icon}</span>
                     <span className={`absolute top-3 right-3 text-[10px] font-bold px-2 py-0.5 rounded-full ${tab === 'lost' ? 'bg-red-100 text-red-600' : 'bg-green-100 text-green-600'}`}>{tab === 'lost' ? 'Lost' : 'Found'}</span>
                   </div>
                   <div className="p-4">
@@ -171,7 +171,7 @@ export default function LostFound() {
                   <textarea value={form.description} onChange={e => { setForm(p => ({ ...p, description: e.target.value })); setErrors(p => ({ ...p, description: '' })) }} placeholder="Describe the item in detail (color, brand, distinguishing features)..." rows={3} className={`w-full border ${errors.description ? 'border-red-400' : 'border-gray-200 dark:border-white/10'} rounded-xl px-3.5 py-2.5 text-sm text-gray-900 dark:text-white outline-none focus:border-[#6C5CE7] dark:focus:border-[#7C5CFF] transition-all placeholder:text-gray-400 dark:placeholder:text-gray-500 resize-none dark:bg-[#1E293B]`} />
                   {errors.description && <span className="text-xs text-red-500 mt-1 block">{errors.description}</span>}
                 </div>
-                <button type="submit" className="w-full flex items-center justify-center gap-2 text-sm font-semibold bg-gradient-to-r from-violet-600 to-cyan-500 text-white py-3 rounded-xl hover:from-violet-700 hover:to-cyan-600 dark:from-violet-500 dark:to-cyan-400 dark:hover:from-violet-600 dark:hover:to-cyan-500 transition-all cursor-pointer">Submit Report</button>
+                <button type="submit" className="w-full flex items-center justify-center gap-2 text-sm font-semibold bg-[#6C5CE7] text-white py-3 rounded-xl hover:bg-[#5B4BD6] dark:bg-[#7C5CFF] dark:hover:bg-[#6B4BEE] transition-all cursor-pointer">Submit Report</button>
               </form>
             </div>
           </div>

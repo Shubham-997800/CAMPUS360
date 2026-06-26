@@ -89,7 +89,7 @@ export default function Profile() {
               <div className="flex gap-2">
                 {editing ? (
                   <>
-                    <button onClick={saveProfile} className="flex items-center gap-2 text-sm font-semibold text-white bg-gradient-to-r from-violet-600 to-cyan-500 px-4 py-2 rounded-xl hover:from-violet-700 hover:to-cyan-600 dark:from-violet-500 dark:to-cyan-400 dark:hover:from-violet-600 dark:hover:to-cyan-500 transition-all cursor-pointer"><Save size={15} /> Save</button>
+                    <button onClick={saveProfile} className="flex items-center gap-2 text-sm font-semibold bg-[#6C5CE7] text-white px-4 py-2 rounded-xl hover:bg-[#5B4BD6] dark:bg-[#7C5CFF] dark:hover:bg-[#6B4BEE] transition-all cursor-pointer"><Save size={15} /> Save</button>
                     <button onClick={cancelEditing} className="flex items-center gap-2 text-sm font-semibold text-gray-600 bg-gray-100 px-4 py-2 rounded-xl hover:bg-gray-200 transition-all cursor-pointer dark:text-gray-300 dark:bg-gray-800 dark:hover:bg-gray-700"><X size={15} /> Cancel</button>
                   </>
                 ) : (

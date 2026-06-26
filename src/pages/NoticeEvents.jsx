@@ -13,10 +13,10 @@ const NOTICES = [
 ]
 
 const EVENTS_DATA = [
-  { id: 1, title: 'Tech Symposium 2026', date: '2026-07-15', venue: 'Auditorium A', time: '10:00 AM', category: 'Tech', description: 'Annual technical symposium featuring workshops, competitions, and guest lectures from industry experts.', gradientClass: 'bg-gradient-to-br from-[#667eea] to-[#764ba2]', icon: '💻' },
-  { id: 2, title: 'Cultural Fest', date: '2026-07-20', venue: 'Open Air Theatre', time: '9:00 AM', category: 'Cultural', description: 'Showcase your talent in music, dance, drama, and art. Prizes for winners across all categories.', gradientClass: 'bg-gradient-to-br from-[#f093fb] to-[#f5576c]', icon: '🎭' },
-  { id: 3, title: 'Workshop: AI & ML Basics', date: '2026-07-25', venue: 'CS Lab 3', time: '2:00 PM', category: 'Academic', description: 'Hands-on workshop covering fundamentals of artificial intelligence and machine learning.', gradientClass: 'bg-gradient-to-br from-[#4facfe] to-[#00f2fe]', icon: '🤖' },
-  { id: 4, title: 'Sports Meet 2026', date: '2026-08-01', venue: 'Sports Complex', time: '7:00 AM', category: 'Sports', description: 'Inter-department sports competition featuring cricket, football, basketball, and athletics.', gradientClass: 'bg-gradient-to-br from-[#43e97b] to-[#38f9d7]', icon: '🏆' },
+  { id: 1, title: 'Tech Symposium 2026', date: '2026-07-15', venue: 'Auditorium A', time: '10:00 AM', category: 'Tech', description: 'Annual technical symposium featuring workshops, competitions, and guest lectures from industry experts.', bgClass: 'bg-[#6C5CE7]', icon: '💻' },
+  { id: 2, title: 'Cultural Fest', date: '2026-07-20', venue: 'Open Air Theatre', time: '9:00 AM', category: 'Cultural', description: 'Showcase your talent in music, dance, drama, and art. Prizes for winners across all categories.', bgClass: 'bg-[#EC4899]', icon: '🎭' },
+  { id: 3, title: 'Workshop: AI & ML Basics', date: '2026-07-25', venue: 'CS Lab 3', time: '2:00 PM', category: 'Academic', description: 'Hands-on workshop covering fundamentals of artificial intelligence and machine learning.', bgClass: 'bg-[#3B82F6]', icon: '🤖' },
+  { id: 4, title: 'Sports Meet 2026', date: '2026-08-01', venue: 'Sports Complex', time: '7:00 AM', category: 'Sports', description: 'Inter-department sports competition featuring cricket, football, basketball, and athletics.', bgClass: 'bg-[#10B981]', icon: '🏆' },
 ]
 
 const CATEGORIES = ['All', 'Academic', 'Library', 'Facility', 'Events', 'Finance', 'Tech', 'Cultural', 'Sports']
@@ -158,8 +158,8 @@ function EventCard({ event: e }) {
   const [registered, setRegistered] = useState(false)
   return (
     <div className="rounded-2xl border border-gray-200 dark:border-white/10 overflow-hidden hover:bg-gray-50/50 dark:hover:bg-white/[0.03] transition-all">
-      <div className={`h-28 relative flex items-end p-4 ${e.gradientClass}`}>
-        <span className="text-3xl">{e.icon}</span>
+      <div className={`h-28 relative flex items-center justify-center p-4 ${e.bgClass}`}>
+        <span className="text-6xl">{e.icon}</span>
         <span className="absolute top-3 right-3 text-[10px] font-bold text-white/90 bg-white/20 px-2 py-0.5 rounded">{e.category}</span>
       </div>
       <div className="p-5">
@@ -170,7 +170,7 @@ function EventCard({ event: e }) {
         <div className="flex items-center gap-1.5 text-xs text-gray-500 dark:text-[#94A3B8] mb-2.5"><MapPin size={13} /> {e.venue}</div>
         <h3 className="font-bold text-gray-900 dark:text-white mb-1.5">{e.title}</h3>
         <p className="text-xs text-gray-500 dark:text-[#94A3B8] leading-relaxed mb-4">{e.description}</p>
-        <button onClick={() => setRegistered(true)} disabled={registered} className={`w-full flex items-center justify-center gap-2 text-sm font-semibold py-2.5 rounded-xl transition-all cursor-pointer ${registered ? 'bg-green-50 text-green-600 dark:bg-green-950/40' : 'bg-gradient-to-r from-violet-600 to-cyan-500 text-white hover:from-violet-700 hover:to-cyan-600 dark:from-violet-500 dark:to-cyan-400 dark:hover:from-violet-600 dark:hover:to-cyan-500'}`}>
+        <button onClick={() => setRegistered(true)} disabled={registered} className={`w-full flex items-center justify-center gap-2 text-sm font-semibold py-2.5 rounded-xl transition-all cursor-pointer ${registered ? 'bg-green-50 text-green-600 dark:bg-green-950/40' : 'bg-[#6C5CE7] text-white hover:bg-[#5B4BD6] dark:bg-[#7C5CFF] dark:hover:bg-[#6B4BEE]'}`}>
           {registered ? <><CheckCircle2 size={16} /> Registered</> : 'Register Now'}
         </button>
       </div>
