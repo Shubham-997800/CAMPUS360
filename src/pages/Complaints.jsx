@@ -1,14 +1,15 @@
 import { useState } from 'react'
-import { Search, Plus, Menu, X, AlertCircle, CheckCircle2, Clock, Sun, Moon } from 'lucide-react'
+import { Search, Plus, Menu, X, AlertCircle, CheckCircle2, Clock, Sun, Moon, MessageSquare } from 'lucide-react'
+import { useLocation } from 'react-router-dom'
 import Sidebar from '../components/Sidebar'
 import { useTheme } from '../context/ThemeContext'
 
 const INITIAL_COMPLAINTS = [
-  { id: 1001, title: 'Wi-Fi not working in library', category: 'Infrastructure', description: 'The Wi-Fi connection in the library has been down for the past 3 days, causing inconvenience for students preparing for exams.', status: 'in-progress', date: '2026-06-20' },
-  { id: 1002, title: 'Canteen food quality issue', category: 'Food Services', description: 'The food quality in the main canteen has deteriorated significantly. Several students have reported stomach issues after eating.', status: 'pending', date: '2026-06-22' },
-  { id: 1003, title: 'Broken projector in room 301', category: 'Infrastructure', description: 'The projector in classroom 301 has been broken for a week. Requesting immediate repair for ongoing presentations.', status: 'resolved', date: '2026-06-18' },
-  { id: 1004, title: 'Hostel water supply issue', category: 'Hostel', description: 'No hot water supply in Boys Hostel Block B since morning. Need immediate attention.', status: 'in-progress', date: '2026-06-23' },
-  { id: 1005, title: 'Library book not available', category: 'Academic', description: 'The textbook "Data Structures and Algorithms" is not available in the library. Requesting to purchase new copies.', status: 'pending', date: '2026-06-21' },
+  { id: 1001, title: 'Wi-Fi not working in library', category: 'Infrastructure', description: 'The Wi-Fi connection in the library has been down for the past 3 days, causing inconvenience for students preparing for exams.', status: 'in-progress', date: '2026-06-20', review: null },
+  { id: 1002, title: 'Canteen food quality issue', category: 'Food Services', description: 'The food quality in the main canteen has deteriorated significantly. Several students have reported stomach issues after eating.', status: 'pending', date: '2026-06-22', review: null },
+  { id: 1003, title: 'Broken projector in room 301', category: 'Infrastructure', description: 'The projector in classroom 301 has been broken for a week. Requesting immediate repair for ongoing presentations.', status: 'resolved', date: '2026-06-18', review: 'Projector has been replaced. Room 301 is now operational.' },
+  { id: 1004, title: 'Hostel water supply issue', category: 'Hostel', description: 'No hot water supply in Boys Hostel Block B since morning. Need immediate attention.', status: 'in-progress', date: '2026-06-23', review: null },
+  { id: 1005, title: 'Library book not available', category: 'Academic', description: 'The textbook "Data Structures and Algorithms" is not available in the library. Requesting to purchase new copies.', status: 'pending', date: '2026-06-21', review: null },
 ]
 
 const CATEGORIES = ['Infrastructure', 'Food Services', 'Hostel', 'Academic', 'Cleanliness', 'Security', 'Transport', 'Other']
@@ -28,6 +29,9 @@ const STATUS_DOT_CLASSES = {
 
 export default function Complaints() {
   const { dark, toggle } = useTheme()
+  const { state } = useLocation()
+  const user = state?.user || { name: 'Shubham', role: 'Student' }
+  const isAdmin = user.role === 'Admin'
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [search, setSearch] = useState('')
   const [statusFilter, setStatusFilter] = useState('all')
@@ -35,7 +39,19 @@ export default function Complaints() {
   const [list, setList] = useState(INITIAL_COMPLAINTS)
   const [form, setForm] = useState({ title: '', category: '', description: '' })
   const [errors, setErrors] = useState({})
+  const [reviewTarget, setReviewTarget] = useState(null)
+  const [reviewText, setReviewText] = useState('')
 
+  function resolveComplaint(id) {
+    setList(prev => prev.map(c => c.id === id ? { ...c, status: 'resolved', review: 'Issue has been resolved.' } : c))
+  }
+
+  function submitReview(id) {
+    if (!reviewText.trim()) return
+    setList(prev => prev.map(c => c.id === id ? { ...c, review: reviewText.trim(), status: c.status === 'pending' ? 'in-progress' : c.status } : c))
+    setReviewTarget(null)
+    setReviewText('')
+  }
   const filtered = list.filter(c => {
     const matchSearch = c.title.toLowerCase().includes(search.toLowerCase()) || c.id.toString().includes(search) || c.category.toLowerCase().includes(search.toLowerCase())
     const matchStatus = statusFilter === 'all' || c.status === statusFilter
@@ -63,6 +79,7 @@ export default function Complaints() {
       description: form.description.trim(),
       status: 'pending',
       date: new Date().toISOString().split('T')[0],
+      review: null,
     }, ...prev])
     setForm({ title: '', category: '', description: '' })
     setShowForm(false)
@@ -142,6 +159,7 @@ export default function Complaints() {
                     <th className="text-left text-xs font-semibold text-gray-500 dark:text-[#94A3B8] py-3.5 px-5">Category</th>
                     <th className="text-left text-xs font-semibold text-gray-500 dark:text-[#94A3B8] py-3.5 px-5">Date</th>
                     <th className="text-left text-xs font-semibold text-gray-500 dark:text-[#94A3B8] py-3.5 px-5">Status</th>
+                    {isAdmin && <th className="text-right text-xs font-semibold text-gray-500 dark:text-[#94A3B8] py-3.5 px-5">Actions</th>}
                   </tr>
                 </thead>
                 <tbody>
@@ -153,6 +171,9 @@ export default function Complaints() {
                         <td className="py-3.5 px-5">
                           <span className="text-sm font-semibold text-gray-900 dark:text-white block">{c.title}</span>
                           <span className="text-xs text-gray-400 dark:text-gray-500 block mt-0.5">{c.description.slice(0, 80)}...</span>
+                          {c.review && (
+                            <span className="text-xs text-[#6C5CE7] dark:text-[#7C5CFF] block mt-1.5 italic">Review: {c.review}</span>
+                          )}
                         </td>
                         <td className="py-3.5 px-5"><span className="text-xs font-medium text-gray-600 bg-gray-100 px-2 py-1 rounded dark:text-gray-300 dark:bg-gray-800">{c.category}</span></td>
                         <td className="py-3.5 px-5 text-sm text-gray-500 dark:text-[#94A3B8]">{new Date(c.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</td>
@@ -162,6 +183,16 @@ export default function Complaints() {
                             {status.label}
                           </span>
                         </td>
+                        {isAdmin && (
+                          <td className="py-3.5 px-5 text-right">
+                            <div className="flex items-center justify-end gap-1.5">
+                              <button onClick={() => setReviewTarget(c)} className="text-xs font-semibold text-[#6C5CE7] dark:text-[#7C5CFF] hover:bg-[#EDE9FE] dark:hover:bg-[rgba(124,92,255,0.15)] px-2.5 py-1.5 rounded-lg transition-all cursor-pointer"><MessageSquare size={13} className="inline mr-0.5" /> Review</button>
+                              {c.status !== 'resolved' && (
+                                <button onClick={() => resolveComplaint(c.id)} className="text-xs font-semibold bg-emerald-500 text-white hover:bg-emerald-600 px-2.5 py-1.5 rounded-lg transition-all cursor-pointer"><CheckCircle2 size={13} className="inline mr-0.5" /> Resolve</button>
+                              )}
+                            </div>
+                          </td>
+                        )}
                       </tr>
                     )
                   })}
@@ -170,6 +201,24 @@ export default function Complaints() {
             </div>
           )}
         </main>
+
+        {isAdmin && reviewTarget && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm animate-fadeIn" onClick={() => { setReviewTarget(null); setReviewText('') }}>
+            <div className="bg-white dark:bg-[#1E293B] rounded-2xl w-full max-w-lg mx-4 p-6 shadow-2xl border border-gray-200 dark:border-white/10" onClick={e => e.stopPropagation()}>
+              <div className="flex items-center justify-between mb-5">
+                <h2 className="text-lg font-bold text-gray-900 dark:text-white">Review Complaint #{reviewTarget.id}</h2>
+                <button onClick={() => { setReviewTarget(null); setReviewText('') }} className="p-1.5 rounded-lg text-gray-400 hover:bg-gray-100 dark:text-gray-500 dark:hover:bg-gray-800 cursor-pointer"><X size={20} /></button>
+              </div>
+              <p className="text-sm text-gray-500 dark:text-[#94A3B8] mb-1"><span className="font-semibold text-gray-900 dark:text-white">{reviewTarget.title}</span></p>
+              <p className="text-xs text-gray-400 dark:text-gray-500 mb-4">{reviewTarget.description.slice(0, 120)}</p>
+              <textarea value={reviewText} onChange={e => setReviewText(e.target.value)} placeholder="Write your review / resolution notes..." rows={4} className="w-full border border-gray-200 dark:border-white/10 rounded-xl px-3.5 py-2.5 text-sm text-gray-900 dark:text-white outline-none focus:border-[#6C5CE7] dark:focus:border-[#7C5CFF] transition-all placeholder:text-gray-400 dark:placeholder:text-gray-500 resize-none dark:bg-[#1E293B] mb-4" />
+              <div className="flex gap-3">
+                <button onClick={() => { setReviewTarget(null); setReviewText('') }} className="flex-1 text-sm font-semibold text-gray-600 dark:text-gray-300 bg-gray-100 dark:bg-gray-800 py-2.5 rounded-xl hover:bg-gray-200 dark:hover:bg-gray-700 transition-all cursor-pointer">Cancel</button>
+                <button onClick={() => submitReview(reviewTarget.id)} className="flex-1 text-sm font-semibold bg-[#6C5CE7] text-white py-2.5 rounded-xl hover:bg-[#5B4BD6] dark:bg-[#7C5CFF] dark:hover:bg-[#6B4BEE] transition-all cursor-pointer">Submit Review</button>
+              </div>
+            </div>
+          </div>
+        )}
 
         {showForm && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm animate-fadeIn" onClick={() => setShowForm(false)}>
