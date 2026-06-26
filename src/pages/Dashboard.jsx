@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useLocation } from 'react-router-dom'
 import { Bell, CalendarDays, MessageSquareWarning, BookOpen, CheckCircle2, AlertCircle, Clock, Search, Menu } from 'lucide-react'
 import Sidebar from '../components/Sidebar'
 import StatCard from '../components/StatCard'
@@ -37,6 +38,9 @@ function formatDate(dateStr) {
 
 export default function Dashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  const { state } = useLocation()
+  const user = state?.user || { name: 'Shubham', role: 'Student' }
+  const initial = user.name.charAt(0).toUpperCase()
   const total = COMPLAINT_STATS.pending + COMPLAINT_STATS.inProgress + COMPLAINT_STATS.resolved
 
   return (
@@ -48,8 +52,7 @@ export default function Dashboard() {
             <Menu size={22} />
           </button>
           <div className="flex-1 min-w-0">
-            <h1 className="text-lg font-bold text-gray-900">Good Morning, Shubham <span className="inline-block animate-bounce">👋</span></h1>
-            <p className="text-xs text-gray-500 mt-0.5">Here's what's happening at campus today.</p>
+            <h1 className="text-lg font-bold text-gray-900">Welcome Back, {user.name} <span className="inline-block animate-bounce">👋</span></h1>
           </div>
           <div className="hidden sm:flex items-center gap-3 bg-gray-100 rounded-xl px-3.5 w-64">
             <Search size={16} className="text-gray-400 shrink-0" />
@@ -60,10 +63,10 @@ export default function Dashboard() {
             <span className="absolute top-1.5 right-1.5 w-4 h-4 bg-red-500 text-white text-[9px] font-bold rounded-full flex items-center justify-center border-2 border-white">3</span>
           </button>
           <div className="flex items-center gap-2.5 pl-1">
-            <div className="w-9 h-9 rounded-xl bg-blue-600 flex items-center justify-center text-white font-bold text-sm">S</div>
+            <div className="w-9 h-9 rounded-xl bg-blue-600 flex items-center justify-center text-white font-bold text-sm">{initial}</div>
             <div className="hidden sm:block">
-              <p className="text-sm font-semibold text-gray-900 leading-tight">Shubham</p>
-              <p className="text-[11px] text-gray-500">Student</p>
+              <p className="text-sm font-semibold text-gray-900 leading-tight">{user.name}</p>
+              <p className="text-[11px] text-gray-500">{user.role}</p>
             </div>
           </div>
         </header>
