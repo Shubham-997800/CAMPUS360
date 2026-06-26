@@ -42,13 +42,13 @@ export default function Complaints() {
   const [reviewTarget, setReviewTarget] = useState(null)
   const [reviewText, setReviewText] = useState('')
 
-  function resolveComplaint(id) {
-    setList(prev => prev.map(c => c.id === id ? { ...c, status: 'resolved', review: 'Issue has been resolved.' } : c))
+  function updateStatus(id, newStatus, reviewMsg) {
+    setList(prev => prev.map(c => c.id === id ? { ...c, status: newStatus, review: reviewMsg || c.review } : c))
   }
 
   function submitReview(id) {
     if (!reviewText.trim()) return
-    setList(prev => prev.map(c => c.id === id ? { ...c, review: reviewText.trim(), status: c.status === 'pending' ? 'in-progress' : c.status } : c))
+    setList(prev => prev.map(c => c.id === id ? { ...c, review: reviewText.trim() } : c))
     setReviewTarget(null)
     setReviewText('')
   }
@@ -187,8 +187,11 @@ export default function Complaints() {
                           <td className="py-3.5 px-5 text-right">
                             <div className="flex items-center justify-end gap-1.5">
                               <button onClick={() => setReviewTarget(c)} className="text-xs font-semibold text-[#6C5CE7] dark:text-[#7C5CFF] hover:bg-[#EDE9FE] dark:hover:bg-[rgba(124,92,255,0.15)] px-2.5 py-1.5 rounded-lg transition-all cursor-pointer"><MessageSquare size={13} className="inline mr-0.5" /> Review</button>
-                              {c.status !== 'resolved' && (
-                                <button onClick={() => resolveComplaint(c.id)} className="text-xs font-semibold bg-emerald-500 text-white hover:bg-emerald-600 px-2.5 py-1.5 rounded-lg transition-all cursor-pointer"><CheckCircle2 size={13} className="inline mr-0.5" /> Resolve</button>
+                              {c.status === 'pending' && (
+                                <button onClick={() => updateStatus(c.id, 'in-progress', 'Issue is being worked on.')} className="text-xs font-semibold bg-blue-500 text-white hover:bg-blue-600 px-2.5 py-1.5 rounded-lg transition-all cursor-pointer"><Clock size={13} className="inline mr-0.5" /> Start</button>
+                              )}
+                              {c.status === 'in-progress' && (
+                                <button onClick={() => updateStatus(c.id, 'resolved', 'Issue has been resolved.')} className="text-xs font-semibold bg-emerald-500 text-white hover:bg-emerald-600 px-2.5 py-1.5 rounded-lg transition-all cursor-pointer"><CheckCircle2 size={13} className="inline mr-0.5" /> Resolve</button>
                               )}
                             </div>
                           </td>
