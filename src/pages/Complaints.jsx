@@ -93,7 +93,7 @@ export default function Complaints() {
               <h1 className="text-2xl font-bold text-gray-900 dark:text-white tracking-tight">Complaints</h1>
               <p className="text-sm text-gray-500 dark:text-[#94A3B8] mt-1">Submit and track your campus complaints.</p>
             </div>
-            <button onClick={() => setShowForm(true)} className="flex items-center gap-2 text-sm font-semibold bg-gradient-to-r from-violet-600 to-cyan-500 text-white px-5 py-2.5 rounded-xl hover:from-violet-700 hover:to-cyan-600 dark:from-violet-500 dark:to-cyan-400 dark:hover:from-violet-600 dark:hover:to-cyan-500 transition-all cursor-pointer"><Plus size={17} /> New Complaint</button>
+            <button onClick={() => setShowForm(true)} className="flex items-center gap-2 text-sm font-semibold bg-[#6C5CE7] text-white px-5 py-2.5 rounded-xl hover:bg-[#5B4BD6] dark:bg-[#7C5CFF] dark:hover:bg-[#6B4BEE] transition-all cursor-pointer"><Plus size={17} /> New Complaint</button>
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
@@ -197,7 +197,7 @@ export default function Complaints() {
                   <textarea name="description" value={form.description} onChange={e => { setForm(p => ({ ...p, description: e.target.value })); setErrors(p => ({ ...p, description: '' })) }} placeholder="Describe your complaint in detail..." rows={4} className={`w-full border ${errors.description ? 'border-red-400' : 'border-gray-200 dark:border-white/10'} rounded-xl px-3.5 py-2.5 text-sm text-gray-900 dark:text-white outline-none focus:border-[#6C5CE7] dark:focus:border-[#7C5CFF] transition-all placeholder:text-gray-400 dark:placeholder:text-gray-500 resize-none dark:bg-[#1E293B]`} />
                   {errors.description && <span className="text-xs text-red-500 mt-1 block">{errors.description}</span>}
                 </div>
-                <button type="submit" className="w-full flex items-center justify-center gap-2 text-sm font-semibold bg-gradient-to-r from-violet-600 to-cyan-500 text-white py-3 rounded-xl hover:from-violet-700 hover:to-cyan-600 dark:from-violet-500 dark:to-cyan-400 dark:hover:from-violet-600 dark:hover:to-cyan-500 transition-all cursor-pointer"><CheckCircle2 size={17} /> Submit Complaint</button>
+                <button type="submit" className="w-full flex items-center justify-center gap-2 text-sm font-semibold bg-[#6C5CE7] text-white py-3 rounded-xl hover:bg-[#5B4BD6] dark:bg-[#7C5CFF] dark:hover:bg-[#6B4BEE] transition-all cursor-pointer"><CheckCircle2 size={17} /> Submit Complaint</button>
               </form>
             </div>
           </div>

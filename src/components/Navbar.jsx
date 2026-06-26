@@ -53,7 +53,7 @@ export default function Navbar() {
             <button key={l.id} onClick={() => handleNavClick(l.id)} className="text-left text-gray-900 dark:text-white font-medium text-[15px] relative after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:bg-[#6C5CE7] dark:after:bg-[#7C5CFF] after:transition-all after:duration-300 after:w-0 hover:after:w-full hover:text-[#6C5CE7] dark:hover:text-[#7C5CFF] md:after:bottom-[-4px] cursor-pointer">{l.label}</button>
           ))}
           <Link to="/dashboard" onClick={() => setOpen(false)} className="text-[#6C5CE7] dark:text-[#7C5CFF] font-semibold md:hidden">Dashboard</Link>
-          <Link to="/login" onClick={() => setOpen(false)} className="flex items-center gap-1.5 bg-gradient-to-r from-violet-600 to-cyan-500 text-white px-6 py-2 rounded-lg font-semibold hover:from-violet-700 hover:to-cyan-600 dark:from-violet-500 dark:to-cyan-400 dark:hover:from-violet-600 dark:hover:to-cyan-500 transition-all hover:-translate-y-0.5 hover:shadow-md md:ml-0">
+          <Link to="/login" onClick={() => setOpen(false)} className="flex items-center gap-1.5 bg-[#6C5CE7] text-white px-6 py-2 rounded-lg font-semibold hover:bg-[#5B4BD6] dark:bg-[#7C5CFF] dark:hover:bg-[#6B4BEE] transition-all hover:-translate-y-0.5 hover:shadow-md md:ml-0">
             <LogIn size={16} /> Login
           </Link>
           <Link to="/register" onClick={() => setOpen(false)} className="text-sm font-semibold text-gray-500 dark:text-[#94A3B8] hover:text-[#6C5CE7] dark:hover:text-[#7C5CFF] md:hidden">Create Account</Link>

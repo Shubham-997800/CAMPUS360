@@ -227,7 +227,7 @@ export default function Dashboard() {
                 <div className="space-y-0">
                   {EVENTS.map(e => (
                     <div key={e.id} className="flex items-center gap-4 py-3.5 border-b border-gray-100 dark:border-gray-800 last:border-0 last:pb-0 first:pt-0">
-                      <div className="flex flex-col items-center w-14 py-2.5 bg-gradient-to-b from-[#EDE9FE] dark:from-[rgba(124,92,255,0.15)] to-white dark:to-[#1E293B] rounded-xl shrink-0 ring-1 ring-[#6C5CE7]/30 dark:ring-[#7C5CFF]/30">
+                      <div className="flex flex-col items-center w-14 py-2.5 bg-[#EDE9FE] dark:bg-[rgba(124,92,255,0.15)] rounded-xl shrink-0 ring-1 ring-[#6C5CE7]/30 dark:ring-[#7C5CFF]/30">
                         <span className="text-[10px] font-bold text-[#6C5CE7] dark:text-[#7C5CFF] uppercase leading-none">{new Date(e.date).toLocaleDateString('en-US', { month: 'short' })}</span>
                         <span className="text-xl font-extrabold text-gray-900 dark:text-white leading-tight mt-0.5">{new Date(e.date).getDate()}</span>
                       </div>

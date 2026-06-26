@@ -109,7 +109,7 @@ export default function StudyHub() {
                       <Download size={13} />
                       <span>{r.downloads} downloads</span>
                     </div>
-                    <button className="w-full flex items-center justify-center gap-2 text-xs font-semibold bg-gradient-to-r from-violet-600 to-cyan-500 text-white py-2.5 rounded-xl hover:from-violet-700 hover:to-cyan-600 dark:from-violet-500 dark:to-cyan-400 dark:hover:from-violet-600 dark:hover:to-cyan-500 transition-all cursor-pointer"><Download size={15} /> Download</button>
+                    <button className="w-full flex items-center justify-center gap-2 text-xs font-semibold bg-[#6C5CE7] text-white py-2.5 rounded-xl hover:bg-[#5B4BD6] dark:bg-[#7C5CFF] dark:hover:bg-[#6B4BEE] transition-all cursor-pointer"><Download size={15} /> Download</button>
                   </div>
                 </div>
               ))}

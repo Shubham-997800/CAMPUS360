@@ -48,7 +48,7 @@ export default function Login() {
 
   return (
     <div className="min-h-screen flex animate-fadeIn">
-      <div className="hidden lg:flex w-1/2 bg-gradient-to-br from-[#6C5CE7] dark:from-[#7C5CFF] to-purple-700 items-center justify-center p-12 relative overflow-hidden">
+      <div className="hidden lg:flex w-1/2 bg-[#6C5CE7] dark:bg-[#7C5CFF] items-center justify-center p-12 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <svg viewBox="0 0 400 300" className="w-full h-full"><circle cx="200" cy="160" r="120" fill="white" /><rect x="80" y="100" width="60" height="80" rx="6" fill="white" /><rect x="85" y="105" width="50" height="8" rx="2" fill="white" opacity="0.7" /><rect x="85" y="118" width="50" height="8" rx="2" fill="white" opacity="0.7" /><rect x="85" y="131" width="50" height="8" rx="2" fill="white" opacity="0.7" /><rect x="260" y="80" width="60" height="100" rx="6" fill="white" /><rect x="265" y="85" width="50" height="8" rx="2" fill="white" opacity="0.7" /><rect x="265" y="98" width="50" height="8" rx="2" fill="white" opacity="0.7" /><rect x="265" y="111" width="50" height="8" rx="2" fill="white" opacity="0.7" /></svg>
         </div>
@@ -107,7 +107,7 @@ export default function Login() {
               <span className="text-[#6C5CE7] dark:text-[#7C5CFF] font-medium cursor-default">Forgot Password?</span>
             </div>
 
-            <button type="submit" disabled={loading} className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-violet-600 to-cyan-500 text-white py-3 rounded-xl font-semibold hover:from-violet-700 hover:to-cyan-600 dark:from-violet-500 dark:to-cyan-400 dark:hover:from-violet-600 dark:hover:to-cyan-500 transition-all disabled:opacity-70 cursor-pointer">
+            <button type="submit" disabled={loading} className="w-full flex items-center justify-center gap-2 bg-[#6C5CE7] text-white py-3 rounded-xl font-semibold hover:bg-[#5B4BD6] dark:bg-[#7C5CFF] dark:hover:bg-[#6B4BEE] transition-all disabled:opacity-70 cursor-pointer">
               {loading ? <><Loader2 size={18} className="animate-spin" /> Signing in...</> : <><LogIn size={18} /> Sign In</>}
             </button>
           </form>
