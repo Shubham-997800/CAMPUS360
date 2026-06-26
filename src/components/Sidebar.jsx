@@ -19,7 +19,7 @@ export default function Sidebar({ open, onClose }) {
     <>
       {open && <div className="fixed inset-0 bg-black/40 z-40 backdrop-blur-sm md:hidden" onClick={onClose} />}
       <aside className={`fixed top-0 left-0 bottom-0 w-64 bg-white dark:bg-[#111827] border-r border-gray-200 dark:border-white/10 z-50 flex flex-col transition-transform duration-300 md:translate-x-0 ${open ? 'translate-x-0' : '-translate-x-full'}`}>
-        <div className="flex items-center gap-2.5 px-6 py-[22px] border-b border-gray-200 dark:border-white/10">
+        <div className="flex items-center gap-2.5 px-6 h-16 border-b border-gray-200 dark:border-white/10">
           <Logo size={32} />
           <span className="text-xl font-bold text-gray-900 dark:text-white tracking-tight">Nex<span className="text-[#6C5CE7] dark:text-[#7C5CFF]">Campus</span></span>
         </div>
