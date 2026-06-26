@@ -53,8 +53,9 @@ export default function Login() {
           <svg viewBox="0 0 400 300" className="w-full h-full"><circle cx="200" cy="160" r="120" fill="white" /><rect x="80" y="100" width="60" height="80" rx="6" fill="white" /><rect x="85" y="105" width="50" height="8" rx="2" fill="white" opacity="0.7" /><rect x="85" y="118" width="50" height="8" rx="2" fill="white" opacity="0.7" /><rect x="85" y="131" width="50" height="8" rx="2" fill="white" opacity="0.7" /><rect x="260" y="80" width="60" height="100" rx="6" fill="white" /><rect x="265" y="85" width="50" height="8" rx="2" fill="white" opacity="0.7" /><rect x="265" y="98" width="50" height="8" rx="2" fill="white" opacity="0.7" /><rect x="265" y="111" width="50" height="8" rx="2" fill="white" opacity="0.7" /></svg>
         </div>
         <div className="relative z-10 text-center text-white">
-          <Link to="/" className="inline-flex items-center gap-2.5 mb-8">
-            <Logo className="h-9 w-auto" />
+          <Link to="/" className="inline-flex items-center gap-2.5 text-white text-xl font-bold mb-8">
+            <Logo size={36} inverted />
+            <span>Nex<span className="text-white/70">Campus</span></span>
           </Link>
           <h1 className="text-3xl font-extrabold mb-3">Welcome Back!</h1>
           <p className="text-white/80 max-w-sm mx-auto">Manage your entire campus experience from one place.</p>
@@ -63,8 +64,9 @@ export default function Login() {
 
       <div className="flex-1 flex items-center justify-center p-8 dark:bg-[#0F172A]">
         <div className="w-full max-w-sm">
-          <Link to="/" className="inline-flex items-center gap-2.5 mb-10 lg:hidden">
-            <Logo className="h-8 w-auto" />
+          <Link to="/" className="inline-flex items-center gap-2.5 text-lg font-bold text-gray-900 dark:text-white mb-10 lg:hidden">
+            <Logo size={32} />
+            <span>Nex<span className="text-[#6C5CE7] dark:text-[#7C5CFF]">Campus</span></span>
           </Link>
 
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-1">Sign In</h2>
