@@ -162,7 +162,12 @@
     font-size: 17px;
   }
 
-  .nav-login-btn {
+.nav-link {
+  color: #2563EB !important;
+  font-weight: 600 !important;
+}
+
+.nav-login-btn {
     width: 100%;
     text-align: center;
   }

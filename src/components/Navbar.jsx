@@ -1,10 +1,9 @@
 import { useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import './Navbar.css'
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
-  const location = useLocation()
 
   return (
     <nav className="navbar">
@@ -22,6 +21,7 @@ export default function Navbar() {
           <a href="#features" onClick={() => setMenuOpen(false)}>Features</a>
           <a href="#about" onClick={() => setMenuOpen(false)}>About</a>
           <a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a>
+          <Link to="/dashboard" className="nav-link" onClick={() => setMenuOpen(false)}>Dashboard</Link>
           <Link to="/login" className="nav-login-btn" onClick={() => setMenuOpen(false)}>Login</Link>
         </div>
 

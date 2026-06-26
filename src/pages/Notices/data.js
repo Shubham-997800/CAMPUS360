@@ -1,0 +1,88 @@
+export const categories = ['All', 'Academic', 'Examination', 'Placement', 'Event', 'Circular']
+
+export const notices = [
+  {
+    id: 1,
+    title: 'Final Semester Exam Schedule 2026',
+    category: 'Examination',
+    date: '2026-07-10',
+    description: 'The final semester examination schedule for all departments has been released. Students are requested to check their respective exam dates and report any clashes to the examination cell immediately.',
+  },
+  {
+    id: 2,
+    title: 'Campus Recruitment Drive – TechCorp',
+    category: 'Placement',
+    date: '2026-07-08',
+    description: 'TechCorp is hiring final year students for software engineering roles. Eligible candidates must have a CGPA of 7.5 or above. The recruitment process includes a coding test, technical interview, and HR round.',
+  },
+  {
+    id: 3,
+    title: 'Workshop on Machine Learning & AI',
+    category: 'Event',
+    date: '2026-07-05',
+    description: 'A two-day hands-on workshop on Machine Learning and Artificial Intelligence will be conducted by industry experts from Google. Certificates will be provided to all participants.',
+  },
+  {
+    id: 4,
+    title: 'Hostel Fee Payment Notice',
+    category: 'Circular',
+    date: '2026-07-03',
+    description: 'All hostel students are required to pay the second installment of hostel fees by July 20, 2026. Late payment will attract a penalty of Rs. 500 per day.',
+  },
+  {
+    id: 5,
+    title: 'Academic Calendar 2026-27 Released',
+    category: 'Academic',
+    date: '2026-07-01',
+    description: 'The academic calendar for the 2026-27 academic year has been approved and published. All students and faculty members are advised to download and refer to the calendar for important dates.',
+  },
+  {
+    id: 6,
+    title: 'Google Summer of Code 2026',
+    category: 'Placement',
+    date: '2026-06-28',
+    description: 'Applications are open for Google Summer of Code 2026. Students with strong coding skills and open-source contributions are encouraged to apply. Mentorship slots available.',
+  },
+  {
+    id: 7,
+    title: 'Mid-Semester Exam Results',
+    category: 'Examination',
+    date: '2026-06-25',
+    description: 'Mid-semester examination results for all departments have been published. Students can check their results on the student portal using their roll number and date of birth.',
+  },
+  {
+    id: 8,
+    title: 'Cultural Fest 2026 – Registrations Open',
+    category: 'Event',
+    date: '2026-06-22',
+    description: 'The annual cultural fest registrations are now open. Events include music, dance, drama, literary contests, and more. Inter-college participation is welcome.',
+  },
+  {
+    id: 9,
+    title: 'Library Timing Changes During Exams',
+    category: 'Circular',
+    date: '2026-06-20',
+    description: 'The library will remain open 24/7 during the examination period starting July 1. Students must carry their ID cards for entry. Silent zone rules will be strictly enforced.',
+  },
+  {
+    id: 10,
+    title: 'Course Registration for Next Semester',
+    category: 'Academic',
+    date: '2026-06-18',
+    description: 'Course registration for the upcoming semester will begin from July 15. Students must meet with their academic advisors before selecting courses. Late registration will incur additional fees.',
+  },
+  {
+    id: 11,
+    title: 'Internship Opportunity – FinServ Ltd.',
+    category: 'Placement',
+    date: '2026-06-15',
+    description: 'FinServ Ltd. is offering 3-month summer internships for second and third year students. Stipend of Rs. 25,000 per month. Apply through the placement cell by June 30.',
+  },
+  {
+    id: 12,
+    title: 'Hackathon 2026 – Register Now',
+    category: 'Event',
+    date: '2026-06-12',
+    description: 'The annual campus hackathon is back! 36-hour coding challenge with prizes worth Rs. 1 Lakh. Teams of 3-4 members. Open to all branches.',
+  },
+]

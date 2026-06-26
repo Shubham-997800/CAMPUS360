@@ -16,8 +16,8 @@ export default function Dashboard() {
   return (
     <div className="dashboard-layout">
       <div className={`sidebar-overlay ${sidebarOpen ? 'visible' : ''}`} onClick={() => setSidebarOpen(false)} />
-      <Sidebar onClose={() => setSidebarOpen(false)} />
-      <div className={`dashboard-main ${sidebarOpen ? 'sidebar-open' : ''}`}>
+      <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+      <div className="dashboard-main">
         <TopNavbar onMenuToggle={() => setSidebarOpen((prev) => !prev)} />
         <div className="dashboard-content">
           <StatsCards />
