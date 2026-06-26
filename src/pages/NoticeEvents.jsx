@@ -159,7 +159,7 @@ function EventCard({ event: e }) {
   return (
     <div className="rounded-2xl border border-gray-200 dark:border-white/10 overflow-hidden hover:bg-gray-50/50 dark:hover:bg-white/[0.03] transition-all">
       <div className={`h-28 relative flex items-center justify-center p-4 ${e.bgClass}`}>
-        <span className="text-6xl">{e.icon}</span>
+        <span className="text-5xl">{e.icon}</span>
         <span className="absolute top-3 right-3 text-[10px] font-bold text-white/90 bg-white/20 px-2 py-0.5 rounded">{e.category}</span>
       </div>
       <div className="p-5">
