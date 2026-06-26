@@ -43,8 +43,9 @@ export default function Navbar() {
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 bg-white/85 dark:bg-gray-900/85 backdrop-blur-lg border-b border-gray-100/50 dark:border-gray-800/50 transition-shadow ${scrolled ? 'shadow-sm' : ''}`}>
       <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-2.5 hover:opacity-85 transition-opacity">
-          <Logo className="h-9 w-auto" />
+        <Link to="/" className="flex items-center gap-2.5 text-xl font-bold text-gray-900 dark:text-white hover:opacity-85 transition-opacity">
+          <Logo size={32} />
+          <span>Nex<span className="text-[#6C5CE7] dark:text-[#7C5CFF]">Campus</span></span>
         </Link>
 
         <div className={`fixed top-16 left-0 right-0 bg-white/98 dark:bg-gray-900/98 backdrop-blur-lg flex-col p-6 gap-5 border-b border-gray-200 dark:border-gray-700 transition-all duration-400 md:static md:flex-row md:bg-transparent md:dark:bg-transparent md:p-0 md:border-0 md:gap-8 md:flex md:items-center md:translate-y-0 md:opacity-100 md:pointer-events-auto ${open ? 'translate-y-0 opacity-100 pointer-events-auto' : '-translate-y-full opacity-0 pointer-events-none'}`}>
