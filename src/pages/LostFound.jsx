@@ -119,7 +119,7 @@ export default function LostFound() {
           ) : (
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {filtered.map(item => (
-                <div key={item.id} className="bg-white dark:bg-[#1E293B] rounded-2xl border border-gray-200 dark:border-white/10 shadow-sm overflow-hidden hover:shadow-md transition-all">
+                <div key={item.id} className="rounded-2xl border border-gray-200 dark:border-white/10 overflow-hidden hover:bg-gray-50/50 dark:hover:bg-white/[0.03] transition-all">
                   <div className={`h-28 relative flex items-end p-4 ${item.gradientClass}`}>
                     <span className="text-3xl">{item.icon}</span>
                     <span className={`absolute top-3 right-3 text-[10px] font-bold px-2 py-0.5 rounded-full ${tab === 'lost' ? 'bg-red-100 text-red-600' : 'bg-green-100 text-green-600'}`}>{tab === 'lost' ? 'Lost' : 'Found'}</span>
@@ -132,7 +132,7 @@ export default function LostFound() {
                     </div>
                     <div className="flex items-center gap-1 text-xs text-gray-500 dark:text-[#94A3B8] mb-2"><MapPin size={12} /> {item.location}</div>
                     <p className="text-xs text-gray-500 dark:text-[#94A3B8] leading-relaxed mb-4">{item.description}</p>
-                    <button className="w-full text-xs font-semibold text-[#6C5CE7] dark:text-[#7C5CFF] bg-[#EDE9FE] dark:bg-[rgba(124,92,255,0.15)] py-2 rounded-xl hover:bg-[#6C5CE7]/20 dark:hover:bg-[rgba(124,92,255,0.25)] transition-all cursor-pointer">Contact Admin</button>
+                    <button className="w-full text-xs font-semibold text-[#6C5CE7] dark:text-[#7C5CFF] hover:bg-[#EDE9FE] dark:hover:bg-[rgba(124,92,255,0.15)] py-2 rounded-xl transition-all cursor-pointer">Contact Admin</button>
                   </div>
                 </div>
               ))}

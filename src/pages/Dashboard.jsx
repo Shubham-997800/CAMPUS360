@@ -165,7 +165,7 @@ export default function Dashboard() {
               <div className="bg-white dark:bg-[#1E293B] rounded-2xl p-6 border border-gray-200 dark:border-white/10 shadow-sm">
                 <div className="flex items-center justify-between mb-5">
                   <h3 className="font-bold text-gray-900 dark:text-white">Recent Notices</h3>
-                  <button onClick={() => navigate('/dashboard/notices-events')} className="text-xs font-semibold text-[#6C5CE7] dark:text-[#7C5CFF] bg-[#EDE9FE] dark:bg-[rgba(124,92,255,0.15)] hover:bg-[#6C5CE7]/20 dark:hover:bg-[rgba(124,92,255,0.25)] transition-all px-3 py-1.5 rounded-lg cursor-pointer">View All</button>
+                  <button onClick={() => navigate('/dashboard/notices-events')} className="text-xs font-semibold text-[#6C5CE7] dark:text-[#7C5CFF] hover:bg-[#EDE9FE] dark:hover:bg-[rgba(124,92,255,0.15)] transition-all px-3 py-1.5 rounded-lg cursor-pointer">View All</button>
                 </div>
                 <div className="space-y-0">
                   {NOTICES.map(n => (
@@ -188,7 +188,7 @@ export default function Dashboard() {
               <div className="bg-white dark:bg-[#1E293B] rounded-2xl p-6 border border-gray-200 dark:border-white/10 shadow-sm">
                 <div className="flex items-center justify-between mb-5">
                   <h3 className="font-bold text-gray-900 dark:text-white">Complaint Status</h3>
-                  <button onClick={() => navigate('/dashboard/complaints')} className="text-xs font-semibold text-[#6C5CE7] dark:text-[#7C5CFF] bg-[#EDE9FE] dark:bg-[rgba(124,92,255,0.15)] hover:bg-[#6C5CE7]/20 dark:hover:bg-[rgba(124,92,255,0.25)] transition-all px-3 py-1.5 rounded-lg cursor-pointer">View All</button>
+                  <button onClick={() => navigate('/dashboard/complaints')} className="text-xs font-semibold text-[#6C5CE7] dark:text-[#7C5CFF] hover:bg-[#EDE9FE] dark:hover:bg-[rgba(124,92,255,0.15)] transition-all px-3 py-1.5 rounded-lg cursor-pointer">View All</button>
                 </div>
                 <div className="space-y-5">
                   <div className="flex h-3 rounded-full overflow-hidden bg-gray-100 ring-1 ring-gray-200/50 dark:bg-gray-800 dark:ring-gray-700/50">
@@ -222,7 +222,7 @@ export default function Dashboard() {
               <div className="bg-white dark:bg-[#1E293B] rounded-2xl p-6 border border-gray-200 dark:border-white/10 shadow-sm">
                 <div className="flex items-center justify-between mb-5">
                   <h3 className="font-bold text-gray-900 dark:text-white">Upcoming Events</h3>
-                  <button onClick={() => navigate('/dashboard/notices-events')} className="text-xs font-semibold text-[#6C5CE7] dark:text-[#7C5CFF] bg-[#EDE9FE] dark:bg-[rgba(124,92,255,0.15)] hover:bg-[#6C5CE7]/20 dark:hover:bg-[rgba(124,92,255,0.25)] transition-all px-3 py-1.5 rounded-lg cursor-pointer">View All</button>
+                  <button onClick={() => navigate('/dashboard/notices-events')} className="text-xs font-semibold text-[#6C5CE7] dark:text-[#7C5CFF] hover:bg-[#EDE9FE] dark:hover:bg-[rgba(124,92,255,0.15)] transition-all px-3 py-1.5 rounded-lg cursor-pointer">View All</button>
                 </div>
                 <div className="space-y-0">
                   {EVENTS.map(e => (
@@ -238,7 +238,7 @@ export default function Dashboard() {
                           {e.venue} · {e.time}
                         </span>
                       </div>
-                      <button className="text-xs font-semibold text-[#6C5CE7] dark:text-[#7C5CFF] bg-[#EDE9FE] dark:bg-[rgba(124,92,255,0.15)] px-3 py-1.5 rounded-lg hover:bg-[#6C5CE7]/20 dark:hover:bg-[rgba(124,92,255,0.25)] transition-all cursor-pointer">Details</button>
+                      <button className="text-xs font-semibold text-[#6C5CE7] dark:text-[#7C5CFF] hover:bg-[#EDE9FE] dark:hover:bg-[rgba(124,92,255,0.15)] px-3 py-1.5 rounded-lg transition-all cursor-pointer">Details</button>
                     </div>
                   ))}
                 </div>
