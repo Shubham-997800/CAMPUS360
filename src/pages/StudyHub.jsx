@@ -96,7 +96,7 @@ export default function StudyHub() {
           ) : (
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {filtered.map(r => (
-                <div key={r.id} className="bg-white dark:bg-[#1E293B] rounded-2xl border border-gray-200 dark:border-white/10 shadow-sm overflow-hidden hover:shadow-md transition-all">
+                <div key={r.id} className="rounded-2xl border border-gray-200 dark:border-white/10 overflow-hidden hover:bg-gray-50/50 dark:hover:bg-white/[0.03] transition-all">
                   <div className={`h-1.5 ${currentSection?.barClass}`} />
                   <div className="p-5">
                     <div className="flex items-center gap-2 mb-2.5">

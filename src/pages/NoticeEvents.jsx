@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Search, ChevronLeft, ChevronRight, ArrowRight, MapPin, Clock, CalendarDays, CheckCircle2, Menu, Sun, Moon } from 'lucide-react'
+import { Search, ChevronLeft, ChevronRight, ArrowRight, MapPin, Clock, CalendarDays, CheckCircle2, ChevronDown, Menu, Sun, Moon } from 'lucide-react'
 import Sidebar from '../components/Sidebar'
 import EmptyState from '../components/EmptyState'
 import { useTheme } from '../context/ThemeContext'
@@ -85,11 +85,14 @@ export default function NoticeEvents() {
                 <Search size={16} className="text-gray-400 dark:text-gray-500 shrink-0" />
                 <input type="text" placeholder={`Search ${tab}...`} value={search} onChange={e => { setSearch(e.target.value); setPage(1) }} className="flex-1 bg-transparent border-none outline-none py-2.5 text-sm text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-gray-500 w-40" />
               </div>
-              <select value={filter} onChange={e => setFilter(e.target.value)} className="bg-gray-100 dark:bg-gray-800 border-none rounded-xl px-3.5 py-2.5 text-sm text-gray-700 dark:text-gray-300 font-medium outline-none cursor-pointer">
+              <div className="flex items-center gap-2 bg-gray-100 dark:bg-gray-800 rounded-xl px-3.5">
+                <ChevronDown size={14} className="text-gray-400 dark:text-gray-500 shrink-0" />
+                <select value={filter} onChange={e => setFilter(e.target.value)} className="bg-transparent border-none rounded-xl py-2.5 text-sm text-gray-700 dark:text-gray-300 font-medium outline-none cursor-pointer">
                 {CATEGORIES.map(c => <option key={c}>{c}</option>)}
               </select>
             </div>
           </div>
+        </div>
 
           <div className="flex gap-1 mb-6 bg-gray-100 dark:bg-gray-800 p-1 rounded-xl w-fit">
             {['notices', 'events'].map(t => (
@@ -105,7 +108,7 @@ export default function NoticeEvents() {
                 <>
                   <div className="grid md:grid-cols-2 gap-4">
                     {paginatedNotices.map(n => (
-                      <div key={n.id} className="bg-white dark:bg-[#1E293B] rounded-2xl p-5 border border-gray-200 dark:border-white/10 shadow-sm hover:shadow-md transition-all">
+                      <div key={n.id} className="rounded-2xl p-5 border border-gray-200 dark:border-white/10 hover:bg-gray-50/50 dark:hover:bg-white/[0.03] transition-all">
                         <div className="flex items-center justify-between mb-3">
                           <CategoryBadge cat={n.category} />
                           <span className="text-xs text-gray-400 dark:text-gray-500">{formatDate(n.date)}</span>
@@ -113,7 +116,7 @@ export default function NoticeEvents() {
                         <h3 className="font-bold text-gray-900 dark:text-white mb-2">{n.title}</h3>
                         <p className="text-sm text-gray-500 dark:text-[#94A3B8] leading-relaxed mb-4">{n.description}</p>
                         <div className="flex items-center gap-3">
-                          <button className="flex items-center gap-1.5 text-xs font-semibold text-[#6C5CE7] dark:text-[#7C5CFF] bg-[#EDE9FE] dark:bg-[rgba(124,92,255,0.15)] px-3 py-1.5 rounded-lg hover:bg-[#6C5CE7]/20 dark:hover:bg-[rgba(124,92,255,0.25)] transition-all cursor-pointer"><ArrowRight size={14} /> Read More</button>
+                          <button className="flex items-center gap-1.5 text-xs font-semibold text-[#6C5CE7] dark:text-[#7C5CFF] hover:bg-[#EDE9FE] dark:hover:bg-[rgba(124,92,255,0.15)] px-3 py-1.5 rounded-lg transition-all cursor-pointer"><ArrowRight size={14} /> Read More</button>
                         </div>
                       </div>
                     ))}
@@ -154,7 +157,7 @@ export default function NoticeEvents() {
 function EventCard({ event: e }) {
   const [registered, setRegistered] = useState(false)
   return (
-    <div className="bg-white dark:bg-[#1E293B] rounded-2xl border border-gray-200 dark:border-white/10 shadow-sm overflow-hidden hover:shadow-md transition-all">
+    <div className="rounded-2xl border border-gray-200 dark:border-white/10 overflow-hidden hover:bg-gray-50/50 dark:hover:bg-white/[0.03] transition-all">
       <div className={`h-28 relative flex items-end p-4 ${e.gradientClass}`}>
         <span className="text-3xl">{e.icon}</span>
         <span className="absolute top-3 right-3 text-[10px] font-bold text-white/90 bg-white/20 px-2 py-0.5 rounded">{e.category}</span>
